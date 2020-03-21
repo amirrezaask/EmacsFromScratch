@@ -1,4 +1,4 @@
-;;; setup.el ---                                      -*- lexical-binding: t; -*-
+;;; assassin-keybindings.el --- -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  Amirreza Askarpour
 
@@ -58,30 +58,6 @@
 ;; 
 
 ;;; Code:
+(use-package)
 
-(defun load-all-elisp-files (path)
-  "List of all elisp files in given PATH."
-  (mapcar (lambda (name) (require (intern (car (split-string name "\\."))))) (seq-filter (lambda (file) (string= (car (last (split-string file "\\."))) "el")) (directory-files path))))
-
-
-
-(defmacro make-assassin (&rest attrs)
-  "Macro to define a new Assassin with given ATTRS."
-  (let ((side (plist-get fields :side))
-	(editor (plist-get fields :editor))
-	(dev (plist-get fields :dev))
-	(completion (plist-get fields :completion))
-	(ui (plist-get fields :ui))
-	(devops (plist-get fields :devops))
-	(langs (plist-get fields :langs))
-	(comms (plist-get fields :comms))
-	))
-  `(progn
-     (assassin-ui-init ,ui)
-     (assassin-dev-init ,dev)
-     (assassin-editor-init ,editor)
-     (assassin-langs-init ,langs)
-     (assassin-devops-init ,devops)
-     (assassin-comms-init ,comms)))
-
-(provide 'assassin-setup)
+(provide 'assassin-keybindings)

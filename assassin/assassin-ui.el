@@ -23,8 +23,29 @@
 ;; 
 
 ;;; Code:
+(defvar assassin-ui-light-theme 'doom-one-light "light theme of assassin emacs")
+(defvar assassin-ui-dark-theme 'badwolf "dark theme of assassin emacs")
+(defvar assassin-ui--current-mode 0)
 
+(defun assassin-ui-use-font (font size)
+  "use given FONT with given SIZE"
+  (interactive)
+  (add-to-list 'default-frame-alist (cons 'font (format "%s-%d" font size))))
 
+(defun toggle-color ()
+  "toggle the color mode of assassin emacs"
+  (interactive)
+  (if (= assassin-ui--current-mode 0) (progn (load-theme assassin-ui-dark-theme) (setq assassin-ui--current-mode 1)) (progn (load-theme assassin-ui-light-theme t) (setq assassin-ui--current-mode 0)))
+  )
+
+(defun assassin-ui-init (attrs)
+  (setq custom-safe-themes t)
+  (use-package doom-themes :defer t)
+  (use-pacakge badwolf :defer t)
+  (use-package emojify :config (emojify-mode 1))
+  (load-theme assassin-ui-dark-theme t)
+  (use-package doom-modeline :config (doom-modeline-mode 1))
+  )
 
 (provide 'assassin-ui)
 ;;; assassin-ui.el ends here

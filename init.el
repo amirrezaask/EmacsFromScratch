@@ -57,8 +57,7 @@
 ;; 
 
 ;;; Code:
-(add-to-list 'load-path (expand-file-name "assassin" user-emacs-directory))
-;; make it really fast
+;; some initial emacs internals setup
 (setq gc-cons-threshold most-positive-fixnum ; 2^61 bytes
       gc-cons-percentage 0.6)
 (add-hook 'emacs-startup-hook
@@ -86,10 +85,22 @@
     (setq file-name-handler-alist --file-name-handler-alist)))
 
 (setq initial-major-mode 'fundamental-mode)
-;; load the heart of assassin
 
- ;; load user configuration
-(load-file (expand-file-name ".emacs-config.el" (getenv "HOME")))
+(setq custom-file "~/.__custom.el")
+
+;; Loading assassin files
+
+(add-to-list 'load-path (expand-file-name "assassin" user-emacs-directory))
+(require 'seq)
+(defun require-all-elisp-files (path)
+  "List of all elisp files in given PATH."
+  (mapcar (lambda (name)
+	    (require (intern (car (split-string name "\\.")))))
+	  (seq-filter (lambda (file) (string= (car (last (split-string file "\\."))) "el")) (directory-files path)) ))
+
+(require 'assassin-core)
+;; load user configuration
+(load-file (expand-file-name ".assassin.el" (getenv "HOME")))
 
 (provide 'init)
 ;;; init.el ends here
