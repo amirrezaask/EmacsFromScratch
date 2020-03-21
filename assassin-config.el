@@ -77,54 +77,54 @@
 
     :dev ;; I dont really know how to connect this concept to assassins era
     company ; code completion for all languages with appropriate backend
-     ;; lsp ; language server protocol
-     ;; dap ; debugger adapter protocol
+    ;; lsp ; language server protocol
+    ;; dap ; debugger adapter protocol
      
     
     :devops ;; when an assassin becomes the operations guy
     k8s ; k8s management in Emacs
-     ;;ansible ; 
-     ;;docker ; 
+    ;;ansible ; 
+    ;;docker ; 
     
  
     
     :langs
     
-     ;;assembly          ; closest thing to metal
-     ;;cc                ; C/C++/Obj-C madness
-     ;;clojure           ; lisp on jvm
-     ;;common-lisp       ; common things lisps have
-     ;;csharp            ; unity, .NET, and mono shenanigans
-     ;;dockerfile        ; new cool vms
-     emacs-lisp          ; emacs language
-     ;;json              ; Beside from being js technology, a good data format
-     ;;xml               ; dont forget to take your pills, cause youre old
-     ;;yaml              ; hipster data format
+    ;;assembly          ; closest thing to metal
+    ;;cc                ; C/C++/Obj-C madness
+    ;;clojure           ; lisp on jvm
+    ;;common-lisp       ; common things lisps have
+    ;;csharp            ; unity, .NET, and mono shenanigans
+    ;;dockerfile        ; new cool vms
+    emacs-lisp          ; emacs language
+    ;;json              ; Beside from being js technology, a good data format
+    ;;xml               ; dont forget to take your pills, cause youre old
+    ;;yaml              ; hipster data format
     ;;elixir            ; erlang done right
-     ;;erlang            ; pass the message
-     ;;fsharp            ; Haskell on .NET
-     ;;go                ; New edition of C with garbage collector
-     ;;haskell           ; a language thats lazier than I am
-     ;;java              ; let me guess ? You are in a retirement home
-     ;;javascript        ; akh :(
-     ;;kotlin            ; bearable java(javascript)
-     ;;latex             ; just use the org mode :)
-     ;;lua               ; one-based indices? one-based indices
-     markdown            ; writing docs for people to ignore
-     org                 ; Markdown done correctly
-     ;;php               ; so it goes back to your childhood
-     ;;python            ; simples better than complex
-     ;;racket            ; a DSL for DSLs
-     ;;rust              ; new actuall C replacement
-     ;;scala             ; java + functional programming
-     sh                ; she sells {ba,z,fi}sh shells on the C xor
-     ;;web               ; the tubes
+    ;;erlang            ; pass the message
+    ;;fsharp            ; Haskell on .NET
+    ;;go                ; New edition of C with garbage collector
+    ;;haskell           ; a language thats lazier than I am
+    ;;java              ; let me guess ? You are in a retirement home
+    ;;javascript        ; akh :(
+    ;;kotlin            ; bearable java(javascript)
+    ;;latex             ; just use the org mode :)
+    ;;lua               ; one-based indices? one-based indices
+    markdown            ; writing docs for people to ignore
+    org                 ; Markdown done correctly
+    ;;php               ; so it goes back to your childhood
+    ;;python            ; simples better than complex
+    ;;racket            ; a DSL for DSLs
+    ;;rust              ; new actuall C replacement
+    ;;scala             ; java + functional programming
+    sh                ; she sells {ba,z,fi}sh shells on the C xor
+    ;;web               ; the tubes
      
  
     :comms ;; all the communication systems available in assassin emacs
     email
-     ;;irc
-     ;;twitter
+    ;;irc
+    ;;twitter
      
     )
 
