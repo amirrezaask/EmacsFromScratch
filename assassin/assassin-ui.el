@@ -26,6 +26,11 @@
 (defvar assassin-ui-light-theme 'doom-one-light "light theme of assassin emacs")
 (defvar assassin-ui-dark-theme 'badwolf "dark theme of assassin emacs")
 (defvar assassin-ui--current-mode 0)
+(setq use-dialog-box nil)
+
+(defconst lisp--prettify-symbols-alist
+  '(("lambda"  . ?λ))) ;; shows lambda word as the symbol
+(global-prettify-symbols-mode 1)
 
 (defun assassin-ui-use-font (font size)
   "use given FONT with given SIZE"

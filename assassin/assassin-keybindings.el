@@ -58,31 +58,43 @@
 ;; 
 
 ;;; Code:
+(require 'keybindings/assassin-keybindings-core)
 
-(defun -bindkey-evil (map fn keys)
-  "Bind given FN to given KEYS on given MAP."
-  (let ((normal-key (plist-get keys :normal))
-	(visual-key (plist-get keys :visual))
-	(insert-key (plist-get keys :insert))
-	(emacs-key (plist-get keys :emacs)))
-    (cond
-     ((not (null normal-key)) (evil-define-key 'normal map (kbd normal-key) fn))
-     ((not (null visual-key)) (evil-define-key 'visual map (kbd visual-key) fn))
-     ((not (null insert-key)) (evil-define-key 'insert map (kbd insert-key) fn))
-     ((not (null emacs-key)) (evil-define-key 'emacs map (kbd emacs-key) fn)))))
+(assassin-when assassins
+ (use-package evil 
+   :init
+   (setq evil-want-keybinding nil)
+   (add-hook 'simple-mode-hook 'evil-mode)
+   :config
+   (evil-mode 1)
+   (bindkey global-map 'find-file :evil (:normal "SPC f f"))
+   (bindkey global-map 'kill-buffer :evil (:normal "SPC b k"))
+   (bindkey global-map 'save-buferr :evil (:normal "SPC b s"))
+   (bindkey global-map 'next-buffer :evil (:normal "SPC b n"))
+   (bindkey global-map 'previous-buffer :evil (:normal "SPC b p"))
+   (bindkey global-map 'switch-to-buffer :evil (:normal "SPC b l"))
+   (bindkey global-map 'other-window :evil (:normal "SPC w o"))
+   (bindkey global-map 'delete-window :evil (:normal "SPC w d"))
+   (bindkey global-map 'delete-other-windows :evil (:normal "SPC w m"))
+   (bindkey global-map 'split-window-vertically :evil (:normal "SPC w s v"))
+   (bindkey global-map 'kill-buffer :evil (:normal "SPC b k"))
+   (bindkey global-map 'eval-last-sexp :evil (:normal "SPC e e"))
+   (bindkey global-map 'eval-buffer :evil (:normal "SPC e b"))
+   (bindkey global-map 'comment-line :evil (:normal "SPC l c"))
+   (bindkey global-map 'describe-key :evil (:normal "SPC d k"))
+   (bindkey global-map 'describe-function :evil (:normal "SPC d f"))
+   (bindkey global-map 'describe-variable :evil (:normal "SPC d v"))
+   (bindkey global-map 'toggle-color-mode :evil (:normal "SPC t t")))
+ (use-package linum-relative :config (linum-relative-mode)))
 
-(defun -bindkey-holy (map fn keys)
-  "Bind given FN to given KEYS on given MAP."
-  (define-key map (kbd keys) fn))
-
-(defmacro bindkey (map fn &rest keys)
-  "Binds FN to KEYS on given MAP based on side you are on."
-  (let ((evil-keys (plist-get keys :evil)) (holy-keys (plist-get keys :holy)))
-    (cond
-     ((eq side 'evil) `(-bindkey-evil ,map ,fn (quote ,evil-keys)))
-     ((eq side 'holy) `(-bindkey-holy ,map ,fn ,holy-keys))
-     )
-    ))
+(global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "C-=") 'text-scale-increase)
+(global-set-key (kbd "C-o") 'other-window)
+(global-set-key (kbd "C-1") 'delete-other-windows)
+(global-set-key (kbd "C-2") 'split-window-below) 
+(global-set-key (kbd "C-3") 'split-window-right)
+(global-set-key (kbd "C-,") 'previous-buffer)
+(global-set-key (kbd "C-.") 'next-buffer)
 
 
 (provide 'assassin-keybindings)

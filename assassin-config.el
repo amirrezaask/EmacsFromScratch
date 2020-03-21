@@ -73,7 +73,7 @@
     ;; helm ; completion framework if you like fancy shiny things
     ;; multiple-cursor ; multiple edits
     ;; whitespace-mode ; highlight indents
-     
+    which-key ; helps us when we only remember part of a keybinding
 
     :dev ;; I dont really know how to connect this concept to assassins era
     company ; code completion for all languages with appropriate backend
