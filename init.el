@@ -57,8 +57,8 @@
 ;; 
 
 ;;; Code:
-(setq debug-on-error t)
-
+;; (setq debug-on-error t)
+(setq start-timestamp (float-time))
 ;; some initial emacs internals setup
 (setq gc-cons-threshold most-positive-fixnum ; 2^61 bytes
       gc-cons-percentage 0.6)
@@ -115,7 +115,7 @@
 (load-file (expand-file-name ".assassin.el" (getenv "HOME")))
 ;; initialize Assassin Emacs based on user config
 (require-all-elisp-files (concat user-emacs-directory "assassin"))
-
+(message "startup took %s" (- (float-time) start-timestamp))
 (provide 'init)
 ;;; init.el ends here
  
