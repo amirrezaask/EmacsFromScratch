@@ -59,6 +59,7 @@
 
 ;;; Code:
 
+(defvar assassin-vars '() "all variables of assassin emacs")
 ;; main macro of assassin to generate variables based on user input
 (defmacro assassin (&rest attrs)
   "Macro to define a new Assassin with given ATTRS."
@@ -72,16 +73,22 @@
 	(comms (plist-get attrs :comms))
 	)
     (setq final-list '())
-    (if (not (null side)) (add-to-list 'final-list `(setq assassin--side ,side)))
-    (if (not (null editor)) (add-to-list 'final-list `(setq assassin--editor (quote ,editor))))
-    (if (not (null dev)) (add-to-list 'final-list `(setq assassin--dev (quote ,dev))))
-    (if (not (null completion)) (add-to-list 'final-list `(setq assassin--completion (quote ,completion))))
-    (if (not (null ui)) (add-to-list 'final-list `(setq assassin--ui (quote ,ui))))
-    (if (not (null devops)) (add-to-list 'final-list `(setq assassin--devops (quote ,devops))))
-    (if (not (null langs)) (add-to-list 'final-list `(setq assassin--langs (quote ,langs))))
-    (if (not (null comms)) (add-to-list 'final-list `(setq assassin--comms (quote ,comms))))
+    (if (not (null side)) (add-to-list 'final-list `(add-to-list 'assassin-vars ,side)))
+    (if (not (null editor)) (add-to-list 'final-list `(add-to-list 'assassin-vars ,editor)))
+    (if (not (null dev)) (add-to-list 'final-list `(add-to-list 'assassin-vars ,dev)))
+    (if (not (null completion)) (add-to-list 'final-list `(add-to-list 'assassin-vars ,completion)))
+    (if (not (null ui)) (add-to-list 'final-list `(add-to-list 'assassin-vars ,ui)))
+    (if (not (null devops)) (add-to-list 'final-list `(add-to-list 'assassin-vars ,devops)))
+    (if (not (null langs)) (add-to-list 'final-list `(add-to-list 'assassin-vars ,langs)))
+    (if (not (null comms)) (add-to-list 'final-list `(add-to-list 'assassin-vars ,comms)))
     (add-to-list 'final-list `progn)
     final-list))
+
+(defun assassin-enable? (name)
+  "checks if given name is enabled in assassin emacs"
+  (member name 'assassin-vars))
+
+(defmacro assassin-when (name body))
 
 ;; Install bootstrap package manager
 (defvar bootstrap-version)
