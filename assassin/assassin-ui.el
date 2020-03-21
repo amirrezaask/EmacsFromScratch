@@ -38,14 +38,18 @@
   (if (= assassin-ui--current-mode 0) (progn (load-theme assassin-ui-dark-theme) (setq assassin-ui--current-mode 1)) (progn (load-theme assassin-ui-light-theme t) (setq assassin-ui--current-mode 0)))
   )
 
-(defun assassin-ui-init (attrs)
-  (setq custom-safe-themes t)
-  (use-package doom-themes :defer t)
-  (use-pacakge badwolf :defer t)
-  (use-package emojify :config (emojify-mode 1))
-  (load-theme assassin-ui-dark-theme t)
-  (use-package doom-modeline :config (doom-modeline-mode 1))
-  )
+
+(assassin-when themes
+	       (setq custom-safe-themes t)
+	       (use-package doom-themes :defer t)
+	       (use-pacakge badwolf :defer t)
+	       (load-theme assassin-ui-dark-theme t))
+
+(assassin-when modeline
+	       (use-package doom-modeline :config (doom-modeline-mode 1)))
+
+(assassin-when show-emojis
+	       (use-package emojify :config (emojify-mode 1)))
 
 (provide 'assassin-ui)
 ;;; assassin-ui.el ends here

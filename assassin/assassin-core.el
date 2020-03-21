@@ -68,7 +68,7 @@
 
 (defun assassin-enable? (feature)
   "checks if given feature is enabled in assassin emacs"
-  (member feature 'assassin-features))
+  (member feature assassin-features))
 
 (defmacro assassin-when (feature &rest body)
   "when given feature enabled evaluate body"
