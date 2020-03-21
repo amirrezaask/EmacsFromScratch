@@ -65,6 +65,7 @@
     :ui
     modeline
     themes
+    font "mononoki" 11
     
     ;; every assassin needs best tool for writing
     :editor 

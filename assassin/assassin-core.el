@@ -58,6 +58,7 @@
 ;; 
 
 ;;; Code:
+(require 'cl)
 (require 'keybindings/assassin-keybindings-core)
 
 (defvar assassin-features '() "all variables of assassin emacs")
@@ -65,7 +66,12 @@
 
 (defmacro assassin (&rest attrs)
   "Define a new Assassin with given ATTRS."
-  `(mapcar (lambda (attr) (when (not (keywordp attr)) (add-to-list 'assassin-features attr))) (quote ,attrs)))
+  `(mapcar (lambda (attr)
+	     (when (not
+		    (keywordp attr))
+	       (add-to-list 'assassin-features attr)))
+
+	   (quote ,attrs)))
 
 (defun assassin-enable? (feature)
   "checks if given feature is enabled in assassin emacs"

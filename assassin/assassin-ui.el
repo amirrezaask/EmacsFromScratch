@@ -25,6 +25,7 @@
 ;;; Code:
 (defvar assassin-ui-light-theme 'doom-one-light "light theme of assassin emacs")
 (defvar assassin-ui-dark-theme 'badwolf"dark theme of assassin emacs")
+
 (defvar assassin-ui--current-mode 0)
 (setq use-dialog-box nil)
 
@@ -56,5 +57,11 @@
 (assassin-when show-emojis
 	       (use-package emojify :config (emojify-mode 1)))
 
+(assassin-when font
+	       (require 'cl)
+	       (let ((locator (cl-position 'font assassin-features)))
+		 (let ((font-name (nth (- locator 1) assassin-features)) (size (nth (- locator 2) assassin-features)))
+		   (assassin-ui-use-font font-name size)
+		 )))
 (provide 'assassin-ui)
 ;;; assassin-ui.el ends here
