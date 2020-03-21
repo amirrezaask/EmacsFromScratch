@@ -58,8 +58,8 @@
 
 ;;; Code:
 
-(add-to-list 'load-path (expand-file-name "assassins" user-emacs-directory))
-
+(add-to-list 'load-path (expand-file-name "assassin" user-emacs-directory))
+;; make it really fast
 (setq gc-cons-threshold most-positive-fixnum ; 2^61 bytes
       gc-cons-percentage 0.6)
 (add-hook 'emacs-startup-hook
@@ -87,7 +87,11 @@
     (setq file-name-handler-alist --file-name-handler-alist)))
 
 (setq initial-major-mode 'fundamental-mode)
+;; load the heart of assassin
+(require 'assassin/core)
 
+;; load user configuration
+(load-file (expand-file-name ".assassins-config.el" (getenv "HOME")))
 
 (provide 'init)
 ;;; init.el ends here

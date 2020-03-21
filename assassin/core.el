@@ -58,8 +58,37 @@
 ;; 
 
 ;;; Code:
+(require 'cl)
 
+(require 'assassin/development)
+(require 'assassin/editor)
+(require 'assassin/languages)
+(require 'assassin/devops)
+(require 'assassin/communications)
 
+(cl-defstruct assassin
+  side
+  modeline
+  completion
+  editor
+  development
+  devops
+  languages
+  communications)
+  
+(defmacro defassassin (&rest keys))
+    
 
-(provide 'core)
+;; init development
+(assassin-development-initialize)
+;; init editor
+(assassin-editor-initialize)
+;; init languages
+(assassin-languages-initialize)
+;; init devops
+(assassin-devops-initialize)
+;; init communication
+(assassin-communications-initialize)
+
+(provide 'assassin/core)
 ;;; core.el ends here
