@@ -1,4 +1,4 @@
-;;; assassin-dev.el --- assassin dev module          -*- lexical-binding: t; -*-
+;;; assassin-ide.el --- assassin dev module          -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  Amirreza Askarpour
 
@@ -31,15 +31,15 @@
 	       (use-package dap-mode  :defer t :hook ((go-mode python-mode php-mode) . dap-mode)))
 
 (assassin-feature :git
-	        (use-package magit
-			     :commands (magit-status)
-			     :init
-			     (bindkey global-map 'magit-status :holy "C-x g" :evil (:normal "SPC g s")))
+		  (use-package magit
+		    :commands (magit-status)
+		    :init
+		    (bindkey global-map 'magit-status :holy "C-x g" :evil (:normal "SPC g s")))
 
-		(use-package diff-hl  :config (global-diff-hl-mode))
+		  (use-package diff-hl  :config (global-diff-hl-mode))
 
-		(assassin-feature :assassins
-			       (use-package evil-magit :defer t :init (add-hook 'magit-mode-hook (lambda () (require 'evil-magit))))))
+		  (assassin-feature :assassins
+				    (use-package evil-magit :defer t :init (add-hook 'magit-mode-hook (lambda () (require 'evil-magit))))))
 
 
 (assassin-feature :lsp
@@ -58,5 +58,5 @@
 			    (add-to-list 'company-backends 'company-dabbrev)
 			    (add-to-list 'company-backends 'company-dabbrev-code)))
 
-(provide 'assassin-dev)
-;;; assassin-dev.el ends here
+(provide 'assassin-ide)
+;;; assassin-ide.el ends here
