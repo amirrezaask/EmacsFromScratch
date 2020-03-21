@@ -26,15 +26,16 @@
 (assassin-when ivy
 	       (use-package swiper
 			    :commands (swiper)
-			    :config
+			    :init
 			    (bindkey global-map 'swiper :evil (:normal "SPC s s") :holy "C-s"))
 	       
 	       (use-package counsel
 			    :commands (counsel-M-x counsel-find-file ivy-switch-buffer)
-			    :config
+			    :init
 			    (bindkey global-map 'counsel-M-x :evil (:normal "SPC SPC") :holy "M-x")
 			    (bindkey global-map 'counsel-find-file :evil (:normal "SPC f f") :holy "C-x C-f")
-			    (bindkey global-map 'ivy-switch-buffer :evil (:normal "SPC b l") :holy "C-x b")))
+			    (bindkey global-map 'ivy-switch-buffer :evil (:normal "SPC b l") :holy "C-x b"))
+	       )
 
 
 (assassin-when helm
@@ -64,7 +65,26 @@
 			    :commands
 			    (smex)
 			    :init
-			    (bindkey global-map 'smex :evil (:normal "SPC SPC") :holy "M-x"))))
+			    (bindkey global-map 'smex :evil (:normal "SPC SPC") :holy "M-x")))
+
+(assassin-when highlight-indents
+	       (use-package whitespace :hook ((prog-mode text-mode) . whitespace-mode)
+			    :init
+			    (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark )))
+			    (setq whitespace-display-mappings
+				  '(
+				    (space-mark 32 [183] [46])
+				    (newline-mark 10 [182 10])
+				    (tab-mark 9 [9655 9] [92 9])
+				    ))
+			    ))
+
+(assassin-when insert-headers
+	       (use-package autoinsert :ensure t 
+			    :init 
+			    (setq auto-insert-query nil)
+			    (auto-insert-mode 1)))
+
 
 (provide 'assassin-editor)
 ;;; assassin-editor.el ends here

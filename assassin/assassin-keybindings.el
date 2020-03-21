@@ -58,9 +58,8 @@
 ;; 
 
 ;;; Code:
-(require 'keybindings/assassin-keybindings-core)
 
-(assassin-when assassins
+(assassin-when templar 
  (use-package evil 
    :init
    (setq evil-want-keybinding nil)
@@ -95,6 +94,9 @@
 (global-set-key (kbd "C-3") 'split-window-right)
 (global-set-key (kbd "C-,") 'previous-buffer)
 (global-set-key (kbd "C-.") 'next-buffer)
+
+(assassin-when which-key
+	       (use-package which-key  :init (setq echo-keystrokes 0.3) :config (which-key-mode 1)))
 
 
 (provide 'assassin-keybindings)

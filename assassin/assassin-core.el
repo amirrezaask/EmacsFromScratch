@@ -58,6 +58,7 @@
 ;; 
 
 ;;; Code:
+(require 'keybindings/assassin-keybindings-core)
 
 (defvar assassin-features '() "all variables of assassin emacs")
 ;; main macro of assassin to generate variables based on user input
@@ -94,6 +95,6 @@
 
 ;; Install use-package
 (straight-use-package 'use-package)
-
+(use-package gnu-elpa-keyring-update)
 
 (provide 'assassin-core)

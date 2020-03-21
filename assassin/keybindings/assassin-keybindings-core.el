@@ -18,14 +18,10 @@
   "Binds FN to KEYS on given MAP based on side you are on."
   (let ((evil-keys (plist-get keys :evil)) (holy-keys (plist-get keys :holy)))
     (cond
-     ((eq side 'evil) `(-bindkey-evil ,map ,fn (quote ,evil-keys)))
-     ((eq side 'holy) `(-bindkey-holy ,map ,fn ,holy-keys))
+     ((assassin-enable? 'templar) `(-bindkey-evil ,map ,fn (quote ,evil-keys)))
+     ((assassin-enable? 'assassins) `(-bindkey-holy ,map ,fn ,holy-keys))
      )
     ))
-
-(assassin-when which-key
-	       (use-package which-key  :init (setq echo-keystrokes 0.3) :config (which-key-mode 1)))
-
 
 
 

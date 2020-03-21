@@ -24,7 +24,7 @@
 
 ;;; Code:
 (defvar assassin-ui-light-theme 'doom-one-light "light theme of assassin emacs")
-(defvar assassin-ui-dark-theme 'badwolf "dark theme of assassin emacs")
+(defvar assassin-ui-dark-theme 'badwolf"dark theme of assassin emacs")
 (defvar assassin-ui--current-mode 0)
 (setq use-dialog-box nil)
 
@@ -47,7 +47,7 @@
 (assassin-when themes
 	       (setq custom-safe-themes t)
 	       (use-package doom-themes :defer t)
-	       (use-pacakge badwolf :defer t)
+	       (use-package badwolf-theme :defer t)
 	       (load-theme assassin-ui-dark-theme t))
 
 (assassin-when modeline

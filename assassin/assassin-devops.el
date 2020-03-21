@@ -59,4 +59,16 @@
 
 ;;; Code:
 
+
+
+
+(assassin-when k8s
+	       (use-package kubel  :commands (kubel)))
+
+(assassin-when docker
+	       (use-package dockerfile-mode :defer t :mode "Dockerfile"))
+
+(assassin-when ansible
+	       (use-package ansible :defer t :init (add-hook 'yaml-mode-hook (lambda () (ansible)))))
+
 (provide 'assassin-devops)
