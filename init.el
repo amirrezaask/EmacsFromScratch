@@ -88,10 +88,13 @@
 
 (setq initial-major-mode 'fundamental-mode)
 ;; load the heart of assassin
-(require 'assassin/core)
+(require 'elisp/core)
 
-;; load user configuration
-(load-file (expand-file-name ".assassins-config.el" (getenv "HOME")))
+
+
+ ;; load user configuration
+(load-file (expand-file-name ".emacs-config.el" (getenv "HOME")))
 
 (provide 'init)
 ;;; init.el ends here
+ 

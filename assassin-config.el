@@ -1,9 +1,8 @@
-;;; core.el ---                                      -*- lexical-binding: t; -*-
+;;; assassins.el --- user config file of assassins Emacs  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  Amirreza Askarpour
 
 ;; Author: Amirreza Askarpour <amirrezaask@protonmail.com>
-;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -55,40 +54,74 @@
 ;; ───────▀███▄▄▄███████▄▄▄███▀───────
 ;; ──────────▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀──────────
 
+
 ;; 
 
 ;;; Code:
-(require 'cl)
 
-(require 'assassin/development)
-(require 'assassin/editor)
-(require 'assassin/languages)
-(require 'assassin/devops)
-(require 'assassin/communications)
+(setup
+ :side assassins ; You are a member of brotherhood and a true Emacs user
+ ;; :side templars ; You are a member of templar order and a VIM user
+ :ui
+ modeline
+ themes
+ 
+ ;;
+ :editor ;; every assassin needs best tool for writing
+ ivy ; best completion framework in my opinion
+ ;; ido ; comes with emacs but not that powerfull
+ ;; helm ; completion framework if you like fancy shiny things
+ 
+ ;;multiple-cursor ; multiple edits
+ ;;whitespace-mode ; highlight indents
+ 
+ :dev ;; I don't really know how to connect this concept to assassins era
+ ;;company ; code completion for all languages with appropriate backend
+ ;;lsp ; language server protocol
+ ;;dap ; debugger adapter protocol
+ 
+ :devops ;; when an assassin becomes the operations guy
+ ;;k8s ; k8s management in Emacs
+ ;;ansible ; 
+ ;;docker ; 
 
-(cl-defstruct assassin
-  side
-  modeline
-  completion
-  editor
-  development
-  devops
-  languages
-  communications)
-  
-(defmacro defassassin (&rest keys))
-    
 
-;; init development
-(assassin-development-initialize)
-;; init editor
-(assassin-editor-initialize)
-;; init languages
-(assassin-languages-initialize)
-;; init devops
-(assassin-devops-initialize)
-;; init communication
-(assassin-communications-initialize)
+ 
+ :langs
+ ;;assembly          ; closest thing to metal
+ ;;cc                ; C/C++/Obj-C madness
+ ;;clojure           ; lisp on jvm
+ ;;common-lisp       ; common things lisps have
+ ;;csharp            ; unity, .NET, and mono shenanigans
+ ;;dockerfile        ; new cool vms
+ emacs-lisp          ; emacs language
+ ;;json              ; Beside from being js technology, a good data format
+ ;;xml               ; don't forget to take your pills, cause you're old
+ ;;yaml              ; hipster data format
+ ;;elixir            ; erlang done right
+ ;;erlang            ; pass the message
+ ;;fsharp            ; Haskell on .NET
+ ;;go                ; New edition of C with garbage collector
+ ;;haskell           ; a language that's lazier than I am
+ ;;java              ; let me guess ? You are in a retirement home
+ ;;javascript        ; akh :(
+ ;;kotlin            ; bearable java(javascript)
+ ;;latex             ; just use the org mode :)
+ ;;lua               ; one-based indices? one-based indices
+ markdown            ; writing docs for people to ignore
+ org                 ; Markdown done correctly
+ ;;php               ; so it goes back to your childhood
+ ;;python            ; simple's better than complex
+ ;;racket            ; a DSL for DSLs
+ ;;rust              ; new actuall C replacement
+ ;;scala             ; java + functional programming
+ sh                ; she sells {ba,z,fi}sh shells on the C xor
+ ;;web               ; the tubes
 
-(provide 'assassin/core)
-;;; core.el ends here
+ 
+ :comms ;; all the communication systems available in assassin emacs
+ email
+ ;;irc
+ ;;twitter
+ 
+ )
