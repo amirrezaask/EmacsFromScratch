@@ -59,7 +59,7 @@
 
 ;;; Code:
 
-(assassin-when templar 
+(assassin-feature :templars 
  (use-package evil 
    :init
    (setq evil-want-keybinding nil)
@@ -95,7 +95,7 @@
 (global-set-key (kbd "C-,") 'previous-buffer)
 (global-set-key (kbd "C-.") 'next-buffer)
 
-(assassin-when which-key
+(assassin-feature :which-key
 	       (use-package which-key  :init (setq echo-keystrokes 0.3) :config (which-key-mode 1)))
 
 

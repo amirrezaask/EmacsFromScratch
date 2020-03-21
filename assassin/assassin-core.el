@@ -67,17 +67,25 @@
 (defmacro assassin (&rest attrs)
   "Define a new Assassin with given ATTRS."
   `(mapcar (lambda (attr)
-	     (when (not
-		    (keywordp attr))
+	     (when (or (keywordp attr) (listp attr))
 	       (add-to-list 'assassin-features attr)))
 
 	   (quote ,attrs)))
+
+(defun assassin-keyword-to-symbol (keyword)
+  "Convert KEYWORD to symbol."
+  (intern (substring (symbol-name keyword) 1)))
 
 (defun assassin-enable? (feature)
   "checks if given feature is enabled in assassin emacs"
   (member feature assassin-features))
 
-(defmacro assassin-when (feature &rest body)
+(defun assassin-feature-get-argument (feature)
+  "Get given argument for given FEATURE"
+  (let ((locator (cl-position feature assassin-features)))
+    (nth (- locator 1) assassin-features)))
+
+(defmacro assassin-feature (feature &rest body)
   "when given feature enabled evaluate body"
   `(when (assassin-enable? (intern ,(symbol-name feature)))
      ,@body)

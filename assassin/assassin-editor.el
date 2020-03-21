@@ -23,7 +23,7 @@
 ;; 
 
 ;;; Code:
-(assassin-when ivy
+(assassin-feature :ivy
 	       (use-package swiper
 			    :commands (swiper)
 			    :init
@@ -38,7 +38,7 @@
 	       )
 
 
-(assassin-when helm
+(assassin-feature :helm
 	       (use-package helm
 			    :init (setq helm-buffers-fuzzy-matching t
 					helm-recentf-fuzzy-match t)
@@ -54,7 +54,7 @@
 			    (bindkey global-map 'helm-mini :evil (:normal "SPC b l") :holy "C-x b")
 			    (bindkey global-map 'helm-mini :holy "C-x C-b")))
 
-(assassin-when ido
+(assassin-feature :ido
 	       (use-package ido-vertical-mode
 			    :config
 			    (ido-mode 1)
@@ -67,7 +67,7 @@
 			    :init
 			    (bindkey global-map 'smex :evil (:normal "SPC SPC") :holy "M-x")))
 
-(assassin-when whitespace-mode
+(assassin-feature :whitespace-mode
 	       (use-package whitespace :hook ((prog-mode text-mode) . whitespace-mode)
 			    :init
 			    (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark )))
@@ -79,7 +79,7 @@
 				    ))
 			    ))
 
-(assassin-when insert-headers
+(assassin-feature :insert-headers
 	       (use-package autoinsert :ensure t 
 			    :init 
 			    (setq auto-insert-query nil)

@@ -24,19 +24,19 @@
 
 ;;; Code:
 
-(assassin-when json
+(assassin-feature :json
 	       (use-package json-mode  :mode "\\.json\\'"
 			    :config
 			    (add-hook 'before-save-hook 'json-mode-beautify)))
 
-(assassin-when yaml
+(assassin-feature :yaml
 	       (use-package yaml-mode  :mode "\\.ya?ml\\'"))
 
-(assassin-when markdown
+(assassin-feature :markdown
 	       (use-package markdown-mode  :mode "\\.md\\'"))
 
 
-(assassin-when golang
+(assassin-feature :golang
 	       (use-package go-mode
 			    :mode "\\.go\\'"
 			    
@@ -52,11 +52,11 @@
 	       (use-package go-add-tags  :defer t :config (global-set-key "C-c C-s" 'go-add-tags))
 	       (use-package gotest  :defer t :config (global-set-key (kbd "C-c C-t C-t") 'go-test-current-test) (global-set-key (kbd "C-c C-t C-f") 'go-test-current-file)))
 
-(assassin-when haskell
+(assassin-feature :haskell
 	       (use-package haskell-mode :mode "\\.hs\\'"))
 
 
-(assassin-when python
+(assassin-feature :python
 	       (use-package python-mode
 			    :defer t
 			    :mode "\\.py\\'"
@@ -71,43 +71,43 @@
 						   (lsp))))
 	       (use-package py-autopep8  :defer t :hook python-mode))
 
-(assassin-when elixir
+(assassin-feature :elixir
 	       (use-package elixir-mode  :mode "\\.ex\\'" :config (lsp))
 	       (use-package alchemist  :defer t))
 
-(assassin-when rust
+(assassin-feature :rust
 	       (use-package rust-mode  :mode "\\.rs\\'" :init (add-hook 'rust-mode-hook #'lsp))
 	       (use-package flycheck-rust :mode "\\.rs\\'" :init (add-hook 'flycheck-mode-hook #'flycheck-rust-setup) :hook rust-mode)
 	       (use-package cargo :mode "\\.rs\\'" :init (add-hook 'rust-mode-hook #'cargo-minor-mode)))
 
 
-(assassin-when general-lisp
+(assassin-feature :general-lisp
 	       (use-package paredit :hook ((emacs-lisp-mode clojure-mode) . paredit-mode))
 	       (use-package parinfer
 			    :hook ((emacs-lisp-mode clojure-mode) . parinfer-mode))
 	       (use-package rainbow-delimiters  :hook ((emacs-lisp-mode python-mode go-mode php-mode) . rainbow-delimiters-mode)))
 
-(assassin-when clojure
+(assassin-feature :clojure
 	       (use-package clojure-mode :mode "\\.cljs?\\'" :config (lsp))
 	       (use-package cider 
 			    :init
 			    (add-hook 'cider-mode-hook (lambda () (call-interactively 'cider-jack-in)))
 			    :config
 			    (bindkey cider-mode-map 'cider-eval-last-sexp :evil (:normal "SPC e e") :holy "C-x C-e")))
-(assassin-when lua
+(assassin-feature :lua
 	       (use-package lua-mode :mode "\\.lua\\'"))
-(assassin-when php
+(assassin-feature :php
 	       (use-package php-mode  :defer :init (add-hook 'php-mode-hook #'lsp))
 	       (use-package phpunit  :defer t
 			    :bind (("C-c C-t t" . phpunit-current-test) ("C-c C-t c" . phpunit-current-class) ("C-c C-t p" . phpunit-current-project))))
 
-(assassin-when javascript
+(assassin-feature :javascript
 	       (use-package js2-mode  :defer t :hook js-mode))
 
-(assassin-when typescript
+(assassin-feature :typescript
 	       (use-package tide  :defer t :mode "\\.ts\\'"))
 
-(assassin-when web
+(assassin-feature :web
 	       (use-package web-mode  :defer t :mode ("\\.html\\'" "\\.css\\'")))
 
 	       

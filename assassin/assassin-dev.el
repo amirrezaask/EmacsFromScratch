@@ -24,13 +24,13 @@
 
 ;;; Code:
 
-(assassin-when syntax-checker
+(assassin-feature :syntax-checker
 	       (use-package flycheck :hook (prog-mode . flycheck-mode)))
 
-(assassin-when debugger
+(assassin-feature :debugger
 	       (use-package dap-mode  :defer t :hook ((go-mode python-mode php-mode) . dap-mode)))
 
-(assassin-when git
+(assassin-feature :git
 	        (use-package magit
 			     :commands (magit-status)
 			     :init
@@ -38,15 +38,15 @@
 
 		(use-package diff-hl  :config (global-diff-hl-mode))
 
-		(assassin-when assassins
+		(assassin-feature :assassins
 			       (use-package evil-magit :defer t :init (add-hook 'magit-mode-hook (lambda () (require 'evil-magit))))))
 
 
-(assassin-when lsp
+(assassin-feature :lsp
 	       (use-package lsp-mode :defer t)
 	       (use-package lsp-ui  :defer t))
 
-(assassin-when auto-complete
+(assassin-feature :auto-complete
 	       (use-package company-lsp  :defer t)
 	       (use-package company
 			    :config

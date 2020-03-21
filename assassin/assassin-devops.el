@@ -62,13 +62,13 @@
 
 
 
-(assassin-when k8s
+(assassin-feature :k8s
 	       (use-package kubel  :commands (kubel)))
 
-(assassin-when docker
+(assassin-feature :docker
 	       (use-package dockerfile-mode :defer t :mode "Dockerfile"))
 
-(assassin-when ansible
+(assassin-feature :ansible
 	       (use-package ansible :defer t :init (add-hook 'yaml-mode-hook (lambda () (ansible)))))
 
 (provide 'assassin-devops)
