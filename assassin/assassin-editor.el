@@ -67,7 +67,7 @@
 			    :init
 			    (bindkey global-map 'smex :evil (:normal "SPC SPC") :holy "M-x")))
 
-(assassin-when highlight-indents
+(assassin-when whitespace-mode
 	       (use-package whitespace :hook ((prog-mode text-mode) . whitespace-mode)
 			    :init
 			    (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark )))

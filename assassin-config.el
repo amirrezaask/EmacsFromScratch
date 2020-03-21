@@ -66,9 +66,9 @@
     doom-modeline ; awesome extensible modeline from doom-emacs
     ;;spaceline ; spacemacs modeline
     :ui
-    ;;theme doom-dracula
-    ;;theme doom-one
-    theme badwolf
+    theme doom-dracula
+    ;; theme doom-one
+    ;; theme badwolf
 
     font "Fira Code" 11
 
@@ -84,10 +84,11 @@
     which-key ; helps us when we only remember part of a keybinding
 
     :dev ;; I dont really know how to connect this concept to assassins era
-    syntax-checker ; check syntax
+    syntax-checker ; check syntax on the fly and provide linting suggestions
     auto-complete  ; code completion for all languages with appropriate backend
     lsp ; language server protocol
-    vcs
+    :vcs
+    git ; git support
     ;; dap ; debugger adapter protocol
      
     

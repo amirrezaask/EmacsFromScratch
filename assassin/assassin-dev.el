@@ -30,7 +30,7 @@
 (assassin-when debugger
 	       (use-package dap-mode  :defer t :hook ((go-mode python-mode php-mode) . dap-mode)))
 
-(assassin-when vcs
+(assassin-when git
 	        (use-package magit
 			     :commands (magit-status)
 			     :init
