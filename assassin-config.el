@@ -62,16 +62,23 @@
 (assassin
     :side assassins ; You are a member of brotherhood and a true Emacs user
     ;; :side templars ; You are a member of templar order and a VIM user
+    :modeline
+    doom-modeline ; awesome extensible modeline from doom-emacs
+    ;;spaceline ; spacemacs modeline
     :ui
-    modeline
-    themes
-    font "mononoki" 11
-    
-    ;; every assassin needs best tool for writing
-    :editor 
+    ;;theme doom-dracula
+    ;;theme doom-one
+    theme badwolf
+
+    font "Fira Code" 11
+
+    :completion
     ivy ; best completion framework in my opinion
     ;; ido ; comes with emacs but not that powerfull
     ;; helm ; completion framework if you like fancy shiny things
+
+    ;; every assassin needs best tool for writing
+    :editor 
     multiple-cursor ; multiple edits
     whitespace-mode ; highlight indents
     which-key ; helps us when we only remember part of a keybinding
