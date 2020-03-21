@@ -57,7 +57,6 @@
 ;; 
 
 ;;; Code:
-
 (add-to-list 'load-path (expand-file-name "assassin" user-emacs-directory))
 ;; make it really fast
 (setq gc-cons-threshold most-positive-fixnum ; 2^61 bytes
@@ -88,9 +87,6 @@
 
 (setq initial-major-mode 'fundamental-mode)
 ;; load the heart of assassin
-(require 'elisp/core)
-
-
 
  ;; load user configuration
 (load-file (expand-file-name ".emacs-config.el" (getenv "HOME")))

@@ -58,13 +58,12 @@
 ;; 
 
 ;;; Code:
-(require 'elisp/core)
-(require 'elisp/ui)
-(require 'assassin/dev)
-(require 'assassin/editor)
-(require 'assassin/langs)
-(require 'assassin/devops)
-(require 'assassin/comms)
+
+(defun load-all-elisp-files (path)
+  "List of all elisp files in given PATH."
+  (mapcar (lambda (name) (require (intern (car (split-string name "\\."))))) (seq-filter (lambda (file) (string= (car (last (split-string file "\\."))) "el")) (directory-files path))))
+
+
 
 (defmacro make-assassin (&rest attrs)
   "Macro to define a new Assassin with given ATTRS."
@@ -78,10 +77,11 @@
 	(comms (plist-get fields :comms))
 	))
   `(progn
-     (ui-initialize ,ui)
-     (development-initialize ,dev)
-     (editor-initialize ,editor)
-     (langs-initialize ,langs)
-     (comms-initialize ,comms)))
+     (assassin-ui-init ,ui)
+     (assassin-dev-init ,dev)
+     (assassin-editor-init ,editor)
+     (assassin-langs-init ,langs)
+     (assassin-devops-init ,devops)
+     (assassin-comms-init ,comms)))
 
-(provide 'assassin/setup)
+(provide 'assassin-setup)
