@@ -1,0 +1,2 @@
+* Assassins Emacs
+If you love Emacs, pray to free software god, enjoy playing assassins creed more than anything, this repository is for you.
