@@ -58,6 +58,35 @@
 
 ;;; Code:
 
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+
+(setq gc-cons-threshold most-positive-fixnum ; 2^61 bytes
+      gc-cons-percentage 0.6)
+(add-hook 'emacs-startup-hook
+  (lambda ()
+    (setq gc-cons-threshold 16777216 ; 16mb
+          gc-cons-percentage 0.1)))
+
+(defun defer-garbage-collection-h ()
+  (setq gc-cons-threshold 16777216))
+
+
+(defun restore-garbage-collection-h ()
+  (run-at-time
+   1 nil (lambda () (setq gc-cons-threshold most-positive-fixnum))))
+
+(setq package-enable-at-startup nil)
+
+(add-hook 'minibuffer-setup-hook #'defer-garbage-collection-h)
+(add-hook 'minibuffer-exit-hook #'restore-garbage-collection-h)
+
+(defvar --file-name-handler-alist file-name-handler-alist)
+(setq file-name-handler-alist nil)
+(add-hook 'emacs-startup-hook
+  (lambda ()
+    (setq file-name-handler-alist --file-name-handler-alist)))
+
+(setq initial-major-mode 'fundamental-mode)
 
 
 (provide 'init)
