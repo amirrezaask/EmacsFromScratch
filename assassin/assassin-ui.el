@@ -40,7 +40,7 @@
 	       (load-theme (assassin-keyword-to-symbol (assassin-feature-get-argument :theme)) t))
 
 
-(assassin-feature :doom-modeline
+(assassin-feature :modeline
 		  (use-package doom-modeline :config (doom-modeline-mode 1)))
 
 (assassin-feature :show-emojis
