@@ -110,6 +110,6 @@
 (assassin-feature :web
 	       (use-package web-mode  :defer t :mode ("\\.html\\'" "\\.css\\'")))
 (assassin-feature :dockerfile
-		  (use-package dockerfile-mode :defer t :mode "Dockerfile"))	       
+		  (use-package dockerfile-mode :defer t :mode "Dockerfile"))
 (provide 'assassin-langs)
 ;;; assassin-langs.el ends here
