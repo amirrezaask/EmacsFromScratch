@@ -85,6 +85,15 @@
 			    (setq auto-insert-query nil)
 			    (auto-insert-mode 1)))
 
-
+(assassin-feature :dashboard
+		  (use-package dashboard
+		    :init
+		    (setq dashboard-startup-banner 'logo) 
+		    (setq dashboard-center-content t)
+		    (setq dashboard-banner-longo-title "Requiescat in pace")
+		    (setq dashboard-items '())
+		    :config
+		    (dashboard-setup-startup-hook)
+		    ))
 (provide 'assassin-editor)
 ;;; assassin-editor.el ends here

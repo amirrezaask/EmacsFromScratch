@@ -61,7 +61,7 @@
 
 (assassin
     :side :assassins ; You are a member of brotherhood and a true Emacs user
-    ;;:side :templars ; You are a member of templar order and a VIM user
+    ;; :side :templars ; You are a member of templar order and a VIM user
 
     :doom-modeline ; awesome extensible modeline from doom-emacs
     ;;:spaceline ; spacemacs modeline
@@ -70,7 +70,7 @@
     ;; theme doom-one
     ;; theme badwolf
     :font ("Fira Code" 11)
-
+    :dashboard
     ;completion
     :ivy ; best completion framework in my opinion
     ;;:ido ; comes with emacs but not that powerfull
