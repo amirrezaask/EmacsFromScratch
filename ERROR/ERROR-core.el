@@ -45,34 +45,19 @@
 	     (message "ERROR-DEBUG => %s" arg))
 	   args))
 
-(defmacro ERROR-feature2 (feature &rest body)
-  "(ERROR-feature2 go
-		     :install go-mode
-		     :before-load (setq go-mode-enable 1)
-		     :after-load (setq go-mode-disable 1)
-		     :binds ((:map global :evil (:normal \"SPC c c\") :god \"C-c C-c c\" :fn 'go-mode-compile))
-		     )"
+(defmacro ERROR-feature2 (feature &rest args)
+  "All given ARGS will get passed to use-package so take a look at use-package documetation.
+(ERROR-feature2 :k8s
+		kubel
+		:config
+		(bindkey global-map 'kubel :evil (:normal \"SPC k k\") :holy \"C-c C-a\"))"
                     
-  (let ((pkg-name (plist-get body :install))
-	(before (plist-get body :before-load))
-	(after (plist-get body :after-load))
-	(binds (plist-get body :binds)))
-
-
-    (add-to-list 'before 'progn)
-    (add-to-list 'after 'progn)
-    `(progn
-       (ERROR-defkeychord! ,binds)
-       ;(use-package ,pkg-name :init ,before :config ,after)
-       )
-    ))
-
- ;; (ERROR-feature2 k8s
- ;; 		:install kubel
- ;; 		:before-load ((message "BEFORE LOADING KUBEL"))
- ;; 		:after-load ((message "AFTER LOADING KUBEL"))
- ;; 		:binds ((:evil (:normal "SPC x x") :god "C-x C-k" :fn kubel))
- ;; 		)
-
+  (setq use-package-list '())
+  (setq args (reverse args))
+  (mapcar (lambda (elm) (add-to-list 'use-package-list elm)) args)
+  (add-to-list 'use-package-list 'use-package)
+  `(when (ERROR-enable? (intern ,(symbol-name feature)))
+     ,use-package-list)
+     )
 
 (provide 'ERROR-core)
