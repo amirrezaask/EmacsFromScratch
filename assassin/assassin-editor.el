@@ -95,5 +95,10 @@
 		    :config
 		    (dashboard-setup-startup-hook)
 		    ))
+(setq custom-file "~/.__custom.el")
+(setq make-backup-files nil) ;; turn off emacs annoying ~ files
+(setq create-lockfiles nil) ;; turn off emacs annoying # files
+(setq ring-bell-function 'ignore)
+(defalias 'yes-or-no-p 'y-or-n-p) ;; instead of yes-or-no ask y-or-no, only for convinience
 (provide 'assassin-editor)
 ;;; assassin-editor.el ends here

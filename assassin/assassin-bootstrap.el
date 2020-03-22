@@ -1,4 +1,4 @@
-;;; assassin-core.el --- -*- lexical-binding: t; -*-
+;;; assassin-bootstrap.el --- -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  Amirreza Askarpour
 
@@ -58,53 +58,62 @@
 ;; 
 
 ;;; Code:
-(require 'cl)
-(require 'keybindings/assassin-keybindings-core)
+(setq start-timestamp (float-time))
 
-(defvar assassin-features '() "all variables of assassin emacs")
-;; main macro of assassin to generate variables based on user input
+(setq gc-cons-threshold most-positive-fixnum ; 2^61 bytes
+      gc-cons-percentage 0.6)
+(add-hook 'emacs-startup-hook
+  (lambda ()
+    (setq gc-cons-threshold 16777216 ; 16mb
+          gc-cons-percentage 0.1)))
 
-(defmacro assassin (&rest attrs)
-  "Define a new Assassin with given ATTRS."
-  `(mapcar (lambda (attr)
-	     (when (or (keywordp attr) (listp attr))
-	       (add-to-list 'assassin-features attr)))
-
-	   (quote ,attrs)))
-
-(defun assassin-keyword-to-symbol (keyword)
-  "Convert KEYWORD to symbol."
-  (intern (substring (symbol-name keyword) 1)))
-
-(defun assassin-enable? (feature)
-  "checks if given feature is enabled in assassin emacs"
-  (member feature assassin-features))
-
-(defun assassin-feature-get-argument (feature)
-  "Get given argument for given FEATURE"
-  (let ((locator (cl-position feature assassin-features)))
-    (nth (- locator 1) assassin-features)))
-
-(defmacro assassin-feature (feature &rest body)
-  "when given feature enabled evaluate body"
-  `(when (assassin-enable? (intern ,(symbol-name feature)))
-     ,@body)
-  )
+(defun defer-garbage-collection-h ()
+  (setq gc-cons-threshold 16777216))
 
 
-(defmacro assassin-feature2 (feature &rest body)
-  "(assassin-feature2 go
-		     :install go-mode
-		     :before-load (setq go-mode-enable 1)
-		     :after-load (setq go-mode-disable 1)
-		     :bind (:evil (:normal "SPC c c") :god "C-c C-c c" :fn 'go-mode-compile)
-		     )"
-                    
-  (let ((pkg-name (plist-get body :install))
-	(before (plist-get body :before-load))
-	(after (plist-get body :after-load))
-	(bind (plist-get body :bind)))
+(defun restore-garbage-collection-h ()
+  (run-at-time
+   1 nil (lambda () (setq gc-cons-threshold most-positive-fixnum))))
 
-    ))
+(setq package-enable-at-startup nil)
 
-(provide 'assassin-core)
+(add-hook 'minibuffer-setup-hook #'defer-garbage-collection-h)
+(add-hook 'minibuffer-exit-hook #'restore-garbage-collection-h)
+
+(defvar --file-name-handler-alist file-name-handler-alist)
+(setq file-name-handler-alist nil)
+(add-hook 'emacs-startup-hook
+  (lambda ()
+    (setq file-name-handler-alist --file-name-handler-alist)))
+
+(setq initial-major-mode 'fundamental-mode)
+
+(require 'seq)
+(defun require-all-elisp-files (path)
+  "List of all elisp files in given PATH."
+  (mapcar (lambda (name)
+	    (require (intern (car (split-string name "\\.")))))
+	  (seq-filter (lambda (file) (string= (car (last (split-string file "\\."))) "el")) (directory-files path)) ))
+
+
+;; Install bootstrap package manager
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+;; always use straight for packages
+(setq straight-use-package-by-default t)
+
+;; Install use-package
+(straight-use-package 'use-package)
+(use-package gnu-elpa-keyring-update)
+
+(provide 'assassin-bootstrap)

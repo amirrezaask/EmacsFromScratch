@@ -24,8 +24,6 @@
 
 ;;; Code:
 
-(setq use-dialog-box nil)
-
 (defconst lisp--prettify-symbols-alist
   '(("lambda"  . ?λ))) ;; shows lambda word as the symbol
 (global-prettify-symbols-mode 1)
@@ -50,6 +48,14 @@
 
 (assassin-feature :font
 		  (assassin-ui-use-font (assassin-feature-get-argument :font)))
+
+(setq inhibit-splash-screen 0) ;; turn off emacs annoying startup page.
+(tool-bar-mode 0) ;; turn off emacs GUI toolbar
+(scroll-bar-mode 0) ;; turn off emacs GUI scrollbar
+(menu-bar-mode 0) ;; turn emacs GUI menubar
+
+(global-linum-mode t) ;; enable line numbers
+(setq use-dialog-box nil)
 
 (provide 'assassin-ui)
 ;;; assassin-ui.el ends here
