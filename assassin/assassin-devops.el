@@ -66,8 +66,8 @@
 	       (use-package kubel  :commands (kubel)))
 
 (assassin-feature :docker
-	       (use-package dockerfile-mode :defer t :mode "Dockerfile"))
-
+	       (use-package docker
+		 :bind ("C-c d" . docker)))
 (assassin-feature :ansible
 	       (use-package ansible :defer t :init (add-hook 'yaml-mode-hook (lambda () (ansible)))))
 
