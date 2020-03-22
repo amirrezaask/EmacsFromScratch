@@ -60,29 +60,25 @@
 ;;; Code:
 
 (assassin
-    :side :assassins ; You are a member of brotherhood and a true Emacs user
-    ;; :side :templars ; You are a member of templar order and a VIM user
-
+    :side :assassins ; You are a member of brotherhood and a true Emacs
+ 
     :doom-modeline ; awesome extensible modeline from doom-emacs
-    ;;:spaceline ; spacemacs modeline
 
+    ; UI features
     :theme :doom-dracula
-    ;; theme doom-one
-    ;; theme badwolf
     :font ("Fira Code" 11)
     :dashboard
-    ;completion
-    :ivy ; best completion framework in my opinion
-    ;;:ido ; comes with emacs but not that powerfull
-    ;;:helm ; completion framework if you like fancy shiny things
-
-    ;; every assassin needs best tool for writing
-    ;editor
+    
+    ; completion framework
+    :ivy
+    
+    
+    ; Editor
     :multiple-cursor ; multiple edits
-    :whitespace-mode ; highlight indents
+    ;;:whitespace-mode ; highlight indents
     :which-key ; helps us when we only remember part of a keybinding
 
-    ;ide ;; I dont really know how to connect this concept to assassins era
+    ; IDE features
     :syntax-checker ; check syntax on the fly and provide linting suggestions
     :auto-complete  ; code completion for all languages with appropriate backend
     :lsp ; language server protocol
@@ -90,14 +86,14 @@
     ;;:dap ; debugger adapter protocol
      
     
-    ;devops ;; when an assassin becomes the operations guy
+    ; DevOps features
     :k8s ; k8s management in Emacs
     ;;:ansible ; 
     :docker ; 
     
  
     
-    ;langs
+    ; Supported languages
     ;;:assembly          ; closest thing to metal
     ;;:cc                ; C/C++/Obj-C madness
     :clojure           ; lisp on jvm
@@ -132,6 +128,4 @@
     :email
     ;:irc
     ;:twitter
-     
     )
-

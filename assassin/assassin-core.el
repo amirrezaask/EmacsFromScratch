@@ -104,7 +104,6 @@
 	(before (plist-get body :before-load))
 	(after (plist-get body :after-load))
 	(bind (plist-get body :bind)))
-    (message "%s, %s, %s, %s" pkg-name before after bind)
     (add-to-list 'bind 'bindkey)
     `(progn
        (use-package ,pkg-name
