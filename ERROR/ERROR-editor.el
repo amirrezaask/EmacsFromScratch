@@ -1,29 +1,4 @@
-;;; assassin-editor.el --- assassin editor module    -*- lexical-binding: t; -*-
-
-;; Copyright (C) 2020  Amirreza Askarpour
-
-;; Author: Amirreza Askarpour <amirrezaask@protonmail.com>
-;; Keywords: 
-
-;; This program is free software; you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
-
-;; This program is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-
-;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-;;; Commentary:
-
-;; 
-
-;;; Code:
-(assassin-feature :ivy
+(ERROR-feature! :ivy
 	       (use-package swiper
 			    :commands (swiper)
 			    :init
@@ -38,7 +13,7 @@
 	       )
 
 
-(assassin-feature :helm
+(ERROR-feature! :helm
 	       (use-package helm
 			    :init (setq helm-buffers-fuzzy-matching t
 					helm-recentf-fuzzy-match t)
@@ -54,7 +29,7 @@
 			    (bindkey global-map 'helm-mini :evil (:normal "SPC b l") :holy "C-x b")
 			    (bindkey global-map 'helm-mini :holy "C-x C-b")))
 
-(assassin-feature :ido
+(ERROR-feature! :ido
 	       (use-package ido-vertical-mode
 			    :config
 			    (ido-mode 1)
@@ -67,7 +42,7 @@
 			    :init
 			    (bindkey global-map 'smex :evil (:normal "SPC SPC") :holy "M-x")))
 
-(assassin-feature :whitespace-mode
+(ERROR-feature! :whitespace-mode
 	       (use-package whitespace :hook ((prog-mode text-mode) . whitespace-mode)
 			    :init
 			    (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark )))
@@ -79,13 +54,13 @@
 				    ))
 			    ))
 
-(assassin-feature :insert-headers
+(ERROR-feature! :insert-headers
 	       (use-package autoinsert :ensure t 
 			    :init 
 			    (setq auto-insert-query nil)
 			    (auto-insert-mode 1)))
 
-(assassin-feature :dashboard
+(ERROR-feature! :dashboard
 		  (use-package dashboard
 		    :init
 		    (setq dashboard-startup-banner 'logo) 
@@ -100,5 +75,5 @@
 (setq create-lockfiles nil) ;; turn off emacs annoying # files
 (setq ring-bell-function 'ignore)
 (defalias 'yes-or-no-p 'y-or-n-p) ;; instead of yes-or-no ask y-or-no, only for convinience
-(provide 'assassin-editor)
-;;; assassin-editor.el ends here
+(provide 'ERROR-editor)
+;;; ERROR-editor.el ends here

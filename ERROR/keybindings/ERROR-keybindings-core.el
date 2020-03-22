@@ -18,11 +18,11 @@
   "Binds FN to KEYS on given MAP based on side you are on."
   (let ((evil-keys (plist-get keys :evil)) (holy-keys (plist-get keys :holy)))
     (cond
-     ((assassin-enable? :templars) `(-bindkey-evil ,map ,fn (quote ,evil-keys)))
-     ((assassin-enable? :assassins) `(-bindkey-holy ,map ,fn ,holy-keys))
+     ((ERROR-enable? :bugs) `(-bindkey-evil ,map ,fn (quote ,evil-keys)))
+     ((ERROR-enable? :god) `(-bindkey-holy ,map ,fn ,holy-keys))
      )
     ))
 
 
 
-(provide 'keybindings/assassin-keybindings-core)
+(provide 'keybindings/ERROR-keybindings-core)
