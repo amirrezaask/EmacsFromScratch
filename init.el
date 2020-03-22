@@ -60,9 +60,6 @@
 ;; (setq debug-on-error t)
 (add-to-list 'load-path (expand-file-name "assassin" user-emacs-directory))
 (require 'assassin-bootstrap)
-(require 'assassin-core)
-(load-file (expand-file-name ".assassin.el" (getenv "HOME")))
-(require-all-elisp-files (concat user-emacs-directory "assassin"))
 (message "startup took %s" (- (float-time) start-timestamp))
 (provide 'init)
 ;;; init.el ends here

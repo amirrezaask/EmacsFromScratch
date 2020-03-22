@@ -116,4 +116,18 @@
 (straight-use-package 'use-package)
 (use-package gnu-elpa-keyring-update)
 
+;; load assassin Emacs core module
+(require 'assassin-core)
+;; load user config
+(load-file (expand-file-name ".assassin.el" (getenv "HOME")))
+
+;; load assassin Emacs modules
+(require 'assassin-keybindings)
+(require 'assassin-ui)
+(require 'assassin-editor)
+(require 'assassin-ide)
+(require 'assassin-langs)
+(require 'assassin-devops)
+
 (provide 'assassin-bootstrap)
+

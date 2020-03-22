@@ -84,7 +84,13 @@
    (bindkey global-map 'describe-function :evil (:normal "SPC d f"))
    (bindkey global-map 'describe-variable :evil (:normal "SPC d v"))
    (bindkey global-map 'toggle-color-mode :evil (:normal "SPC t t")))
- (use-package linum-relative :config (linum-relative-mode)))
+
+ (use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
+ 
+  (use-package linum-relative :config (linum-relative-mode)))
 
 (global-set-key (kbd "C--") 'text-scale-decrease)
 (global-set-key (kbd "C-=") 'text-scale-increase)

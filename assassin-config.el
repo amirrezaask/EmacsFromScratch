@@ -60,8 +60,8 @@
 ;;; Code:
 
 (assassin
-    :side :assassins ; You are a member of brotherhood and a true Emacs
- 
+    ;; :side :assassins ; You are a member of brotherhood and a true Emacs
+    :side :templars
     :doom-modeline ; awesome extensible modeline from doom-emacs
 
     ; UI features
