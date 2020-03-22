@@ -18,8 +18,8 @@
   "Binds FN to KEYS on given MAP based on side you are on."
   (let ((evil-keys (plist-get keys :evil)) (holy-keys (plist-get keys :holy)))
     (cond
-     ((assassin-enable? 'templar) `(-bindkey-evil ,map ,fn (quote ,evil-keys)))
-     ((assassin-enable? 'assassins) `(-bindkey-holy ,map ,fn ,holy-keys))
+     ((assassin-enable? :templars) `(-bindkey-evil ,map ,fn (quote ,evil-keys)))
+     ((assassin-enable? :assassins) `(-bindkey-holy ,map ,fn ,holy-keys))
      )
     ))
 
