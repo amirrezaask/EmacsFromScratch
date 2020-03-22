@@ -29,16 +29,15 @@
   `(when (ERROR-enable? (intern ,(symbol-name feature)))
      ,@body))
 
-(defun ERROR-bindkey-adapter (args)
+(defmacro ERROR-defkeychord! (args)
   "An adapter to use bindkey macro for all given ARGS."
-  (mapcar (lambda (arg)
-	    (let ((evil (plist-get :evil args))
-		  (god (plist-get :god args))
-		  (fn (plist-get :fn args))
-		  (keymap (plist-get :map args)))
-	      (bindkey keymap fn :evil evil :god god)
-	      )) args))
-
+  `(mapcar (lambda (arg)
+	    (let ((evil (plist-get arg :evil ))
+		  (god (plist-get arg :god))
+		  (fn (plist-get arg :fn))
+		  (keymap (plist-get arg :keymap)))
+	      (bindkey keymap fn :evil evil :holy god)
+	      )) (quote ,args)))
 
 (defun ERROR-debug (&rest args)
   "Print all given ARGS for debugging."
@@ -63,17 +62,17 @@
     (add-to-list 'before 'progn)
     (add-to-list 'after 'progn)
     `(progn
- ;;      (when (not (null ,binds)) (ERROR-bindkey-adapter ,binds))
-       (use-package ,pkg-name :init ,before :config ,after :bind ("C-c C-k" . kubel))
+       (ERROR-defkeychord! ,binds)
+       ;(use-package ,pkg-name :init ,before :config ,after)
        )
     ))
 
-;; (ERROR-feature2 k8s
-;; 		:install kubel
-;; 		:before-load ((message "BEFORE LOADING KUBEL"))
-;; 		:after-load ((message "AFTER LOADING KUBEL"))
-;; 		:binds ((:evil (:normal "SPC x x") :god "C-x C-k" :fn kubel))
-;; 		)
+ ;; (ERROR-feature2 k8s
+ ;; 		:install kubel
+ ;; 		:before-load ((message "BEFORE LOADING KUBEL"))
+ ;; 		:after-load ((message "AFTER LOADING KUBEL"))
+ ;; 		:binds ((:evil (:normal "SPC x x") :god "C-x C-k" :fn kubel))
+ ;; 		)
 
 
 (provide 'ERROR-core)
