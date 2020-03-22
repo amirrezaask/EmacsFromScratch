@@ -60,18 +60,19 @@
 ;;; Code:
 
 (assassin
-    ;; :side :assassins ; You are a member of brotherhood and a true Emacs
-    :side :templars
-    :doom-modeline ; awesome extensible modeline from doom-emacs
-
+    :side :assassins ; You are a member of brotherhood and a true Emacs
+    ;; :side :templars
+    
     ; UI features
     :theme :doom-dracula
     :font ("Terminus" 11)
-    :dashboard
+    :modeline
+    ;;:dashboard
     
     ; completion framework
-    :ivy
-    
+    ;;:ivy
+    :helm
+    ;; :ido
     
     ; Editor
     :multiple-cursor ; multiple edits
@@ -94,37 +95,38 @@
  
     
     ; Supported languages
-    ;;:assembly          ; closest thing to metal
-    ;;:cc                ; C/C++/Obj-C madness
-    :clojure           ; lisp on jvm
+    ;;:assembly         ; closest thing to metal
+    ;;:cc               ; C/C++/Obj-C madness
+    :clojure            ; lisp on jvm
     ;;common-lisp       ; common things lisps have
     ;;csharp            ; unity, .NET, and mono shenanigans
-    :emacs-lisp          ; emacs language
-    :json              ; Beside from being js technology, a good data format
+    :dockerfile         ; VMs of new era
+    :emacs-lisp         ; emacs language
+    :json               ; Beside from being js technology, a good data format
     ;;xml               ; dont forget to take your pills, cause youre old
-    :yaml              ; hipster data format
-    :elixir            ; erlang done right
+    :yaml               ; hipster data format
+    :elixir             ; erlang done right
     ;;erlang            ; pass the message
     ;;fsharp            ; Haskell on .NET
-    :golang                ; New edition of C with garbage collector
-    :haskell           ; a language thats lazier than I am
+    :golang             ; New edition of C with garbage collector
+    :haskell            ; a language thats lazier than I am
     ;;java              ; let me guess ? You are in a retirement home
-    :javascript        ; akh :(
+    :javascript         ; akh :(
     ;;kotlin            ; bearable java(javascript)
     ;;latex             ; just use the org mode :)
-    :lua               ; one-based indices? one-based indices
-    :markdown            ; writing docs for people to ignore
-    :org                 ; Markdown done correctly
-    :php               ; so it goes back to your childhood
-    :python            ; simples better than complex
+    :lua                ; one-based indices? one-based indices
+    :markdown           ; writing docs for people to ignore
+    :org                ; Markdown done correctly
+    :php                ; so it goes back to your childhood
+    :python             ; simples better than complex
     ;;racket            ; a DSL for DSLs
-    :rust              ; new actuall C replacement
+    :rust               ; new actuall C replacement
     ;;scala             ; java + functional programming
-    :sh                ; she sells {ba,z,fi}sh shells on the C xor
-    :web               ; the tubes
+    :sh                 ; she sells {ba,z,fi}sh shells on the C xor
+    :web                ; the tubes
      
  
-    ;communications ;; all the communication systems available in assassin emacs
+    ;communications
     :email
     ;:irc
     ;:twitter
