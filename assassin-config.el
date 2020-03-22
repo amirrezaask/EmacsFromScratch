@@ -66,7 +66,7 @@
 
     ; UI features
     :theme :doom-dracula
-    :font ("Fira Code" 11)
+    :font ("Terminus" 11)
     :dashboard
     
     ; completion framework
