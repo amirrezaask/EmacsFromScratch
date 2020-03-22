@@ -91,6 +91,21 @@
      ,@body)
   )
 
+
+(defmacro assassin-feature2 (feature &rest body)
+  "(assassin-feature2 go
+		     :install go-mode
+		     :before-load (setq go-mode-enable 1)
+		     :after-load (setq go-mode-disable 1)
+		     :bind (:evil (:normal "SPC c c") :god "C-c C-c c" :fn 'go-mode-compile)
+		     )"
+                    
+  (let ((pkg-name (plist-get body :install))
+	(before (plist-get body :before-load))
+	(after (plist-get body :after-load))
+	(bind (plist-get body :bind)))
+
+    ))
 ;; Install bootstrap package manager
 (defvar bootstrap-version)
 (let ((bootstrap-file
