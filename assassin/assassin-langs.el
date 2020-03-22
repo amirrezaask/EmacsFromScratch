@@ -109,7 +109,6 @@
 
 (assassin-feature :web
 	       (use-package web-mode  :defer t :mode ("\\.html\\'" "\\.css\\'")))
-
 	       
 (provide 'assassin-langs)
 ;;; assassin-langs.el ends here

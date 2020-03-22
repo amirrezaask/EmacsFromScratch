@@ -97,14 +97,23 @@
 		     :install go-mode
 		     :before-load (setq go-mode-enable 1)
 		     :after-load (setq go-mode-disable 1)
-		     :bind (:evil (:normal "SPC c c") :god "C-c C-c c" :fn 'go-mode-compile)
+		     :bind (:evil (:normal \"SPC c c\") :god \"C-c C-c c\" :fn 'go-mode-compile)
 		     )"
                     
   (let ((pkg-name (plist-get body :install))
 	(before (plist-get body :before-load))
 	(after (plist-get body :after-load))
 	(bind (plist-get body :bind)))
-
+    (message "%s, %s, %s, %s" pkg-name before after bind)
+    (add-to-list 'bind 'bindkey)
+    `(progn
+       (use-package ,pkg-name
+       :init ,before
+       :config ,after
+       )
+       ,bind)
     ))
+
+
 
 (provide 'assassin-core)
