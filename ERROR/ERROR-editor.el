@@ -45,7 +45,7 @@
 		(bindkey global-map 'smex :evil (:normal "SPC SPC") :holy "M-x"))
 
 
-(ERROR-feature! :side-file-tree
+(ERROR-feature! :neotree
 		neotree
 		:init
 		(setq neo-theme (if (display-graphic-p) 'icons 'arrow))

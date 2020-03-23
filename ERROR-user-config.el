@@ -4,7 +4,7 @@
     
     ; UI features
     :theme :doom-dracula
-    :font ("Fira Code" 11)
+    :font ("Fira Code" 10)
     :modeline
     ;; :dashboard
     :icons
@@ -19,7 +19,7 @@
     ;; :multiple-cursor ; multiple edits
     ;; :whitespace-mode ; highlight indents
     :which-key ; helps us when we only remember part of a keybinding
-    ;; :side-file-tree ; file browser that opens to the side using neotree package
+    ;; :neotree ; a side tree file browser like NERDtree for vim
     
     ; IDE features
     :syntax-checker ; check syntax on the fly and provide linting suggestions
