@@ -1,43 +1,43 @@
-(ERROR-feature! :syntax-checker
+(ERROR-with-feature-package! :syntax-checker
 		flycheck
 		:hook
 		(prog-mode . flycheck-mode))
 
-(ERROR-feature! :debugger
+(ERROR-with-feature-package! :debugger
 		dap-mode
 		:hook
 		((go-mode python-mode php-mode) . dap-mode))
 
-(ERROR-feature! :git
+(ERROR-with-feature-package! :git
 		  magit
 		  :commands (magit-status)
 		  :init
 		  (bindkey global-map 'magit-status :holy "C-x g" :evil (:normal "SPC g s")))
 
-(ERROR-feature! :git
+(ERROR-with-feature-package! :git
 		diff-hl
 		:config
 		(global-diff-hl-mode))
 
 
-(ERROR-feature! :evil
+(ERROR-with-feature-package! :evil
 		evil-magit
 		:init
 		(add-hook 'magit-mode-hook (lambda () (require 'evil-magit))))
 
 
-(ERROR-feature! :lsp
+(ERROR-with-feature-package! :lsp
 		lsp-mode :defer t)
 
 
-(ERROR-feature! :lsp
+(ERROR-with-feature-package! :lsp
 		lsp-ui
 		:defer t)
 
 
-(ERROR-feature! :auto-complete
+(ERROR-with-feature-package! :auto-complete
 		company-lsp :defer t)
-(ERROR-feature! :auto-complete
+(ERROR-with-feature-package! :auto-complete
 		company
 		:config
 		(global-company-mode t)

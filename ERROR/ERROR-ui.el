@@ -9,16 +9,16 @@
 
 
 
-(ERROR-feature! :theme
+(ERROR-with-feature-package! :theme
 		doom-themes :defer t)
 
-(ERROR-feature! :theme
+(ERROR-with-feature-package! :theme
 		badwolf-theme :defer t)
 
-(ERROR-feature! :icons
+(ERROR-with-feature-package! :icons
 		all-the-icons)
 
-(ERROR-feature! :dired-icons
+(ERROR-with-feature-package! :dired-icons
 		all-the-icons-dired
 		:straight (all-the-icons-dired :type git :host github :repo "jtbm37/all-the-icons-dired")
 		:init
@@ -29,11 +29,11 @@
 			  (load-theme (ERROR-keyword-to-symbol (ERROR-feature-get-argument :theme)) t))
 
 
-(ERROR-feature! :modeline
+(ERROR-with-feature-package! :modeline
 		doom-modeline
 		:config (doom-modeline-mode 1))
 
-(ERROR-feature! :show-emojis
+(ERROR-with-feature-package! :show-emojis
 		emojify
 		:config (emojify-mode 1))
 

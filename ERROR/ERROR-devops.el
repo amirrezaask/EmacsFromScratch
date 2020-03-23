@@ -1,14 +1,14 @@
-(ERROR-feature! :k8s
+(ERROR-with-feature-package! :k8s
 		kubel
 		:commands
 		(kubel))
 
-(ERROR-feature! :docker
+(ERROR-with-feature-package! :docker
 		docker
 		:bind
 		("C-c d" . docker))
 
-(ERROR-feature! :ansible
+(ERROR-with-feature-package! :ansible
 		ansible
 		:init
 		(add-hook 'yaml-mode-hook (lambda () (ansible))))

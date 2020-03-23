@@ -1,4 +1,4 @@
-(ERROR-feature! :evil
+(ERROR-with-feature-package! :evil
 		evil
 		:init
 		(setq evil-want-keybinding nil)
@@ -24,13 +24,13 @@
 		(bindkey global-map 'describe-variable :evil (:normal "SPC d v"))
 		(bindkey global-map 'toggle-color-mode :evil (:normal "SPC t t")))
 
-(ERROR-feature! :evil
+(ERROR-with-feature-package! :evil
 		evil-collection
 		:after evil
 		:config
 		(evil-collection-init))
  
-(ERROR-feature! :evil
+(ERROR-with-feature-package! :evil
 		linum-relative
 		:config (linum-relative-mode))
 
@@ -41,7 +41,7 @@
 			  (global-set-key (kbd "C-,") 'previous-buffer)
 			  (global-set-key (kbd "C-.") 'next-buffer))
 
-(ERROR-feature! :which-key
+(ERROR-with-feature-package! :which-key
 	        which-key
 		:init
 		(setq echo-keystrokes 0.3)

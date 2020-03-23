@@ -1,10 +1,10 @@
-(ERROR-feature! :ivy
+(ERROR-with-feature-package! :ivy
 	       swiper
 	       :commands (swiper)
 	       :init
 	       (bindkey global-map 'swiper :evil (:normal "SPC s s") :holy "C-s"))
 
-(ERROR-feature! :ivy
+(ERROR-with-feature-package! :ivy
 		counsel
 		:commands (counsel-M-x counsel-find-file ivy-switch-buffer)
 		:init
@@ -13,7 +13,7 @@
 		(bindkey global-map 'ivy-switch-buffer :evil (:normal "SPC b l") :holy "C-x b"))
 
 
-(ERROR-feature! :helm
+(ERROR-with-feature-package! :helm
 	        helm
 		:init (setq helm-buffers-fuzzy-matching t
 			    helm-recentf-fuzzy-match t)
@@ -30,14 +30,14 @@
 		(bindkey global-map 'helm-mini :holy "C-x C-b"))
 
 
-(ERROR-feature! :ido
+(ERROR-with-feature-package! :ido
 	       ido-vertical-mode
 			    :config
 			    (ido-mode 1)
 			    (ido-everywhere 1)
 			    (ido-vertical-mode 1)
 			    (setq ido-vertical-define-keys 'C-n-and-C-p-only))
-(ERROR-feature! :ido
+(ERROR-with-feature-package! :ido
 		smex
 		:commands
 		(smex)
@@ -45,7 +45,7 @@
 		(bindkey global-map 'smex :evil (:normal "SPC SPC") :holy "M-x"))
 
 
-(ERROR-feature! :neotree
+(ERROR-with-feature-package! :neotree
 		neotree
 		:init
 		(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
@@ -53,7 +53,7 @@
 		:commands (neotree neotree-toggle)
 		)
 
-(ERROR-feature! :whitespace-mode
+(ERROR-with-feature-package! :whitespace-mode
 	        whitespace
 		:hook
 		((prog-mode text-mode) . whitespace-mode)
@@ -66,13 +66,13 @@
 			(tab-mark 9 [9655 9] [92 9])
 			)))
 
-(ERROR-feature! :insert-headers
+(ERROR-with-feature-package! :insert-headers
 	       autoinsert
 	       :init
 	       (setq auto-insert-query nil)
 	       (auto-insert-mode 1))
 
-(ERROR-feature! :dashboard
+(ERROR-with-feature-package! :dashboard
 		dashboard
 		:init
 		(setq dashboard-startup-banner 'logo)

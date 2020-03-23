@@ -35,7 +35,7 @@
   `(when (ERROR-enable? (intern ,(symbol-name feature)))
      ,@body))
 
-(defmacro ERROR-feature! (feature &rest args)
+(defmacro ERROR-with-feature-package! (feature &rest args)
   "Check if given FEATURE is enbaled and\
 then pass All given ARGS to use-package.
 \(ERROR-feature2 :k8s
