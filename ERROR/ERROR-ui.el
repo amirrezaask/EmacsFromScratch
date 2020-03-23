@@ -10,19 +10,37 @@
 
 
 (ERROR-with-feature-package! :theme
-		doom-themes :defer t)
+			     doom-themes
+			     :defer t)
 
 (ERROR-with-feature-package! :theme
-		badwolf-theme :defer t)
+			     spacemacs-theme
+			     :defer t)
+
+(ERROR-with-feature-package! :theme
+			     badwolf-theme
+			     :defer t)
+
+(ERROR-with-feature-package! :theme
+			     cyberpunk-theme
+			     :defer t)
+
+(ERROR-with-feature-package! :theme
+			     monokai-theme
+			     :defer t)
+
+(ERROR-with-feature-package! :theme
+			     afternoon-theme
+			     :defer t)
 
 (ERROR-with-feature-package! :icons
-		all-the-icons)
+			     all-the-icons)
 
 (ERROR-with-feature-package! :dired-icons
-		all-the-icons-dired
-		:straight (all-the-icons-dired :type git :host github :repo "jtbm37/all-the-icons-dired")
-		:init
-		(add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+			     all-the-icons-dired
+			     :straight (all-the-icons-dired :type git :host github :repo "jtbm37/all-the-icons-dired")
+			     :init
+			     (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
 (ERROR-with-feature-eval! :theme
 			  (setq custom-safe-themes t)
@@ -30,12 +48,12 @@
 
 
 (ERROR-with-feature-package! :modeline
-		doom-modeline
-		:config (doom-modeline-mode 1))
+			     doom-modeline
+			     :config (doom-modeline-mode 1))
 
 (ERROR-with-feature-package! :show-emojis
-		emojify
-		:config (emojify-mode 1))
+			     emojify
+			     :config (emojify-mode 1))
 
 (ERROR-with-feature-eval! :font
 			  (ERROR-ui-use-font (ERROR-feature-get-argument :font)))
