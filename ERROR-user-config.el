@@ -4,13 +4,13 @@
     
     ; UI features
     :theme :doom-dracula
-    :font ("mononoki" 11)
-    :modeline
-    ;;:dashboard
+    :font ("Fira Code" 11)
+    :modeline				;
+    ;; :dashboard
     
     ; completion framework
-    ;;:ivy
-    :helm
+    :ivy
+    ;;:helm
     ;; :ido
     
     ; Editor
