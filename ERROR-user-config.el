@@ -3,7 +3,7 @@
     ;; :side :evil ; Vi style modal editing
     
     ; UI features
-    :theme :cyberpunk
+    :theme :spacemacs-theme
     :font ("Jetbrains Mono" 11)
     ;; :modeline
     ;; :dashboard
