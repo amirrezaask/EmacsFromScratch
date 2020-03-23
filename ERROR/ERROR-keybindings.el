@@ -34,12 +34,12 @@
 		linum-relative
 		:config (linum-relative-mode))
 
-
-(global-set-key (kbd "C--") 'text-scale-decrease)
-(global-set-key (kbd "C-=") 'text-scale-increase)
-(global-set-key (kbd "C-o") 'other-window)
-(global-set-key (kbd "C-,") 'previous-buffer)
-(global-set-key (kbd "C-.") 'next-buffer)
+(ERROR-with-feature-eval! :god
+			  (global-set-key (kbd "C--") 'text-scale-decrease)
+			  (global-set-key (kbd "C-=") 'text-scale-increase)
+			  (global-set-key (kbd "C-o") 'other-window)
+			  (global-set-key (kbd "C-,") 'previous-buffer)
+			  (global-set-key (kbd "C-.") 'next-buffer))
 
 (ERROR-feature! :which-key
 	        which-key

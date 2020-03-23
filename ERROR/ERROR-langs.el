@@ -142,8 +142,8 @@
 (ERROR-with-feature-eval! :java
 			  (c-set-offset 'arglist-intro '+)
 			  (setq java-basic-offset 2)
-			  (setq c-basic-offset 2)
-			  )
+			  (setq c-basic-offset 2))
+
 (ERROR-feature! :java
 		lsp-java
 		:init
