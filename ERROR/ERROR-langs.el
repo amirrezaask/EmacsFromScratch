@@ -109,6 +109,7 @@
 		php-mode
 		:mode "\\.php\\'"
 		:init (add-hook 'php-mode-hook #'lsp))
+
 (ERROR-feature! :php
 		phpunit
 		:defer t
@@ -129,6 +130,25 @@
 (ERROR-feature! :dockerfile
 		dockerfile-mode
 		:mode "Dockerfile")
+
+(ERROR-feature! :groovy
+		groovy-mode
+		:mode ("\\.gradle\\'" "\\.groovy\\'"))
+
+(ERROR-feature! :java
+		gradle-mode
+		:mode "\\.gradle\\'")
+
+(ERROR-with-feature-eval! :java
+			  (c-set-offset 'arglist-intro '+)
+			  (setq java-basic-offset 2)
+			  (setq c-basic-offset 2)
+			  )
+(ERROR-feature! :java
+		lsp-java
+		:init
+		(add-hook 'java-mode-hook #'lsp))
+
 
 (provide 'ERROR-langs)
 ;;; ERROR-langs.el ends here

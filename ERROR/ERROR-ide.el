@@ -31,7 +31,8 @@
 
 
 (ERROR-feature! :lsp
-		lsp-ui  :defer t)
+		lsp-ui
+		:defer t)
 
 
 (ERROR-feature! :auto-complete
