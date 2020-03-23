@@ -45,7 +45,13 @@
 		(bindkey global-map 'smex :evil (:normal "SPC SPC") :holy "M-x"))
 
 
-
+(ERROR-feature! :side-file-tree
+		neotree
+		:init
+		(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+		(bindkey global-map 'neotree-toggle :holy "<f8>")
+		:commands (neotree neotree-toggle)
+		)
 
 (ERROR-feature! :whitespace-mode
 	        whitespace

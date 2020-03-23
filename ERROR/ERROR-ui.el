@@ -11,8 +11,19 @@
 
 (ERROR-feature! :theme
 		doom-themes :defer t)
+
 (ERROR-feature! :theme
 		badwolf-theme :defer t)
+
+(ERROR-feature! :icons
+		all-the-icons)
+
+(ERROR-feature! :dired-icons
+		all-the-icons-dired
+		:straight (all-the-icons-dired :type git :host github :repo "jtbm37/all-the-icons-dired")
+		:init
+		(add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+
 (ERROR-with-feature-eval! :theme
 			  (setq custom-safe-themes t)
 			  (load-theme (ERROR-keyword-to-symbol (ERROR-feature-get-argument :theme)) t))
