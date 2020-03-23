@@ -26,10 +26,6 @@
 			     :defer t)
 
 (ERROR-with-feature-package! :theme
-			     monokai-theme
-			     :defer t)
-
-(ERROR-with-feature-package! :theme
 			     afternoon-theme
 			     :defer t)
 
