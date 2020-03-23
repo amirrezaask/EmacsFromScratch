@@ -36,7 +36,8 @@
 
 
 (ERROR-with-feature-package! :auto-complete
-		company-lsp :defer t)
+			     company-lsp :defer t)
+
 (ERROR-with-feature-package! :auto-complete
 		company
 		:config

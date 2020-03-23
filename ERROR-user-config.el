@@ -3,9 +3,9 @@
     ;; :side :evil ; Vi style modal editing
     
     ; UI features
-    :theme :doom-dracula
-    :font ("Fira Code" 10)
-    :modeline
+    :theme :cyberpunk
+    :font ("Jetbrains Mono" 11)
+    ;; :modeline
     ;; :dashboard
     :icons
     :dired-icons
@@ -52,7 +52,7 @@
     ;;fsharp            ; Haskell on .NET
     :golang             ; New edition of C with garbage collector
     :haskell            ; a language thats lazier than I am
-    ;;java              ; let me guess ? You are in a retirement home
+    :java              ; let me guess ? You are in a retirement home
     :javascript         ; akh :(
     ;;kotlin            ; bearable java(javascript)
     ;;latex             ; just use the org mode :)

@@ -97,9 +97,9 @@
 		clojure-mode :mode "\\.cljs?\\'" :config (lsp))
 
 (ERROR-with-feature-package! :clojure
-		cider
-		:config
-		(bindkey cider-mode-map 'cider-eval-last-sexp :evil (:normal "SPC e e") :holy "C-x C-e"))
+			     cider
+			     :config
+			     (bindkey cider-mode-map 'cider-eval-last-sexp :evil (:normal "SPC e e") :holy "C-x C-e"))
 
 (ERROR-with-feature-package! :lua
 		lua-mode
