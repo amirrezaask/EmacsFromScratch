@@ -1,6 +1,3 @@
-(require 'cl)
-(require 'keybindings/ERROR-keybindings-core)
-
 (defvar ERROR-features '() "All variables of ERROR Emacs.")
 ;; main macro of ERROR to generate variables based on user input
 

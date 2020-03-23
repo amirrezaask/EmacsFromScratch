@@ -1,3 +1,4 @@
+(require 'keybindings/ERROR-keybindings-core)
 (ERROR-with-feature-package! :evil
 		evil
 		:init

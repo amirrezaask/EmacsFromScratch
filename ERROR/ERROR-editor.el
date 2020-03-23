@@ -16,7 +16,8 @@
 		(bindkey global-map 'counsel-aprops :evil (:normal "SPC h d a") :holy "C-h a")
 		(bindkey global-map 'counsel-yank-pop :evil (:normal "SPC y p") :holy "M-y")
 		(bindkey global-map 'counsel-ag :evil (:normal "SPC s g") :holy "C-x C-a")
-		(bindkey global-map 'ivy-switch-buffer :evil (:normal "SPC b l") :holy "C-x b"))
+		(bindkey global-map 'ivy-switch-buffer :evil (:normal "SPC b l") :holy "C-x b")
+		(bindkey global-map 'ivy-switch-buffer :holy "C-x C-b"))
 
 
 (ERROR-with-feature-package! :helm
@@ -43,6 +44,7 @@
 			    (ido-everywhere 1)
 			    (ido-vertical-mode 1)
 			    (setq ido-vertical-define-keys 'C-n-and-C-p-only))
+
 (ERROR-with-feature-package! :ido
 		smex
 		:commands
@@ -87,6 +89,7 @@
 		(setq dashboard-items '())
 		:config
 		(dashboard-setup-startup-hook))
+
 
 (setq custom-file "~/.__custom.el")
 (setq make-backup-files nil) ;; turn off emacs annoying ~ files
