@@ -7,6 +7,8 @@
     :font ("Fira Code" 11)
     :modeline
     ;; :dashboard
+    :icons
+    :dired-icons
     
     ; completion framework
     :ivy
@@ -17,7 +19,8 @@
     ;; :multiple-cursor ; multiple edits
     ;; :whitespace-mode ; highlight indents
     :which-key ; helps us when we only remember part of a keybinding
-
+    ;; :side-file-tree ; file browser that opens to the side using neotree package
+    
     ; IDE features
     :syntax-checker ; check syntax on the fly and provide linting suggestions
     :auto-complete  ; code completion for all languages with appropriate backend
