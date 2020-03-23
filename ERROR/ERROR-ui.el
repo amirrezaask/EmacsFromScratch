@@ -7,21 +7,27 @@
   (interactive)
   (add-to-list 'default-frame-alist (cons 'font (format "%s-%d" (car font-config) (car (last font-config))))))
 
+
+
 (ERROR-feature! :theme
-	       (setq custom-safe-themes t)
-	       (use-package doom-themes :defer t)
-	       (use-package badwolf-theme :defer t)
-	       (load-theme (ERROR-keyword-to-symbol (ERROR-feature-get-argument :theme)) t))
+		doom-themes :defer t)
+(ERROR-feature! :theme
+		badwolf-theme :defer t)
+(ERROR-with-feature-eval! :theme
+			  (setq custom-safe-themes t)
+			  (load-theme (ERROR-keyword-to-symbol (ERROR-feature-get-argument :theme)) t))
 
 
 (ERROR-feature! :modeline
-		  (use-package doom-modeline :config (doom-modeline-mode 1)))
+		doom-modeline
+		:config (doom-modeline-mode 1))
 
 (ERROR-feature! :show-emojis
-		  (use-package emojify :config (emojify-mode 1)))
+		emojify
+		:config (emojify-mode 1))
 
-(ERROR-feature! :font
-		  (ERROR-ui-use-font (ERROR-feature-get-argument :font)))
+(ERROR-with-feature-eval! :font
+			  (ERROR-ui-use-font (ERROR-feature-get-argument :font)))
 
 (setq inhibit-splash-screen 0) ;; turn off emacs annoying startup page.
 (tool-bar-mode 0) ;; turn off emacs GUI toolbar

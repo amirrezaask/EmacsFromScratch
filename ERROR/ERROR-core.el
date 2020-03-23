@@ -24,33 +24,24 @@
   (let ((locator (cl-position feature ERROR-features)))
     (nth (- locator 1) ERROR-features)))
 
-(defmacro ERROR-feature! (feature &rest body)
-  "When given FEATURE enabled evaluate BODY."
-  `(when (ERROR-enable? (intern ,(symbol-name feature)))
-     ,@body))
-
-(defmacro ERROR-defkeychord! (args)
-  "An adapter to use bindkey macro for all given ARGS."
-  `(mapcar (lambda (arg)
-	    (let ((evil (plist-get arg :evil ))
-		  (god (plist-get arg :god))
-		  (fn (plist-get arg :fn))
-		  (keymap (plist-get arg :keymap)))
-	      (bindkey keymap fn :evil evil :holy god)
-	      )) (quote ,args)))
-
 (defun ERROR-debug (&rest args)
   "Print all given ARGS for debugging."
   (mapcar (lambda (arg)
 	     (message "ERROR-DEBUG => %s" arg))
 	   args))
 
-(defmacro ERROR-feature2 (feature &rest args)
-  "All given ARGS will get passed to use-package so take a look at use-package documetation.
-(ERROR-feature2 :k8s
+(defmacro ERROR-with-feature-eval! (feature &rest body)
+  "When given FEATURE enabled evaluate BODY."
+  `(when (ERROR-enable? (intern ,(symbol-name feature)))
+     ,@body))
+
+(defmacro ERROR-feature! (feature &rest args)
+  "Check if given FEATURE is enbaled and\
+then pass All given ARGS to use-package.
+\(ERROR-feature2 :k8s
 		kubel
 		:config
-		(bindkey global-map 'kubel :evil (:normal \"SPC k k\") :holy \"C-c C-a\"))"
+		\(bindkey `global-map` \\<function> :evil (:normal \\<keymap>) :holy \\<keymap>))"
                     
   (setq use-package-list '())
   (setq args (reverse args))
@@ -58,6 +49,7 @@
   (add-to-list 'use-package-list 'use-package)
   `(when (ERROR-enable? (intern ,(symbol-name feature)))
      ,use-package-list)
-     )
+  )
+
 
 (provide 'ERROR-core)
