@@ -10,6 +10,11 @@
 		:init
 		(bindkey global-map 'counsel-M-x :evil (:normal "SPC SPC") :holy "M-x")
 		(bindkey global-map 'counsel-find-file :evil (:normal "SPC f f") :holy "C-x C-f")
+		(bindkey global-map 'counsel-descbinds :evil (:normal "SPC h d b") :holy "C-h b")
+		(bindkey global-map 'counsel-describe-function :evil (:normal "SPC h d f") :holy "C-h f")
+		(bindkey global-map 'counsel-describe-variable :evil (:normal "SPC h d v") :holy "C-h v")
+		(bindkey global-map 'counsel-aprops :evil (:normal "SPC h d a") :holy "C-h a")
+		(bindkey global-map 'counsel-yank-pop :evil (:normal "SPC y p") :holy "M-y")
 		(bindkey global-map 'ivy-switch-buffer :evil (:normal "SPC b l") :holy "C-x b"))
 
 
