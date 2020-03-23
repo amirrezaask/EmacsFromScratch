@@ -1,11 +1,11 @@
 (ERROR!
-    :side :god
-    ;; :side :bugs
+    :side :god ; Emacs keybindings
+    ;; :side :evil ; Vi style modal editing
     
     ; UI features
     :theme :doom-dracula
     :font ("Fira Code" 11)
-    :modeline				;
+    :modeline
     ;; :dashboard
     
     ; completion framework
@@ -14,8 +14,8 @@
     ;; :ido
     
     ; Editor
-    :multiple-cursor ; multiple edits
-    ;;:whitespace-mode ; highlight indents
+    ;; :multiple-cursor ; multiple edits
+    ;; :whitespace-mode ; highlight indents
     :which-key ; helps us when we only remember part of a keybinding
 
     ; IDE features
