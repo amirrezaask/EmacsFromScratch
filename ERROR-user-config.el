@@ -43,6 +43,7 @@
     ;;common-lisp       ; common things lisps have
     ;;csharp            ; unity, .NET, and mono shenanigans
     :dockerfile         ; VMs of new era
+    :data               ; support all data formats that I know
     :emacs-lisp         ; emacs language
     :json               ; Beside from being js technology, a good data format
     ;;xml               ; dont forget to take your pills, cause youre old

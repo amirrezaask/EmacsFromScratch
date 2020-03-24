@@ -1,17 +1,26 @@
-(ERROR-with-feature-package! :json
+(ERROR-with-feature-package! :data
 	        json-mode
 		:mode "\\.json\\'"
 		:config
 		(add-hook 'before-save-hook 'json-mode-beautify))
 
-(ERROR-with-feature-package! :yaml
+(ERROR-with-feature-package! :data
 	        yaml-mode
 		:mode
 		"\\.ya?ml\\'")
 
-(ERROR-with-feature-package! :toml
+(ERROR-with-feature-package! :data
 			     toml-mode
 			     :mode "\\.toml\\'")
+
+(ERROR-with-feature-package! :data
+			     csv-mode
+			     :mode "\\.csv\\'")
+
+(ERROR-with-feature-package! :data
+			     protobuf-mode
+			     :mode "\\.proto\\'")
+
 
 (ERROR-with-feature-package! :markdown
 	        markdown-mode
