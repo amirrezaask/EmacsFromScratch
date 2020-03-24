@@ -9,6 +9,10 @@
 		:mode
 		"\\.ya?ml\\'")
 
+(ERROR-with-feature-package! :toml
+			     toml-mode
+			     :mode "\\.toml\\'")
+
 (ERROR-with-feature-package! :markdown
 	        markdown-mode
 		:mode "\\.md\\'")
