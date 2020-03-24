@@ -86,7 +86,6 @@
 		(setq dashboard-startup-banner 'logo)
 		(setq dashboard-center-content t)
 		(setq dashboard-banner-longo-title "Requiescat in pace")
-		(setq dashboard-items '())
 		:config
 		(dashboard-setup-startup-hook))
 
