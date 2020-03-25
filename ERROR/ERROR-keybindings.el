@@ -5,7 +5,6 @@
 		(setq evil-want-keybinding nil)
 		(add-hook 'simple-mode-hook 'evil-mode)
 		:config
-		(evil-mode 1)
 		(bindkey global-map 'find-file :evil (:normal "SPC f f"))
 		(bindkey global-map 'kill-buffer :evil (:normal "SPC b k"))
 		(bindkey global-map 'save-buferr :evil (:normal "SPC b s"))
@@ -23,7 +22,9 @@
 		(bindkey global-map 'describe-key :evil (:normal "SPC d k"))
 		(bindkey global-map 'describe-function :evil (:normal "SPC d f"))
 		(bindkey global-map 'describe-variable :evil (:normal "SPC d v"))
-		(bindkey global-map 'toggle-color-mode :evil (:normal "SPC t t")))
+		(bindkey global-map 'toggle-color-mode :evil (:normal "SPC t t"))
+
+		(evil-mode 1))
 
 (ERROR-with-feature-package! :evil
 		evil-collection

@@ -18,7 +18,7 @@
   "Binds FN to KEYS on given MAP based on side you are on."
   (let ((evil-keys (plist-get keys :evil)) (holy-keys (plist-get keys :holy)))
     (cond
-     ((ERROR-enable? :bugs) `(-bindkey-evil ,map ,fn (quote ,evil-keys)))
+     ((ERROR-enable? :evil) `(-bindkey-evil ,map ,fn (quote ,evil-keys)))
      ((ERROR-enable? :god) `(-bindkey-holy ,map ,fn ,holy-keys))
      )
     ))
