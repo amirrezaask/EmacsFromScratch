@@ -27,12 +27,13 @@
 
 
 (ERROR-with-feature-package! :lsp
-		lsp-mode :defer t)
+			     lsp-mode
+			     :hook prog-mode)
 
 
 (ERROR-with-feature-package! :lsp
-		lsp-ui
-		:defer t)
+			     lsp-ui
+			     :defer t)
 
 
 (ERROR-with-feature-package! :auto-complete

@@ -31,7 +31,6 @@
 			     go-mode
 			     :mode "\\.go\\'"
 			     :config
-			     (lsp)
 			     (add-hook 'before-save-hook #'lsp-format-buffer t t)
 			     (add-hook 'before-save-hook #'lsp-organize-imports t t)
 			     (add-hook 'go-mode-hook 'go-eldoc-setup)
@@ -56,8 +55,7 @@
 			     python-mode
 			     :mode "\\.py\\'"
 			     :config
-			     (add-to-list 'exec-path (concat (getenv "HOME") "/.local/bin"))
-			     (lsp))
+			     (add-to-list 'exec-path (concat (getenv "HOME") "/.local/bin")))
 
 (ERROR-with-feature-package! :python
 			     lsp-python-ms
@@ -120,8 +118,7 @@
 
 (ERROR-with-feature-package! :php
 			     php-mode
-			     :mode "\\.php\\'"
-			     :init (add-hook 'php-mode-hook #'lsp))
+			     :mode "\\.php\\'")
 
 (ERROR-with-feature-package! :php
 			     phpunit
