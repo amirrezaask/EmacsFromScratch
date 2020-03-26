@@ -1,13 +1,13 @@
 (ERROR-with-feature-package! :data
-	        json-mode
-		:mode "\\.json\\'"
-		:config
-		(add-hook 'before-save-hook 'json-mode-beautify))
+			     json-mode
+			    :mode "\\.json\\'"
+			    :config
+			    (add-hook 'before-save-hook 'json-mode-beautify))
 
 (ERROR-with-feature-package! :data
-	        yaml-mode
-		:mode
-		"\\.ya?ml\\'")
+			     yaml-mode
+			     :mode
+			     "\\.ya?ml\\'")
 
 (ERROR-with-feature-package! :data
 			     toml-mode
