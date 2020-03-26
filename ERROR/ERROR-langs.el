@@ -30,10 +30,10 @@
 (ERROR-with-feature-package! :golang
 			     go-mode
 			     :mode "\\.go\\'"
+			     :init (add-hook 'go-mode-hook #'lsp-deferred)
 			     :config
 			     (add-hook 'before-save-hook #'lsp-format-buffer t t)
 			     (add-hook 'before-save-hook #'lsp-organize-imports t t)
-			     (add-hook 'go-mode-hook 'go-eldoc-setup)
 			     (local-set-key (kbd "M-.") 'godef-jump)
 			     (local-set-key (kbd "M-*") 'pop-tag-mark)
 			     (add-to-list 'exec-path (concat (concat (getenv "HOME") "/go") "/bin")))
@@ -55,6 +55,7 @@
 			     python-mode
 			     :mode "\\.py\\'"
 			     :config
+			     (lsp)
 			     (add-to-list 'exec-path (concat (getenv "HOME") "/.local/bin")))
 
 (ERROR-with-feature-package! :python
@@ -69,8 +70,8 @@
 
 (ERROR-with-feature-package! :elixir
 			     elixir-mode
-			     :mode "\\.ex\\'" :config (lsp))
-
+			     :mode "\\.ex\\'"
+			     :config (lsp))
 (ERROR-with-feature-package! :elixir
 			     alchemist
 			     :defer t)
