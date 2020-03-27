@@ -3,9 +3,9 @@
     ;; :side :evil ; Vi style modal editing
     
     ; UI features
-    :theme :spacemacs-theme
+    :theme :doom-dracula
     :font ("Jetbrains Mono" 11)
-    ;; :modeline
+    :modeline
     ;; :dashboard
     :icons
     :dired-icons
@@ -19,7 +19,7 @@
     ;; :multiple-cursor ; multiple edits
     ;; :whitespace-mode ; highlight indents
     :which-key ; helps us when we only remember part of a keybinding
-    ;; :neotree ; a side tree file browser like NERDtree for vim
+    :neotree ; a side tree file browser like NERDtree for vim
     
     ; IDE features
     :syntax-checker ; check syntax on the fly and provide linting suggestions
@@ -31,23 +31,19 @@
     
     ; DevOps features
     :k8s ; k8s management in Emacs
-    ;;:ansible ; 
-    :docker ; 
+    :docker ; docker containers,images,etc management
     
  
     
     ; Supported languages
-    ;;:assembly         ; closest thing to metal
-    ;;:cc               ; C/C++/Obj-C madness
+    :assembly         ; closest thing to metal
+    :cc               ; C/C++/Obj-C madness
     :clojure            ; lisp on jvm
     ;;common-lisp       ; common things lisps have
     ;;csharp            ; unity, .NET, and mono shenanigans
     :dockerfile         ; VMs of new era
     :data               ; support all data formats that I know
     :emacs-lisp         ; emacs language
-    :json               ; Beside from being js technology, a good data format
-    ;;xml               ; dont forget to take your pills, cause youre old
-    :yaml               ; hipster data format
     :elixir             ; erlang done right
     ;;erlang            ; pass the message
     ;;fsharp            ; Haskell on .NET
@@ -67,10 +63,4 @@
     ;;scala             ; java + functional programming
     :sh                 ; she sells {ba,z,fi}sh shells on the C xor
     :web                ; the tubes
-     
- 
-    ;communications
-    :email
-    ;:irc
-    ;:twitter
     )
