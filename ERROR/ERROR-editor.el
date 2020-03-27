@@ -80,16 +80,6 @@
 			     (setq auto-insert-query nil)
 			     (auto-insert-mode 1))
 
-(ERROR-with-feature-package! :dashboard
-			     dashboard
-			     :init
-			     (setq dashboard-startup-banner 'logo)
-			     (setq dashboard-center-content t)
-			     (setq dashboard-banner-longo-title "Requiescat in pace")
-			     :config
-			     (dashboard-setup-startup-hook))
-
-
 (setq custom-file "~/.__custom.el")
 (setq make-backup-files nil) ;; turn off emacs annoying ~ files
 (setq create-lockfiles nil) ;; turn off emacs annoying # files
