@@ -22,10 +22,10 @@
     :neotree ; a side tree file browser like NERDtree for vim
     
     ; IDE features
-    :syntax-checker ; check syntax on the fly and provide linting suggestions
-    :auto-complete  ; code completion for all languages with appropriate backend
+    :flycheck ; on the fly syntax checking and linting
+    :company  ; Code completion framework (does not do all the work by itself still need backends) mainly used by LSP
     :lsp ; language server protocol
-    :git ; git support
+    :magit ; git support
     ;;:dap ; debugger adapter protocol
      
     

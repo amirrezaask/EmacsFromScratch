@@ -1,20 +1,20 @@
-(ERROR-with-feature-package! :syntax-checker
+(ERROR-with-feature-package! :flycheck
 			     flycheck
 			     :hook
 			     (prog-mode . flycheck-mode))
 
-(ERROR-with-feature-package! :debugger
+(ERROR-with-feature-package! :dap
 			     dap-mode
 			     :hook
 			     ((go-mode python-mode php-mode) . dap-mode))
 
-(ERROR-with-feature-package! :git
+(ERROR-with-feature-package! :magit
 			     magit
 			     :commands (magit-status)
 			     :init
 			     (bindkey global-map 'magit-status :holy "C-x g" :evil (:normal "SPC g s")))
 
-(ERROR-with-feature-package! :git
+(ERROR-with-feature-package! :magit
 			     diff-hl
 			     :config
 			     (global-diff-hl-mode))
@@ -36,10 +36,10 @@
 			     :defer t)
 
 
-(ERROR-with-feature-package! :auto-complete
+(ERROR-with-feature-package! :company
 			     company-lsp :defer t)
 
-(ERROR-with-feature-package! :auto-complete
+(ERROR-with-feature-package! :company
 			     company
 			     :config
 			     (global-company-mode t)
