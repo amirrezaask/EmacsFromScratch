@@ -1,10 +1,10 @@
-(comrade-with-feature-package! :ivy
+(init-with-feature-package! :ivy
 			     swiper
 			     :commands (swiper)
 			     :init
 			     (bindkey global-map 'swiper :evil (:normal "SPC s s") :holy "C-s"))
 
-(comrade-with-feature-package! :ivy
+(init-with-feature-package! :ivy
 			     counsel
 			     :commands (counsel-M-x counsel-find-file ivy-switch-buffer)
 			     :init
@@ -20,7 +20,7 @@
 			     (bindkey global-map 'ivy-switch-buffer :holy "C-x C-b"))
 
 
-(comrade-with-feature-package! :helm
+(init-with-feature-package! :helm
 			     helm
 			     :init (setq helm-buffers-fuzzy-matching t
 					 helm-recentf-fuzzy-match t)
@@ -37,7 +37,7 @@
 			     (bindkey global-map 'helm-mini :holy "C-x C-b"))
 
 
-(comrade-with-feature-package! :ido
+(init-with-feature-package! :ido
 			     ido-vertical-mode
 			     :config
 			     (ido-mode 1)
@@ -45,7 +45,7 @@
 			     (ido-vertical-mode 1)
 			     (setq ido-vertical-define-keys 'C-n-and-C-p-only))
 
-(comrade-with-feature-package! :ido
+(init-with-feature-package! :ido
 			     smex
 			     :commands
 			     (smex)
@@ -53,7 +53,7 @@
 			     (bindkey global-map 'smex :evil (:normal "SPC SPC") :holy "M-x"))
 
 
-(comrade-with-feature-package! :neotree
+(init-with-feature-package! :neotree
 			     neotree
 			     :init
 			     (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
@@ -61,7 +61,7 @@
 			     :commands (neotree neotree-toggle)
 			     )
 
-(comrade-with-feature-package! :whitespace-mode
+(init-with-feature-package! :whitespace-mode
 			     whitespace
 			     :hook
 			     ((prog-mode text-mode) . whitespace-mode)
@@ -74,7 +74,7 @@
 				     (tab-mark 9 [9655 9] [92 9])
 				     )))
 
-(comrade-with-feature-package! :insert-headers
+(init-with-feature-package! :insert-headers
 			     autoinsert
 			     :init
 			     (setq auto-insert-query nil)
@@ -85,5 +85,5 @@
 (setq create-lockfiles nil) ;; turn off emacs annoying # files
 (setq ring-bell-function 'ignore)
 (defalias 'yes-or-no-p 'y-or-n-p) ;; instead of yes-or-no ask y-or-no, only for convinience
-(provide 'comrade-editor)
-;;; comrade-editor.el ends here
+(provide 'init-editor)
+;;; init-editor.el ends here

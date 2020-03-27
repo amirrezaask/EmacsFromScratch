@@ -18,11 +18,11 @@
   "Binds FN to KEYS on given MAP based on side you are on."
   (let ((evil-keys (plist-get keys :evil)) (holy-keys (plist-get keys :holy)))
     (cond
-     ((comrade-enable? :evil) `(-bindkey-evil ,map ,fn (quote ,evil-keys)))
-     ((comrade-enable? :god) `(-bindkey-holy ,map ,fn ,holy-keys))
+     ((init-enable? :evil) `(-bindkey-evil ,map ,fn (quote ,evil-keys)))
+     ((init-enable? :god) `(-bindkey-holy ,map ,fn ,holy-keys))
      )
     ))
 
 
 
-(provide 'keybindings/comrade-keybindings-core)
+(provide 'keybindings/init-keybindings-core)

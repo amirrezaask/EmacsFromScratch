@@ -1,4 +1,4 @@
-(comrade!
+(init!
     :side :god ; Emacs keybindings
     ;; :side :evil ; Vi style modal editing (not really that much configured since i'm not an evil person any more :) )
     

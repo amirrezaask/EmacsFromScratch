@@ -1,5 +1,5 @@
-(require 'keybindings/comrade-keybindings-core)
-(comrade-with-feature-package! :evil
+(require 'keybindings/init-keybindings-core)
+(init-with-feature-package! :evil
 			     evil
 			     :init
 			     (setq evil-want-keybinding nil)
@@ -26,32 +26,32 @@
 
 			     (evil-mode 1))
 
-(comrade-with-feature-package! :evil
+(init-with-feature-package! :evil
 			     evil-collection
 			     :after evil
 			     :config
 			     (evil-collection-init))
  
-(comrade-with-feature-package! :evil
+(init-with-feature-package! :evil
 			     linum-relative
 			     :config (linum-relative-mode))
 
-(comrade-with-feature-eval! :god
+(init-with-feature-eval! :god
 			  (global-set-key (kbd "C--") 'text-scale-decrease)
 			  (global-set-key (kbd "C-=") 'text-scale-increase)
 			  (global-set-key (kbd "C-o") 'other-window)
 			  (global-set-key (kbd "C-,") 'previous-buffer)
 			  (global-set-key (kbd "C-.") 'next-buffer))
-(comrade-with-feature-package! :emacs-guru
+(init-with-feature-package! :emacs-guru
 			     guru-mode
 			     :config
 			     (guru-global-mode 1))
 
-(comrade-with-feature-package! :which-key
+(init-with-feature-package! :which-key
 			     which-key
 			     :init
 			     (setq echo-keystrokes 0.3)
 			     :config (which-key-mode 1))
 
 
-(provide 'comrade-keybindings)
+(provide 'init-keybindings)

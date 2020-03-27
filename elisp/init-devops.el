@@ -1,16 +1,16 @@
-(comrade-with-feature-package! :k8s
+(init-with-feature-package! :k8s
 			     kubel
 			     :commands
 			     (kubel))
 
-(comrade-with-feature-package! :docker
+(init-with-feature-package! :docker
 			     docker
 			     :bind
 			     ("C-c d" . docker))
 
-(comrade-with-feature-package! :ansible
+(init-with-feature-package! :ansible
 			     ansible
 			     :init
 			     (add-hook 'yaml-mode-hook (lambda () (ansible))))
 
-(provide 'comrade-devops)
+(provide 'init-devops)

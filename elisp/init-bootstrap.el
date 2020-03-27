@@ -56,18 +56,18 @@
 (straight-use-package 'use-package)
 (use-package gnu-elpa-keyring-update)
 
-;; load comrade Emacs core module
-(require 'comrade-core)
+;; load init Emacs core module
+(require 'init-core)
 ;; load user config
-(load-file (expand-file-name ".comrade.el" (getenv "HOME")))
+(load-file (expand-file-name ".emacs-config.el" (getenv "HOME")))
 
-;; load comrade Emacs modules
-(require 'comrade-keybindings)
-(require 'comrade-ui)
-(require 'comrade-editor)
-(require 'comrade-ide)
-(require 'comrade-langs)
-(require 'comrade-devops)
+;; load init Emacs modules
+(require 'init-keybindings)
+(require 'init-ui)
+(require 'init-editor)
+(require 'init-ide)
+(require 'init-langs)
+(require 'init-devops)
 
-(provide 'comrade-bootstrap)
+(provide 'init-bootstrap)
 
