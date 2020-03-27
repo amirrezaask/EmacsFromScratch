@@ -1,11 +1,9 @@
-* ERROR
-** Extensible pRogRamming and cOmputing enviRonment
-ERROR is my personal editor based on GNU/Emacs.
+* Comrade
 ** Philosophy
-ERROR has designed from ground up to be a configurable yet user-friendly solution for 
+Comrade has designed from ground up to be a configurable yet user-friendly solution for 
 those who don't want heavy bloated IDEs and want something simple
 yet powerfull.
 ** Terminology
-ERROR has built around features. Basically ERROR itself is nothing but some simple macros that wrap the best Emacs package manager (straight.el)
+Comrade has built around features. Basically Comrade itself is nothing but some simple macros that wrap the best Emacs package manager (straight.el)
 and best package defenition macro (use-package), everything else is just feature. Each feature can consist of one or several packages.
 

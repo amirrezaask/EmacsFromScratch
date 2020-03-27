@@ -1,14 +1,14 @@
-(ERROR!
+(comrade!
     :side :god ; Emacs keybindings
-    ;; :side :evil ; Vi style modal editing
+    ;; :side :evil ; Vi style modal editing (not really that much configured since i'm not an evil person any more :) )
     
     ; UI features
     :theme :doom-dracula
     :font ("Jetbrains Mono" 11)
     :modeline
-    ;; :dashboard
     :icons
     :dired-icons
+    :ripgrep
     
     ; completion framework
     :ivy
@@ -32,12 +32,11 @@
     ; DevOps features
     :k8s ; k8s management in Emacs
     :docker ; docker containers,images,etc management
-    
  
     
     ; Supported languages
-    :assembly         ; closest thing to metal
-    :cc               ; C/C++/Obj-C madness
+    :assembly           ; closest thing to metal
+    :cc                 ; C/C++/Obj-C madness
     :clojure            ; lisp on jvm
     ;;common-lisp       ; common things lisps have
     ;;csharp            ; unity, .NET, and mono shenanigans
@@ -49,7 +48,7 @@
     ;;fsharp            ; Haskell on .NET
     :golang             ; New edition of C with garbage collector
     :haskell            ; a language thats lazier than I am
-    :java              ; let me guess ? You are in a retirement home
+    :java               ; let me guess ? You are in a retirement home
     :javascript         ; akh :(
     ;;kotlin            ; bearable java(javascript)
     ;;latex             ; just use the org mode :)

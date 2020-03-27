@@ -1,16 +1,16 @@
-(ERROR-with-feature-package! :k8s
+(comrade-with-feature-package! :k8s
 			     kubel
 			     :commands
 			     (kubel))
 
-(ERROR-with-feature-package! :docker
+(comrade-with-feature-package! :docker
 			     docker
 			     :bind
 			     ("C-c d" . docker))
 
-(ERROR-with-feature-package! :ansible
+(comrade-with-feature-package! :ansible
 			     ansible
 			     :init
 			     (add-hook 'yaml-mode-hook (lambda () (ansible))))
 
-(provide 'ERROR-devops)
+(provide 'comrade-devops)
