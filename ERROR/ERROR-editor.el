@@ -1,93 +1,93 @@
 (ERROR-with-feature-package! :ivy
-	       swiper
-	       :commands (swiper)
-	       :init
-	       (bindkey global-map 'swiper :evil (:normal "SPC s s") :holy "C-s"))
+			     swiper
+			     :commands (swiper)
+			     :init
+			     (bindkey global-map 'swiper :evil (:normal "SPC s s") :holy "C-s"))
 
 (ERROR-with-feature-package! :ivy
-		counsel
-		:commands (counsel-M-x counsel-find-file ivy-switch-buffer)
-		:init
-		(bindkey global-map 'counsel-M-x :evil (:normal "SPC SPC") :holy "M-x")
-		(bindkey global-map 'counsel-find-file :evil (:normal "SPC f f") :holy "C-x C-f")
-		(bindkey global-map 'counsel-descbinds :evil (:normal "SPC h d b") :holy "C-h b")
-		(bindkey global-map 'counsel-describe-function :evil (:normal "SPC h d f") :holy "C-h f")
-		(bindkey global-map 'counsel-describe-variable :evil (:normal "SPC h d v") :holy "C-h v")
-		(bindkey global-map 'counsel-aprops :evil (:normal "SPC h d a") :holy "C-h a")
-		(bindkey global-map 'counsel-yank-pop :evil (:normal "SPC y p") :holy "M-y")
-		(bindkey global-map 'counsel-ag :evil (:normal "SPC s g") :holy "C-x C-a")
-		(bindkey global-map 'ivy-switch-buffer :evil (:normal "SPC b l") :holy "C-x b")
-		(bindkey global-map 'ivy-switch-buffer :holy "C-x C-b"))
+			     counsel
+			     :commands (counsel-M-x counsel-find-file ivy-switch-buffer)
+			     :init
+			     (bindkey global-map 'counsel-M-x :evil (:normal "SPC SPC") :holy "M-x")
+			     (bindkey global-map 'counsel-find-file :evil (:normal "SPC f f") :holy "C-x C-f")
+			     (bindkey global-map 'counsel-descbinds :evil (:normal "SPC h d b") :holy "C-h b")
+			     (bindkey global-map 'counsel-describe-function :evil (:normal "SPC h d f") :holy "C-h f")
+			     (bindkey global-map 'counsel-describe-variable :evil (:normal "SPC h d v") :holy "C-h v")
+			     (bindkey global-map 'counsel-aprops :evil (:normal "SPC h d a") :holy "C-h a")
+			     (bindkey global-map 'counsel-yank-pop :evil (:normal "SPC y p") :holy "M-y")
+			     (bindkey global-map 'counsel-ag :evil (:normal "SPC s g") :holy "C-x C-a")
+			     (bindkey global-map 'ivy-switch-buffer :evil (:normal "SPC b l") :holy "C-x b")
+			     (bindkey global-map 'ivy-switch-buffer :holy "C-x C-b"))
 
 
 (ERROR-with-feature-package! :helm
-	        helm
-		:init (setq helm-buffers-fuzzy-matching t
-			    helm-recentf-fuzzy-match t)
-		:bind* (:map helm-map
-			     ("TAB" . #'helm-execute-persistent-action)
-			     ("<tab>" . #'helm-execute-persistent-action)
-			     ("C-z". #'helm-select-action))
-		:config
-		(helm-mode 1)
-		(bindkey global-map 'helm-find-files :evil (:normal "SPC f f") :holy "C-x C-f")
-		(bindkey global-map 'helm-M-x :evil (:normal "SPC SPC") :holy "M-x")
-		(bindkey global-map 'helm-recentf :evil (:normal "SPC f r") :holy "C-x C-r")
-		(bindkey global-map 'helm-mini :evil (:normal "SPC b l") :holy "C-x b")
-		(bindkey global-map 'helm-mini :holy "C-x C-b"))
+			     helm
+			     :init (setq helm-buffers-fuzzy-matching t
+					 helm-recentf-fuzzy-match t)
+			     :bind* (:map helm-map
+					  ("TAB" . #'helm-execute-persistent-action)
+					  ("<tab>" . #'helm-execute-persistent-action)
+					  ("C-z". #'helm-select-action))
+			     :config
+			     (helm-mode 1)
+			     (bindkey global-map 'helm-find-files :evil (:normal "SPC f f") :holy "C-x C-f")
+			     (bindkey global-map 'helm-M-x :evil (:normal "SPC SPC") :holy "M-x")
+			     (bindkey global-map 'helm-recentf :evil (:normal "SPC f r") :holy "C-x C-r")
+			     (bindkey global-map 'helm-mini :evil (:normal "SPC b l") :holy "C-x b")
+			     (bindkey global-map 'helm-mini :holy "C-x C-b"))
 
 
 (ERROR-with-feature-package! :ido
-	       ido-vertical-mode
-			    :config
-			    (ido-mode 1)
-			    (ido-everywhere 1)
-			    (ido-vertical-mode 1)
-			    (setq ido-vertical-define-keys 'C-n-and-C-p-only))
+			     ido-vertical-mode
+			     :config
+			     (ido-mode 1)
+			     (ido-everywhere 1)
+			     (ido-vertical-mode 1)
+			     (setq ido-vertical-define-keys 'C-n-and-C-p-only))
 
 (ERROR-with-feature-package! :ido
-		smex
-		:commands
-		(smex)
-		:init
-		(bindkey global-map 'smex :evil (:normal "SPC SPC") :holy "M-x"))
+			     smex
+			     :commands
+			     (smex)
+			     :init
+			     (bindkey global-map 'smex :evil (:normal "SPC SPC") :holy "M-x"))
 
 
 (ERROR-with-feature-package! :neotree
-		neotree
-		:init
-		(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-		(bindkey global-map 'neotree-toggle :holy "<f8>")
-		:commands (neotree neotree-toggle)
-		)
+			     neotree
+			     :init
+			     (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+			     (bindkey global-map 'neotree-toggle :holy "<f8>")
+			     :commands (neotree neotree-toggle)
+			     )
 
 (ERROR-with-feature-package! :whitespace-mode
-	        whitespace
-		:hook
-		((prog-mode text-mode) . whitespace-mode)
-		:init
-		(setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark )))
-		(setq whitespace-display-mappings
-		      '(
-			(space-mark 32 [183] [46])
-			(newline-mark 10 [182 10])
-			(tab-mark 9 [9655 9] [92 9])
-			)))
+			     whitespace
+			     :hook
+			     ((prog-mode text-mode) . whitespace-mode)
+			     :init
+			     (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark )))
+			     (setq whitespace-display-mappings
+				   '(
+				     (space-mark 32 [183] [46])
+				     (newline-mark 10 [182 10])
+				     (tab-mark 9 [9655 9] [92 9])
+				     )))
 
 (ERROR-with-feature-package! :insert-headers
-	       autoinsert
-	       :init
-	       (setq auto-insert-query nil)
-	       (auto-insert-mode 1))
+			     autoinsert
+			     :init
+			     (setq auto-insert-query nil)
+			     (auto-insert-mode 1))
 
 (ERROR-with-feature-package! :dashboard
-		dashboard
-		:init
-		(setq dashboard-startup-banner 'logo)
-		(setq dashboard-center-content t)
-		(setq dashboard-banner-longo-title "Requiescat in pace")
-		:config
-		(dashboard-setup-startup-hook))
+			     dashboard
+			     :init
+			     (setq dashboard-startup-banner 'logo)
+			     (setq dashboard-center-content t)
+			     (setq dashboard-banner-longo-title "Requiescat in pace")
+			     :config
+			     (dashboard-setup-startup-hook))
 
 
 (setq custom-file "~/.__custom.el")
