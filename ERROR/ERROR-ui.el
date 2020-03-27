@@ -14,19 +14,7 @@
 			     :defer t)
 
 (ERROR-with-feature-package! :theme
-			     spacemacs-theme
-			     :defer t)
-
-(ERROR-with-feature-package! :theme
 			     badwolf-theme
-			     :defer t)
-
-(ERROR-with-feature-package! :theme
-			     cyberpunk-theme
-			     :defer t)
-
-(ERROR-with-feature-package! :theme
-			     afternoon-theme
 			     :defer t)
 
 (ERROR-with-feature-package! :icons
