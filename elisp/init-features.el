@@ -1,11 +1,11 @@
-(defvar init-features '() "All variables of init Emacs.")
+(defvar --features '() "All variables of init Emacs.")
 ;; main macro of init to generate variables based on user input
 
 (defmacro init! (&rest attrs)
   "Define a new Assassin with given ATTRS."
   `(mapcar (lambda (attr)
 	     (when (or (keywordp attr) (listp attr))
-	       (add-to-list 'init-features attr)))
+	       (add-to-list '--features attr)))
 	   (quote ,attrs)))
 
 (defun init-keyword-to-symbol (keyword)
@@ -14,12 +14,12 @@
 
 (defun init-enable? (feature)
   "Check if given FEATURE is enabled in init Emacs."
-  (member feature init-features))
+  (member feature --features))
 
 (defun init-feature-get-argument (feature)
   "Get given argument for given FEATURE."
-  (let ((locator (cl-position feature init-features)))
-    (nth (- locator 1) init-features)))
+  (let ((locator (cl-position feature --features)))
+    (nth (- locator 1) --features)))
 
 (defun init-debug (&rest args)
   "Print all given ARGS for debugging."
@@ -49,4 +49,4 @@ then pass All given ARGS to use-package.
   )
 
 
-(provide 'init-core)
+(provide 'init-features)
