@@ -36,13 +36,22 @@
 			     (bindkey global-map 'helm-mini :evil (:normal "SPC b l") :holy "C-x b")
 			     (bindkey global-map 'helm-mini :holy "C-x C-b"))
 
+(init-with-feature-eval! :ido
+			 (ido-mode 1)
+			 (ido-everywhere 1)
+			 (setq ido-enable-flex-matching t))
+
+(init-with-feature-package! :ido
+			    ido-completing-read+
+			    :config
+			    (ido-ubiquitous-mode 1)
+			    (local-unset-key (kbd "C-x C-f"))
+			    (local-set-key (kbd "C-x C-t") 'ido-fallback-command))
 
 (init-with-feature-package! :ido
 			     ido-vertical-mode
 			     :config
-			     (ido-mode 1)
-			     (ido-everywhere 1)
-			     (ido-vertical-mode 1)
+			     (ido-vertical-mode 1) 
 			     (setq ido-vertical-define-keys 'C-n-and-C-p-only))
 
 (init-with-feature-package! :ido
