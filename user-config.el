@@ -11,9 +11,9 @@
     :ripgrep
     
     ; completion framework
-    :ivy
+    ;; :ivy
     ;;:helm
-    ;; :ido
+    :ido
     
     ; Editor
     ;; :multiple-cursor ; multiple edits
