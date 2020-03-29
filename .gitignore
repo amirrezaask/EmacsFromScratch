@@ -8,3 +8,5 @@ assassin/**/*.elc
 straight
 transient
 recentf
+.lsp*
+smex*
