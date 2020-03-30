@@ -51,15 +51,15 @@
 (init-with-feature-package! :ido
 			     ido-vertical-mode
 			     :config
-			     (ido-vertical-mode 1) 
+			     ;; (ido-vertical-mode 1) 
 			     (setq ido-vertical-define-keys 'C-n-and-C-p-only))
 
-(init-with-feature-package! :ido
-			     smex
-			     :commands
-			     (smex)
-			     :init
-			     (bindkey global-map 'smex :evil (:normal "SPC SPC") :holy "M-x"))
+;; (init-with-feature-package! :ido
+;; 			     smex
+;; 			     :commands
+;; 			     (smex)
+;; 			     :init
+;; 			     (bindkey global-map 'smex :evil (:normal "SPC SPC") :holy "M-x"))
 
 
 (init-with-feature-package! :neotree

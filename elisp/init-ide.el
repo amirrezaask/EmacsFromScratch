@@ -25,19 +25,10 @@
 			     :init
 			     (add-hook 'magit-mode-hook (lambda () (require 'evil-magit))))
 
-
 (init-with-feature-package! :lsp
-			     lsp-mode
-			     :defer t)
-
-
-(init-with-feature-package! :lsp
-			     lsp-ui
-			     :defer t)
-
-
-(init-with-feature-package! :company
-			     company-lsp :defer t)
+			    eglot
+			    :defer t
+			    )
 
 (init-with-feature-package! :company
 			     company

@@ -30,7 +30,7 @@
 (init-with-feature-package! :golang
 			     go-mode
 			     :mode "\\.go\\'"
-			     :init (add-hook 'go-mode-hook #'lsp-deferred)
+			     :init (add-hook 'go-mode-hook #'eglot)
 			     :config
 			     (add-hook 'before-save-hook #'lsp-format-buffer t t)
 			     (add-hook 'before-save-hook #'lsp-organize-imports t t)
@@ -55,14 +55,14 @@
 			     python-mode
 			     :mode "\\.py\\'"
 			     :config
-			     (lsp)
+			     (eglot)
 			     (add-to-list 'exec-path (concat (getenv "HOME") "/.local/bin")))
 
 (init-with-feature-package! :python
 			     lsp-python-ms
 			     :hook (python-mode . (lambda ()
 						    (require 'lsp-python-ms)
-						    (lsp))))
+						    (eglot))))
 
 (init-with-feature-package! :python
 			     py-autopep8
@@ -71,7 +71,7 @@
 (init-with-feature-package! :elixir
 			     elixir-mode
 			     :mode "\\.ex\\'"
-			     :config (lsp))
+			     :config (eglot))
 (init-with-feature-package! :elixir
 			     alchemist
 			     :defer t)
@@ -79,7 +79,7 @@
 (init-with-feature-package! :rust
 			     rust-mode
 			     :mode "\\.rs\\'"
-			     :init (add-hook 'rust-mode-hook #'lsp))
+			     :init (add-hook 'rust-mode-hook #'eglot))
 
 (init-with-feature-package! :rust
 			     flycheck-rust
@@ -106,7 +106,7 @@
 			     :hook ((emacs-lisp-mode python-mode go-mode php-mode) . rainbow-delimiters-mode))
 
 (init-with-feature-package! :clojure
-			     clojure-mode :mode "\\.cljs?\\'" :config (lsp))
+			     clojure-mode :mode "\\.cljs?\\'" :config (eglot))
 
 (init-with-feature-package! :clojure
 			     cider
@@ -158,7 +158,7 @@
 (init-with-feature-package! :java
 			     lsp-java
 			     :init
-			     (add-hook 'java-mode-hook #'lsp))
+			     (add-hook 'java-mode-hook #'eglot))
 
 
 (provide 'init-langs)
