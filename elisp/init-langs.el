@@ -30,7 +30,7 @@
 (init-with-feature-package! :golang
 			     go-mode
 			     :mode "\\.go\\'"
-			     :init (add-hook 'go-mode-hook #'eglot)
+			     :init (add-hook 'go-mode-hook 'eglot-ensure)
 			     :config
 			     (add-hook 'before-save-hook #'lsp-format-buffer t t)
 			     (add-hook 'before-save-hook #'lsp-organize-imports t t)
@@ -54,8 +54,8 @@
 (init-with-feature-package! :python
 			     python-mode
 			     :mode "\\.py\\'"
+			     :init (add-hook 'python-mode-hook 'eglot-ensure)
 			     :config
-			     (eglot)
 			     (add-to-list 'exec-path (concat (getenv "HOME") "/.local/bin")))
 
 (init-with-feature-package! :python
@@ -79,7 +79,7 @@
 (init-with-feature-package! :rust
 			     rust-mode
 			     :mode "\\.rs\\'"
-			     :init (add-hook 'rust-mode-hook #'eglot))
+			     :init (add-hook 'rust-mode-hook 'eglot-ensure))
 
 (init-with-feature-package! :rust
 			     flycheck-rust
@@ -106,12 +106,16 @@
 			     :hook ((emacs-lisp-mode python-mode go-mode php-mode) . rainbow-delimiters-mode))
 
 (init-with-feature-package! :clojure
-			     clojure-mode :mode "\\.cljs?\\'" :config (eglot))
+			    clojure-mode
+			    :mode "\\.cljs?\\'"
+			    :init (add-hook 'clojure-mode-hook 'eglot-ensure)
+			    )
 
 (init-with-feature-package! :clojure
-			     cider
-			     :config
-			     (bindkey cider-mode-map 'cider-eval-last-sexp :evil (:normal "SPC e e") :holy "C-x C-e"))
+			    cider
+			    :mode "\\.cljs?\\'"
+			    :config
+			    (bindkey cider-mode-map 'cider-eval-last-sexp :evil (:normal "SPC e e") :holy "C-x C-e"))
 
 (init-with-feature-package! :lua
 			     lua-mode
@@ -119,7 +123,9 @@
 
 (init-with-feature-package! :php
 			     php-mode
-			     :mode "\\.php\\'")
+			     :mode "\\.php\\'"
+			     :init (add-hook 'php-mode-hook 'eglot-ensure)
+			     )
 
 (init-with-feature-package! :php
 			     phpunit
@@ -158,7 +164,7 @@
 (init-with-feature-package! :java
 			     lsp-java
 			     :init
-			     (add-hook 'java-mode-hook #'eglot))
+			     (add-hook 'java-mode-hook #'eglot-ensure))
 
 
 (provide 'init-langs)
