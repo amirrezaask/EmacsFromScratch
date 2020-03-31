@@ -1,7 +1,7 @@
 (defvar --features '() "All variables of init Emacs.")
 ;; main macro of init to generate variables based on user input
 
-(defmacro init! (&rest attrs)
+(defmacro enable! (&rest attrs)
   "Define a new Assassin with given ATTRS."
   `(mapcar (lambda (attr)
 	     (when (or (keywordp attr) (listp attr))
