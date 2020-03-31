@@ -1,9 +1,9 @@
-(init!
+(enable!
     :side :god ; Emacs keybindings
     ;; :side :evil ; Vi style modal editing (not really that much configured since i'm not an evil person any more :) )
     
     ; UI features
-    :theme :doom-dracula
+    :theme :doom-one
     :font ("Jetbrains Mono" 11)
     :modeline
     :icons
@@ -11,9 +11,9 @@
     :ripgrep
     
     ; completion framework
-    ;; :ivy
-    ;;:helm
-    :ido
+    :ivy
+    ;; :helm
+    ;; :ido
     
     ; Editor
     ;; :multiple-cursor ; multiple edits
