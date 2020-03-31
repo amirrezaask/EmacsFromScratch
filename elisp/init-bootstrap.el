@@ -61,7 +61,7 @@
 ;; load user config
 (load-file (expand-file-name ".emacs-config.el" (getenv "HOME")))
 ;; copy os envs
-;; (use-package exec-path-from-shell :config (exec-path-from-shell-initialize))
+(use-package exec-path-from-shell :config (exec-path-from-shell-initialize))
 
 ;; load init Emacs modules
 (require 'init-keybindings)

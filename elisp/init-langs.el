@@ -1,6 +1,22 @@
+(if-feature-use-package! :c/c++
+			 cmake-mode
+			 :straight (:type git :host github :repo "emacsmirror/cmake-mode"))
+
+(if-feature-use-package! :c/c++
+			 cquery
+			 :defer t)
+
 (if-feature-use-package! :assembly
 			 mips-mode
 			 :defer t)
+
+(if-feature-use-package! :fsharp
+			 fsharp-mode
+			 :mode "\\.fs\\'")
+
+(if-feature-use-package! :csharp
+			 csharp-mode
+			 :mode "\\.cs\\'")
 
 (if-feature-use-package! :assembly
 			 nasm-mode
@@ -50,7 +66,6 @@
 			 (local-set-key (kbd "M-.") 'godef-jump)
 			 (local-set-key (kbd "M-*") 'pop-tag-mark))
 
-
 (if-feature-use-package! :golang
 			 go-add-tags
 			 :defer t)
@@ -64,10 +79,21 @@
 			 haskell-mode
 			 :mode "\\.hs\\'")
 
+(if-feature-use-package! :haskell
+			 lsp-haskell
+			 :hook haskell-mode)
+
+(if-feature-use-package! :scala
+			 scala-mode
+			 :mode "\\.scala\\'")
+
+(if-feature-use-package! :scala
+			 sbt-mode
+			 :hook scala-mode)
+
 (if-feature-use-package! :python
 			 python-mode
-			 :mode "\\.py\\'"
-			 )
+			 :mode "\\.py\\'")
 
 
 (if-feature-use-package! :python
