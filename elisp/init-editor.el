@@ -15,9 +15,9 @@
 			 (bindkey global-map 'counsel-describe-variable :evil (:normal "SPC h d v") :holy "C-h v")
 			 (bindkey global-map 'counsel-aprops :evil (:normal "SPC h d a") :holy "C-h a")
 			 (bindkey global-map 'counsel-yank-pop :evil (:normal "SPC y p") :holy "M-y")
-			 (bindkey global-map 'counsel-ag :evil (:normal "SPC s g") :holy "C-x C-a")
 			 (bindkey global-map 'ivy-switch-buffer :evil (:normal "SPC b l") :holy "C-x b")
-			 (bindkey global-map 'ivy-switch-buffer :holy "C-x C-b"))
+			 (bindkey global-map 'ivy-switch-buffer :holy "C-x C-b")
+			 (bindkey global-map 'counsel-ag :evil (:normal "SPC s g") :holy "C-x C-a"))
 
 (if-feature-use-package! :helm
 			 helm
@@ -53,6 +53,18 @@
 			 ;; (ido-vertical-mode 1) 
 			 (setq ido-vertical-define-keys 'C-n-and-C-p-only))
 
+(if-feature-use-package! :hl-indent
+			 highlight-indent-guides
+			 :hook ((prog-mode text-mode conf-mode) . highlight-indent-guides-mode)
+			 :init
+			 (setq highlight-indent-guides-method 'character)
+			 :config
+			 (add-hook 'focus-in-hook #'highlight-indent-guides-auto-set-faces)
+			 (add-hook 'org-indent-mode-hook (lambda () (
+								(when highlight-indent-guides-mode
+								  (highlight-indent-guides-mode -1))))))
+
+
 (if-feature-use-package! :ido
 			 smex
 			 :commands
@@ -60,6 +72,10 @@
 			 :init
 			 (bindkey global-map 'smex :evil (:normal "SPC SPC") :holy "M-x"))
 
+(if-feature-use-package! :ibuffer
+			 ibuffer
+			 :config
+			 (bindkey global-map 'ibuffer :holy "C-x C-b" :evil (:normal "SPC b i")))
 
 (if-feature-use-package! :neotree
 			 neotree
@@ -81,6 +97,8 @@
 				 (newline-mark 10 [182 10])
 				 (tab-mark 9 [9655 9] [92 9])
 				 )))
+
+
 
 (setq custom-file "~/.__custom.el")
 (setq make-backup-files nil) ;; turn off emacs annoying ~ files

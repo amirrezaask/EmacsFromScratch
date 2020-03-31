@@ -33,15 +33,16 @@
 			     (evil-collection-init))
  
 (if-feature-use-package! :evil
-			     linum-relative
+			 linum-relative
 			     :config (linum-relative-mode))
 
 (if-feature-eval! :god
-			  (global-set-key (kbd "C--") 'text-scale-decrease)
-			  (global-set-key (kbd "C-=") 'text-scale-increase)
-			  (global-set-key (kbd "C-o") 'other-window)
-			  (global-set-key (kbd "C-,") 'previous-buffer)
-			  (global-set-key (kbd "C-.") 'next-buffer))
+		  (global-set-key (kbd "C--") 'text-scale-decrease)
+		  (global-set-key (kbd "C-=") 'text-scale-increase)
+		  (global-set-key (kbd "C-o") 'other-window)
+		  (global-set-key (kbd "C-,") 'previous-buffer)
+		  (global-set-key (kbd "C-.") 'next-buffer))
+
 (if-feature-use-package! :emacs-guru
 			     guru-mode
 			     :config
