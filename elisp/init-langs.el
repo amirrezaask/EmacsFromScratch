@@ -220,7 +220,6 @@
 (if-feature-use-package! :org ob-rust
 			 :defer t)
 
-(if-feature-use-package! :org ob-go :defer t)
 
 
 (provide 'init-langs)
