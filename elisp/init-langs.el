@@ -61,6 +61,9 @@
 			 :init
 			 (add-hook 'go-mode-hook (lambda () (add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))))
 			 :config
+			 (add-hook 'before-save-hook 'gofmt-before-save)
+			 (add-hook 'before-save-hook 'go-import-add)
+			 (add-hook 'before-save-hook 'go-remove-unused-import)
 			 (add-hook 'before-save-hook #'lsp-format-buffer t t)
 			 (add-hook 'before-save-hook #'lsp-organize-imports t t)
 			 (local-set-key (kbd "M-.") 'godef-jump)
