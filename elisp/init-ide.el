@@ -58,7 +58,9 @@
 
 (if-feature-use-package! :lsp
 			 company-lsp
-			 :commands (company-lsp))
+			 :commands (company-lsp)
+			 :hook (lsp-mode)
+			 )
 
 (if-feature-use-package! :company
 			 company
