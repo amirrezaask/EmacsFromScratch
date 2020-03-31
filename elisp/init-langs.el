@@ -1,3 +1,15 @@
+(if-feature-use-package! :assembly
+			 mips-mode
+			 :defer t)
+
+(if-feature-use-package! :assembly
+			 nasm-mode
+			 :defer t)
+
+(if-feature-use-package! :assembly
+			 haxor-mode
+			 :mode "\\.hax\\'")
+
 (if-feature-use-package! :data
 			 json-mode
 			 :mode "\\.json\\'"
