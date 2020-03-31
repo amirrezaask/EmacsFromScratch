@@ -49,4 +49,4 @@ then pass All given ARGS to use-package.
   )
 
 
-(provide 'init-features)
+(provide 'init-core)

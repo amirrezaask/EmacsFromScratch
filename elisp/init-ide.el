@@ -27,8 +27,25 @@
 
 (if-feature-use-package! :lsp
 			 lsp-mode
-			 :hook ((go-mode clojure-mode python-mode java-mode elixir-mode) . #'lsp))
+			 :hook ((go-mode clojure-mode python-mode java-mode elixir-mode) . #'lsp)
+			 :config
+			 (bindkey lsp-mode-map 'treemacs :holy "C-x t" :evil (:normal "SPC l t")))
 
+(if-feature-use-package! :lsp
+			 lsp-treemacs
+			 :commands lsp-treemacs-errors-list)
+
+(if-feature-use-package! :snippets
+			 yasnippet
+			 :init
+			 (add-hook 'prog-mode-hook (lambda ()
+						     (yas-reload-all)
+						     (yas-minor-mode)
+						     )))
+(if-feature-use-package! :snippets
+			 yasnippet-snippets
+			 :defer t
+			 )
 (if-feature-use-package! :lsp
 			 lsp-ui
 			 :commands lsp-ui-mode)

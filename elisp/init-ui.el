@@ -14,6 +14,10 @@
 			 :defer t)
 
 (if-feature-use-package! :theme
+			 spacemacs-theme
+			 :defer t)
+
+(if-feature-use-package! :theme
 			 badwolf-theme
 			 :defer t)
 
@@ -30,10 +34,15 @@
 		  (setq custom-safe-themes t)
 		  (load-theme (init-keyword-to-symbol (init-feature-get-argument :theme)) t))
 
-
-(if-feature-use-package! :modeline
+(if-feature-use-package! :doom-modeline
 			 doom-modeline
 			 :config (doom-modeline-mode 1))
+
+(if-feature-use-package! :spacemacs-modeline
+			 spaceline
+			 :config
+			 (require 'spaceline-config)
+			 (spaceline-spacemacs-theme))
 
 (if-feature-use-package! :show-emojis
 			 emojify

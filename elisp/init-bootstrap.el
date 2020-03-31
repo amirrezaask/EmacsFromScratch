@@ -57,7 +57,7 @@
 (use-package gnu-elpa-keyring-update)
 
 ;; load init Emacs core module
-(require 'init-features)
+(require 'init-core)
 ;; load user config
 (load-file (expand-file-name ".emacs-config.el" (getenv "HOME")))
 ;; copy os envs
