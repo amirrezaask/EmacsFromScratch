@@ -27,12 +27,12 @@
 	     (message "init-DEBUG => %s" arg))
 	   args))
 
-(defmacro init-with-feature-eval! (feature &rest body)
+(defmacro if-feature-eval! (feature &rest body)
   "When given FEATURE enabled evaluate BODY."
   `(when (init-enable? (intern ,(symbol-name feature)))
      ,@body))
 
-(defmacro init-with-feature-package! (feature &rest args)
+(defmacro if-feature-use-package! (feature &rest args)
   "Check if given FEATURE is enbaled and\
 then pass All given ARGS to use-package.
 \(init-feature2 :k8s

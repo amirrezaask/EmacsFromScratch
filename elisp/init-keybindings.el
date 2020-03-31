@@ -1,5 +1,5 @@
 (require 'keybindings/init-keybindings-core)
-(init-with-feature-package! :evil
+(if-feature-use-package! :evil
 			     evil
 			     :init
 			     (setq evil-want-keybinding nil)
@@ -26,28 +26,28 @@
 
 			     (evil-mode 1))
 
-(init-with-feature-package! :evil
+(if-feature-use-package! :evil
 			     evil-collection
 			     :after evil
 			     :config
 			     (evil-collection-init))
  
-(init-with-feature-package! :evil
+(if-feature-use-package! :evil
 			     linum-relative
 			     :config (linum-relative-mode))
 
-(init-with-feature-eval! :god
+(if-feature-eval! :god
 			  (global-set-key (kbd "C--") 'text-scale-decrease)
 			  (global-set-key (kbd "C-=") 'text-scale-increase)
 			  (global-set-key (kbd "C-o") 'other-window)
 			  (global-set-key (kbd "C-,") 'previous-buffer)
 			  (global-set-key (kbd "C-.") 'next-buffer))
-(init-with-feature-package! :emacs-guru
+(if-feature-use-package! :emacs-guru
 			     guru-mode
 			     :config
 			     (guru-global-mode 1))
 
-(init-with-feature-package! :which-key
+(if-feature-use-package! :which-key
 			     which-key
 			     :init
 			     (setq echo-keystrokes 0.3)
