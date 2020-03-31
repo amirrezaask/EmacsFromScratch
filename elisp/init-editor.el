@@ -82,8 +82,11 @@
 			 :init
 			 (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 			 (bindkey global-map 'neotree-toggle :holy "<f8>")
-			 :commands (neotree neotree-toggle)
-			 )
+			 :commands (neotree neotree-toggle))
+
+(if-feature-use-package! :multiple-cursors
+			 multiple-cursors)
+
 
 
 (setq custom-file "~/.__custom.el")

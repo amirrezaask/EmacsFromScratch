@@ -5,8 +5,8 @@
     ; UI features
     :theme :spacemacs-dark
     :font ("mononoki" 11)
-    :doom-modeline
-    ;; :spacemacs-modeline
+    ;;:doom-modeline
+    :spacemacs-modeline
     :icons
     :dired-icons
     

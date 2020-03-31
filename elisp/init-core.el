@@ -21,12 +21,6 @@
   (let ((locator (cl-position feature --features)))
     (nth (- locator 1) --features)))
 
-(defun init-debug (&rest args)
-  "Print all given ARGS for debugging."
-  (mapcar (lambda (arg)
-	     (message "init-DEBUG => %s" arg))
-	   args))
-
 (defmacro if-feature-eval! (feature &rest body)
   "When given FEATURE enabled evaluate BODY."
   `(when (init-enable? (intern ,(symbol-name feature)))
@@ -45,8 +39,7 @@ then pass All given ARGS to use-package.
   (mapcar (lambda (elm) (add-to-list 'use-package-list elm)) args)
   (add-to-list 'use-package-list 'use-package)
   `(when (init-enable? (intern ,(symbol-name feature)))
-     ,use-package-list)
-  )
+     ,use-package-list))
 
 
 (provide 'init-core)
