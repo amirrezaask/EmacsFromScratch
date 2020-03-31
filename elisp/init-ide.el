@@ -31,7 +31,8 @@
 (if-feature-use-package! :lsp
 			 lsp-mode
 			 :defer t
-			 :init (add-hook 'prog-mode-hook #'lsp)
+			 :hook
+			 ((go-mode python-mode php-mode clojure-mode elixir-mode haskell-mode csharp-mode fsharp-mode) . #'lsp)
 			 :config
 			 (bindkey lsp-mode-map 'treemacs :holy "C-x t" :evil (:normal "SPC l t")))
 

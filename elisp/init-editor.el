@@ -19,7 +19,6 @@
 			 (bindkey global-map 'ivy-switch-buffer :evil (:normal "SPC b l") :holy "C-x b")
 			 (bindkey global-map 'ivy-switch-buffer :holy "C-x C-b"))
 
-
 (if-feature-use-package! :helm
 			 helm
 			 :init (setq helm-buffers-fuzzy-matching t
@@ -82,12 +81,6 @@
 				 (newline-mark 10 [182 10])
 				 (tab-mark 9 [9655 9] [92 9])
 				 )))
-
-(if-feature-use-package! :insert-headers
-			 autoinsert
-			 :init
-			 (setq auto-insert-query nil)
-			 (auto-insert-mode 1))
 
 (setq custom-file "~/.__custom.el")
 (setq make-backup-files nil) ;; turn off emacs annoying ~ files
