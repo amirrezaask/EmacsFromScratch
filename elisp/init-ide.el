@@ -44,9 +44,8 @@
 						     (yas-minor-mode)
 						     )))
 (if-feature-use-package! :snippets
-			 yasnippet-snippets
-			 :defer t
-			 )
+			 yasnippet-snippets)
+
 (if-feature-use-package! :lsp
 			 lsp-ui
 			 :commands lsp-ui-mode)
