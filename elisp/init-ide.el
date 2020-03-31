@@ -19,6 +19,9 @@
 			 :config
 			 (global-diff-hl-mode))
 
+(if-feature-use-package! :magit
+			 forge
+			 :after magit)
 
 (if-feature-use-package! :evil
 			 evil-magit
