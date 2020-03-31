@@ -54,12 +54,12 @@
 			 ;; (ido-vertical-mode 1) 
 			 (setq ido-vertical-define-keys 'C-n-and-C-p-only))
 
-;; (if-feature-use-package! :ido
-;; 			     smex
-;; 			     :commands
-;; 			     (smex)
-;; 			     :init
-;; 			     (bindkey global-map 'smex :evil (:normal "SPC SPC") :holy "M-x"))
+(if-feature-use-package! :ido
+			 smex
+			 :commands
+			 (smex)
+			 :init
+			 (bindkey global-map 'smex :evil (:normal "SPC SPC") :holy "M-x"))
 
 
 (if-feature-use-package! :neotree
@@ -94,5 +94,6 @@
 (setq create-lockfiles nil) ;; turn off emacs annoying # files
 (setq ring-bell-function 'ignore)
 (defalias 'yes-or-no-p 'y-or-n-p) ;; instead of yes-or-no ask y-or-no, only for convinience
+(global-hl-line-mode 1)
 (provide 'init-editor)
 ;;; init-editor.el ends here

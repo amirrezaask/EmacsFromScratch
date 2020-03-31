@@ -2,7 +2,7 @@
 ;; main macro of init to generate variables based on user input
 
 (defmacro enable! (&rest attrs)
-  "Define a new Assassin with given ATTRS."
+  "Enable given ATTRS."
   `(mapcar (lambda (attr)
 	     (when (or (keywordp attr) (listp attr))
 	       (add-to-list '--features attr)))
