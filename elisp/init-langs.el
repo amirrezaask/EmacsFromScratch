@@ -30,13 +30,15 @@
 (init-with-feature-package! :golang
 			     go-mode
 			     :mode "\\.go\\'"
-			     :init (add-hook 'go-mode-hook 'eglot-ensure)
+			     :init
+			     (add-hook 'go-mode-hook (lambda () (add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))))
+			     (add-hook 'go-mode-hook 'eglot-ensure)
 			     :config
 			     (add-hook 'before-save-hook #'lsp-format-buffer t t)
 			     (add-hook 'before-save-hook #'lsp-organize-imports t t)
 			     (local-set-key (kbd "M-.") 'godef-jump)
-			     (local-set-key (kbd "M-*") 'pop-tag-mark)
-			     (add-to-list 'exec-path (concat (concat (getenv "HOME") "/go") "/bin")))
+			     (local-set-key (kbd "M-*") 'pop-tag-mark))
+			    
 
 (init-with-feature-package! :golang
 			     go-add-tags
@@ -55,8 +57,8 @@
 			     python-mode
 			     :mode "\\.py\\'"
 			     :init (add-hook 'python-mode-hook 'eglot-ensure)
-			     :config
-			     (add-to-list 'exec-path (concat (getenv "HOME") "/.local/bin")))
+			     )
+			   
 
 (init-with-feature-package! :python
 			     lsp-python-ms
@@ -130,7 +132,10 @@
 (init-with-feature-package! :php
 			     phpunit
 			     :defer t
-			     :bind (("C-c C-t t" . phpunit-current-test) ("C-c C-t c" . phpunit-current-class) ("C-c C-t p" . phpunit-current-project)))
+			     :bind
+			     (("C-c C-t t" . phpunit-current-test)
+			      ("C-c C-t c" . phpunit-current-class)
+			      ("C-c C-t p" . phpunit-current-project)))
 
 (init-with-feature-package! :javascript
 			     js2-mode
