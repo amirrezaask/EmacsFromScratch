@@ -26,9 +26,16 @@
 			     (add-hook 'magit-mode-hook (lambda () (require 'evil-magit))))
 
 (init-with-feature-package! :lsp
-			    eglot
-			    :defer t
-			    )
+			    lsp-mode
+			    :hook ((go-mode clojure-mode python-mode java-mode elixir-mode) . #'lsp))
+
+(init-with-feature-package! :lsp
+			    lsp-ui
+			    :commands lsp-ui-mode)
+
+(init-with-feature-package! :lsp
+			    company-lsp
+			    :commands (company-lsp))
 
 (init-with-feature-package! :company
 			     company

@@ -32,7 +32,6 @@
 			     :mode "\\.go\\'"
 			     :init
 			     (add-hook 'go-mode-hook (lambda () (add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))))
-			     (add-hook 'go-mode-hook 'eglot-ensure)
 			     :config
 			     (add-hook 'before-save-hook #'lsp-format-buffer t t)
 			     (add-hook 'before-save-hook #'lsp-organize-imports t t)
@@ -56,15 +55,13 @@
 (init-with-feature-package! :python
 			     python-mode
 			     :mode "\\.py\\'"
-			     :init (add-hook 'python-mode-hook 'eglot-ensure)
 			     )
 			   
 
 (init-with-feature-package! :python
 			     lsp-python-ms
-			     :hook (python-mode . (lambda ()
-						    (require 'lsp-python-ms)
-						    (eglot))))
+			     :hook (python-mode))
+			
 
 (init-with-feature-package! :python
 			     py-autopep8
@@ -80,8 +77,7 @@
 
 (init-with-feature-package! :rust
 			     rust-mode
-			     :mode "\\.rs\\'"
-			     :init (add-hook 'rust-mode-hook 'eglot-ensure))
+			     :mode "\\.rs\\'")
 
 (init-with-feature-package! :rust
 			     flycheck-rust
@@ -110,7 +106,6 @@
 (init-with-feature-package! :clojure
 			    clojure-mode
 			    :mode "\\.cljs?\\'"
-			    :init (add-hook 'clojure-mode-hook 'eglot-ensure)
 			    )
 
 (init-with-feature-package! :clojure
@@ -168,9 +163,6 @@
 
 (init-with-feature-package! :java
 			     lsp-java
-			     :init
-			     (add-hook 'java-mode-hook #'eglot-ensure))
-
-
+			     :hook (java-mode))
 (provide 'init-langs)
 ;;; init-langs.el ends here
