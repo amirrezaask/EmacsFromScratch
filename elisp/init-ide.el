@@ -21,7 +21,9 @@
 
 (if-feature-use-package! :magit
 			 forge
-			 :after magit)
+			 :init
+			 (add-hook 'magit-mode-hook (lambda () (require 'forge)))
+			 )
 
 (if-feature-use-package! :evil
 			 evil-magit
