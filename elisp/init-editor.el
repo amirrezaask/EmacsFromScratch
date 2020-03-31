@@ -85,20 +85,6 @@
 			 :commands (neotree neotree-toggle)
 			 )
 
-(if-feature-use-package! :whitespace-mode
-			 whitespace
-			 :hook
-			 ((prog-mode text-mode) . whitespace-mode)
-			 :init
-			 (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark )))
-			 (setq whitespace-display-mappings
-			       '(
-				 (space-mark 32 [183] [46])
-				 (newline-mark 10 [182 10])
-				 (tab-mark 9 [9655 9] [92 9])
-				 )))
-
-
 
 (setq custom-file "~/.__custom.el")
 (setq make-backup-files nil) ;; turn off emacs annoying ~ files
