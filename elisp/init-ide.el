@@ -6,7 +6,7 @@
 (if-feature-use-package! :dap
 			 dap-mode
 			 :hook
-			 ((go-mode python-mode php-mode) . dap-mode))
+			 prog-mode)
 
 (if-feature-use-package! :magit
 			 magit

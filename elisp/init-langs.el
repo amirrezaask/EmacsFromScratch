@@ -108,6 +108,10 @@
 			 py-autopep8
 			 :hook python-mode)
 
+(if-feature-use-package! :python
+			 jinja2-mode
+			 :mode "\\.j2$")
+
 (if-feature-use-package! :elixir
 			 elixir-mode
 			 :mode "\\.ex\\'")
@@ -209,5 +213,15 @@
 (if-feature-use-package! :racket
 			 racket-mode
 			 :mode "\\.rkt\\'")
+
+(if-feature-use-package! :org ob-go
+			 :defer t)
+
+(if-feature-use-package! :org ob-rust
+			 :defer t)
+
+(if-feature-use-package! :org ob-go :defer t)
+
+
 (provide 'init-langs)
 ;;; init-langs.el ends here
