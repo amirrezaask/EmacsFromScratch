@@ -202,5 +202,9 @@
 (if-feature-use-package! :java
 			 lsp-java
 			 :hook (java-mode))
+
+(if-feature-use-package! :racket
+			 racket-mode
+			 :mode "\\.rkt\\'")
 (provide 'init-langs)
 ;;; init-langs.el ends here
