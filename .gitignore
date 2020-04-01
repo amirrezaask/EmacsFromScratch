@@ -12,3 +12,5 @@ transient
 recentf
 .lsp*
 smex*
+eshell*
+session*
