@@ -3,10 +3,10 @@
     ;; :side :evil ; Vi style modal editing (not really that much configured since i'm not an evil person any more :) )
     
     ; UI features
-    :theme :spacemacs-dark
+    :theme :doom-one
     :font ("mononoki" 11)
     ;;:doom-modeline
-    :spacemacs-modeline
+    ;; :spacemacs-modeline
     :icons
     :dired-icons
     
@@ -17,18 +17,18 @@
     :ibuffer
     
     ; Editor
-    ;; :multiple-cursor ; multiple edits
+    :multiple-cursors ; multiple edits
     :hl-indent
     ;; :which-key ; helps us when we only remember part of a keybinding
     ;; :neotree ; a side tree file browser like NERDtree for vim
     
     ; IDE features
     :flycheck ; on the fly syntax checking and linting
-    :company  ; Code completion framework (does not do all the work by itself still need backends) mainly used by LSP
-    :lsp ; language server protocol
-    :magit ; git support
-    :snippets
-    ;;:dap ; debugger adapter protocol
+    :auto-completion  ; Code completion framework (does not do all the work by itself still need backends) mainly used by LSP
+    :language-server-protocol
+    :git
+    ;; :snippets ; yasnippet support
+    ;;:debugger-adapter-protocol
      
     
     ; DevOps features
