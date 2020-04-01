@@ -64,6 +64,7 @@
 (use-package exec-path-from-shell :config (exec-path-from-shell-initialize))
 
 ;; load init Emacs modules
+(require 'init-wm)
 (require 'init-keybindings)
 (require 'init-ui)
 (require 'init-editor)
