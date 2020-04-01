@@ -10,6 +10,7 @@
 		  (defun exwm-current-workspace ()
 		    (interactive)
 		    (message "Current workspace is %s" exwm-workspace-current-index))
+		  (add-hook 'exwm-workspace-switch-hook 'exwm-current-workspace)
 		  (bindkey global-map 'exwm-current-workspace :holy "C-c C-w n")
 		  (bindkey global-map 'exwm-input-toggle-keyboard :holy "C-c C-w C-t c")
 		  )
