@@ -162,7 +162,7 @@
 
 
 (if-feature-use-package! :lisp
-			 papredit
+			 paredit
 			 :hook ((emacs-lisp-mode clojure-mode) . paredit-mode))
 
 

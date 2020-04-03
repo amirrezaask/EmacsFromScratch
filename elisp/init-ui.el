@@ -29,7 +29,7 @@
 (global-prettify-symbols-mode 1)
 
 (defun init-ui-use-font (font-config)
-  "use given FONT with given SIZE"
+  "Use given FONT with given SIZE."
   (interactive)
   (add-to-list 'default-frame-alist (cons 'font (format "%s-%d" (car font-config) (car (last font-config))))))
 
