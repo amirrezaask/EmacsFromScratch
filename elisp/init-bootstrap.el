@@ -94,7 +94,6 @@
 ;; load init Emacs modules
 (require 'init-dashboard)
 (require 'init-wm)
-(require 'init-keybindings)
 (require 'init-ui)
 (require 'init-editor)
 (require 'init-ide)
