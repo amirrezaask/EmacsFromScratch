@@ -17,6 +17,8 @@
 
 (setq package-enable-at-startup nil)
 
+(setq read-process-output-max (* 1024 1024))
+
 (add-hook 'minibuffer-setup-hook #'defer-garbage-collection-h)
 (add-hook 'minibuffer-exit-hook #'restore-garbage-collection-h)
 

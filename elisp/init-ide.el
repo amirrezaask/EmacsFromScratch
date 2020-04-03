@@ -80,7 +80,6 @@
 			 (setq company-tooltip-limit 30)
 			 (setq company-idle-delay .1)
 			 (setq company-echo-delay 0)
-			 (setq company-dabbrev-downcase nil)
 			 (add-to-list 'company-backends '(company-capf company-dabbrev)))
 
 
