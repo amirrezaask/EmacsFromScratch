@@ -24,7 +24,6 @@
 
 ;;; Code:
 
-(require 'keybindings/init-keybindings-core)
 (if-feature-use-package! :evil
 			     evil
 			     :init
