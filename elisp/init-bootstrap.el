@@ -59,7 +59,7 @@
 ;; load init Emacs core module
 (require 'init-core)
 ;; load user config
-(load-file (expand-file-name ".emacs-config.el" (getenv "HOME")))
+(load-file (expand-file-name ".emacs-features.el" (getenv "HOME")))
 ;; copy os envs
 (use-package exec-path-from-shell :config (exec-path-from-shell-initialize))
 
