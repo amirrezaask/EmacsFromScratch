@@ -1,3 +1,29 @@
+;;; init-bootstrap.el --- bootstrap            -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2020  amirrezaask
+
+;; Author: amirreza <amirrezaask@protonmail.com>
+
+
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+;;; Commentary:
+
+;; 
+
+;;; Code:
+
 (setq start-timestamp (float-time))
 
 (setq gc-cons-threshold most-positive-fixnum ; 2^61 bytes
@@ -66,6 +92,7 @@
 (use-package exec-path-from-shell :config (exec-path-from-shell-initialize))
 
 ;; load init Emacs modules
+(require 'init-dashboard)
 (require 'init-wm)
 (require 'init-keybindings)
 (require 'init-ui)

@@ -1,4 +1,4 @@
-;;; init-wm.el --- window manager setup            -*- lexical-binding: t; -*-
+;;; init-dashboard.el --- dashboard            -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirrezaask
 
@@ -24,20 +24,13 @@
 
 ;;; Code:
 
-(if-feature-use-package! :as-window-manager
-			 exwm
+(if-feature-use-package! :dashboard
+			 dashboard
 			 :config
-			 (require 'exwm)
-			 (require 'exwm-config)
-			 (exwm-config-default)
-			 (display-battery-mode 1))
+			 (setq dashboard-center-content t)
+			 (setq dashboard-startup-banner 'logo)
+			 (setq dashboard-banner-logo-title "Hello again :)")
+			 (dashboard-setup-startup-hook))
 
-(if-feature-eval! :as-window-manager
-		  (defun exwm-current-workspace ()
-		    (interactive)
-		    (message "Current workspace is %s" exwm-workspace-current-index))
-		  (add-hook 'exwm-workspace-switch-hook 'exwm-current-workspace)
-		  (bindkey global-map 'exwm-current-workspace :holy "C-c C-w n")
-		  (bindkey global-map 'exwm-input-toggle-keyboard :holy "C-x /"))
-
-(provide 'init-wm)
+(provide 'init-dashboard)
+;;; init-dashboard.el ends here

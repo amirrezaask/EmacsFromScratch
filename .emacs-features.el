@@ -1,14 +1,16 @@
 (enable!
     :side :god ; Emacs keybindings
     ;; :side :evil ; Vi style modal editing (not really that much configured since i'm not an evil person any more :) )
-    
+    ;;
+    ;; :x-window-manager
     ; UI features
-    :theme :doom-one
+    :theme :doom-dracula
     :font ("mononoki" 11)
-    ;;:doom-modeline
+    ;; :doom-modeline
     ;; :spacemacs-modeline
     :icons
     :dired-icons
+    :dashboard
     
     ; completion framework
     :ivy
@@ -19,7 +21,7 @@
     ; Editor
     :multiple-cursors ; multiple edits
     :hl-indent
-    ;; :which-key ; helps us when we only remember part of a keybinding
+    :which-key ; helps us when we only remember part of a keybinding
     ;; :neotree ; a side tree file browser like NERDtree for vim
     
     ; IDE features
