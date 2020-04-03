@@ -14,3 +14,5 @@ recentf
 smex*
 eshell*
 session*
+elpa
+emacs-init.el
