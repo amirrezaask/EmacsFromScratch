@@ -1,1 +1,2 @@
-
+* Emacs Literate Config
+My personal daily Emacs configuration in literate format
