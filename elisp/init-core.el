@@ -93,9 +93,7 @@ then pass All given ARGS to use-package.
   (let ((evil-keys (plist-get keys :evil)) (holy-keys (plist-get keys :holy)))
     (cond
      ((init-enable? :evil) `(-bindkey-evil ,map ,fn (quote ,evil-keys)))
-     ((init-enable? :god) `(-bindkey-holy ,map ,fn ,holy-keys))
-     )
-    ))
+     ((init-enable? :god) `(-bindkey-holy ,map ,fn ,holy-keys)))))
 
 
 
