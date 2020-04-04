@@ -25,10 +25,6 @@
 ;;; Code:
 
 (core/if-feature-use-package! :c/c++
-			 cmake-mode
-			 :straight (:type git :host github :repo "emacsmirror/cmake-mode"))
-
-(core/if-feature-use-package! :c/c++
 			 cquery
 			 :defer t)
 
