@@ -1,4 +1,4 @@
-;;; init-wm.el --- window manager setup            -*- lexical-binding: t; -*-
+;;; window-manager.el --- window manager setup            -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirrezaask
 
@@ -24,7 +24,7 @@
 
 ;;; Code:
 
-(if-feature-use-package! :as-window-manager
+(core/if-feature-use-package! :window-manager
 			 exwm
 			 :config
 			 (require 'exwm)
@@ -32,12 +32,12 @@
 			 (exwm-config-default)
 			 (display-battery-mode 1))
 
-(if-feature-eval! :as-window-manager
+(core/if-feature-eval! :window-manager
 		  (defun exwm-current-workspace ()
 		    (interactive)
 		    (message "Current workspace is %s" exwm-workspace-current-index))
 		  (add-hook 'exwm-workspace-switch-hook 'exwm-current-workspace)
-		  (bindkey global-map 'exwm-current-workspace :holy "C-c C-w n")
-		  (bindkey global-map 'exwm-input-toggle-keyboard :holy "C-x /"))
+		  (core/bindkey global-map 'exwm-current-workspace :holy "C-c C-w n")
+		  (core/bindkey global-map 'exwm-input-toggle-keyboard :holy "C-x /"))
 
-(provide 'init-wm)
+(provide 'window-manager)

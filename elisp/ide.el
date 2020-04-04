@@ -1,4 +1,4 @@
-;;; init-ide.el --- ide setup           -*- lexical-binding: t; -*-
+;;; ide.el --- ide setup           -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirrezaask
 
@@ -24,84 +24,78 @@
 
 ;;; Code:
 
-(if-feature-use-package! :flycheck
+(core/if-feature-use-package! :flycheck
 			 flycheck
 			 :hook
 			 (prog-mode . flycheck-mode))
 
-(if-feature-use-package! :debugger-adapter-protocol
+(core/if-feature-use-package! :debugger-adapter-protocol
 			 dap-mode
 			 :hook
 			 prog-mode)
 
-(if-feature-use-package! :git
+(core/if-feature-use-package! :git
 			 magit
 			 :commands (magit-status)
 			 :init
-			 (bindkey global-map 'magit-status :holy "C-x g" :evil (:normal "SPC g s")))
+			 (core/bindkey global-map 'magit-status :holy "C-x g" :evil (:normal "SPC g s")))
 
-(if-feature-use-package! :git
+(core/if-feature-use-package! :git
 			 diff-hl
 			 :config
 			 (global-diff-hl-mode))
 
-(if-feature-use-package! :git
-			 forge
-			 :init
-			 (add-hook 'magit-mode-hook (lambda () (require 'forge)))
-			 )
-
-(if-feature-use-package! :git
+(core/if-feature-use-package! :git
 			 gitconfig-mode
 			 :mode "/\\.gitconfig\\'")
 
-(if-feature-use-package! :git
+(core/if-feature-use-package! :git
 			 gitignore-mode
 			 :mode "/\\.gitignore\\'")
 
-(if-feature-use-package! :git
+(core/if-feature-use-package! :git
 			 gitattributes-mode
 			 :mode "/\\.gitattributes\\'")
 
-(if-feature-use-package! :evil
+(core/if-feature-use-package! :evil
 			 evil-magit
 			 :init
 			 (add-hook 'magit-mode-hook (lambda () (require 'evil-magit))))
 
-(if-feature-use-package! :language-server-protocol
+(core/if-feature-use-package! :language-server-protocol
 			 lsp-mode
 			 :defer t
 			 :hook
 			 ((go-mode python-mode php-mode clojure-mode elixir-mode haskell-mode csharp-mode fsharp-mode) . #'lsp)
 			 :config
-			 (bindkey lsp-mode-map 'treemacs :holy "C-x t" :evil (:normal "SPC l t")))
+			 (core/bindkey lsp-mode-map 'treemacs :holy "C-x t" :evil (:normal "SPC l t")))
 
-(if-feature-use-package! :language-server-protocol
+(core/if-feature-use-package! :language-server-protocol
 			 lsp-treemacs
 			 :commands lsp-treemacs-errors-list)
 
-(if-feature-use-package! :snippets
+(core/if-feature-use-package! :snippets
 			 yasnippet
 			 :init
 			 (add-hook 'prog-mode-hook (lambda ()
 						     (yas-reload-all)
 						     (yas-minor-mode)
 						     )))
-(if-feature-use-package! :snippets
+(core/if-feature-use-package! :snippets
 			 yasnippet-snippets)
 
-(if-feature-use-package! :language-server-protocol
+(core/if-feature-use-package! :language-server-protocol
 			 lsp-ui
 			 :commands lsp-ui-mode)
 
-(if-feature-use-package! :language-server-protocol
+(core/if-feature-use-package! :language-server-protocol
 			 company-lsp
 			 :config
 			 (setq company-lsp-cache-candidates 'auto)
 			 :commands (company-lsp)
 			 )
 
-(if-feature-use-package! :auto-completion
+(core/if-feature-use-package! :auto-completion
 			 company
 			 :config
 			 (global-company-mode t)
@@ -111,5 +105,5 @@
 			 (add-to-list 'company-backends '(company-capf company-dabbrev)))
 
 
-(provide 'init-ide)
-;;; init-ide.el ends here
+(provide 'ide)
+;;; ide.el ends here

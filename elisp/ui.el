@@ -1,4 +1,4 @@
-;;; init-ui.el --- ui setup            -*- lexical-binding: t; -*-
+;;; ui.el --- ui setup            -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirrezaask
 
@@ -28,12 +28,12 @@
   '(("lambda"  . ?λ))) ;; shows lambda word as the symbol
 (global-prettify-symbols-mode 1)
 
-(defun init-ui-use-font (font-config)
+(defun ui-use-font (font-config)
   "Use given FONT with given SIZE."
   (interactive)
   (add-to-list 'default-frame-alist (cons 'font (format "%s-%d" (car font-config) (car (last font-config))))))
 
-(if-feature-use-package! :dashboard
+(core/if-feature-use-package! :dashboard
 			 dashboard
 			 :config
 			 (setq dashboard-center-content t)
@@ -41,55 +41,55 @@
 			 (setq dashboard-banner-logo-title "Hello again :)")
 			 (dashboard-setup-startup-hook))
 
-(if-feature-use-package! :theme
+(core/if-feature-use-package! :theme
 			 doom-themes
 			 :defer t)
 
-(if-feature-use-package! :theme
+(core/if-feature-use-package! :theme
 			 spacemacs-theme
 			 :defer t)
 
-(if-feature-use-package! :theme
+(core/if-feature-use-package! :theme
 			 badwolf-theme
 			 :defer t)
 
-(if-feature-use-package! :icons
+(core/if-feature-use-package! :icons
 			 all-the-icons)
 
-(if-feature-use-package! :dired-icons
+(core/if-feature-use-package! :dired-icons
 			 all-the-icons-dired
 			 :straight (all-the-icons-dired :type git :host github :repo "jtbm37/all-the-icons-dired")
 			 :init
 			 (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
-(if-feature-eval! :theme
+(core/if-feature-eval! :theme
 		  (setq custom-safe-themes t)
-		  (load-theme (init-keyword-to-symbol (init-feature-get-argument :theme)) t))
+		  (load-theme (core/keyword-to-symbol (core/feature-get-argument :theme)) t))
 
-(if-feature-use-package! :doom-modeline
+(core/if-feature-use-package! :doom-modeline
 			 doom-modeline
 			 :config (doom-modeline-mode 1))
 
-(if-feature-use-package! :spacemacs-modeline
+(core/if-feature-use-package! :spacemacs-modeline
 			 spaceline
 			 :config
 			 (require 'spaceline-config)
 			 (spaceline-spacemacs-theme))
 
-(if-feature-use-package! :show-emojis
+(core/if-feature-use-package! :show-emojis
 			 emojify
 			 :config (emojify-mode 1))
 
-(if-feature-eval! :font
-		  (init-ui-use-font (init-feature-get-argument :font)))
+(core/if-feature-eval! :font
+		  (ui-use-font (core/feature-get-argument :font)))
 
 (setq inhibit-splash-screen 0) ;; turn off emacs annoying startup page.
 (tool-bar-mode 0) ;; turn off emacs GUI toolbar
 (scroll-bar-mode 0) ;; turn off emacs GUI scrollbar
 (menu-bar-mode 0) ;; turn emacs GUI menubar
 
-(global-linum-mode t) ;; enable line numbers
+(global-linum-mode t) ;; core/enable? line numbers
 (setq use-dialog-box nil)
 
-(provide 'init-ui)
-;;; init-ui.el ends here
+(provide 'ui)
+;;; ui.el ends here
