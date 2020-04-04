@@ -33,7 +33,13 @@
   (interactive)
   (add-to-list 'default-frame-alist (cons 'font (format "%s-%d" (car font-config) (car (last font-config))))))
 
-
+(if-feature-use-package! :dashboard
+			 dashboard
+			 :config
+			 (setq dashboard-center-content t)
+			 (setq dashboard-startup-banner 'logo)
+			 (setq dashboard-banner-logo-title "Hello again :)")
+			 (dashboard-setup-startup-hook))
 
 (if-feature-use-package! :theme
 			 doom-themes
