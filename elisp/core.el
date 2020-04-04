@@ -166,7 +166,7 @@ then pass All given ARGS to use-package.
 
   (core/sync-PATH-with-os)
 
-  (core/require-all-elisp-files (expand-file-name ".")))
+  (core/require-all-elisp-files (expand-file-name "elisp" user-emacs-directory)))
 
 
 
