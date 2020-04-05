@@ -170,12 +170,15 @@
 			 multiple-cursors)
 
 
+(auto-insert-mode 1)
+(setq-default cursor-type 'bar)
+(global-hl-line-mode 1)
 
 (setq custom-file "~/.__custom.el")
 (setq make-backup-files nil) ;; turn off emacs annoying ~ files
 (setq create-lockfiles nil) ;; turn off emacs annoying # files
 (setq ring-bell-function 'ignore)
 (defalias 'yes-or-no-p 'y-or-n-p) ;; instead of yes-or-no ask y-or-no, only for convinience
-(global-hl-line-mode 1)
+
 (provide 'editor)
 ;;; editor.el ends here
