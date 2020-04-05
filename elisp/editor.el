@@ -74,7 +74,7 @@
 (setq-default cursor-type 'bar)
 (global-hl-line-mode 1)
 (blink-cursor-mode 0)
-(display-line-numbers-mode 1)
+(global-display-line-numbers-mode 1)
 
 
 (setq custom-file "~/.__custom.el")
