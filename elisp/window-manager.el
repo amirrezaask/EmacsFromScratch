@@ -24,20 +24,18 @@
 
 ;;; Code:
 
-(core/if-feature-use-package! :window-manager
-			 exwm
-			 :config
-			 (require 'exwm)
-			 (require 'exwm-config)
-			 (exwm-config-default)
-			 (display-battery-mode 1))
-
-(core/if-feature-eval! :window-manager
-		  (defun exwm-current-workspace ()
-		    (interactive)
-		    (message "Current workspace is %s" exwm-workspace-current-index))
-		  (add-hook 'exwm-workspace-switch-hook 'exwm-current-workspace)
-		  (core/bindkey global-map 'exwm-current-workspace :holy "C-c C-w n")
-		  (core/bindkey global-map 'exwm-input-toggle-keyboard :holy "C-x /"))
+(use-package exwm
+  :config
+  (require 'exwm)
+  (require 'exwm-config)
+  (exwm-config-default)
+  (display-battery-mode 1)
+  (defun exwm-current-workspace ()
+    (interactive)
+    (message "Current workspace is %s" exwm-workspace-current-index))
+  (add-hook 'exwm-workspace-switch-hook 'exwm-current-workspace)
+  :bind
+  (("C-c C-w n" . 'exwm-current-workspace)
+   ("C-x /" . 'exwm-input-toggle-keyboard)))
 
 (provide 'window-manager)

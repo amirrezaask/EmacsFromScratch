@@ -24,156 +24,114 @@
 
 ;;; Code:
 
-(core/if-feature-use-package! :c/c++
-			 cquery
-			 :defer t)
+(use-package cquery :defer t)
 
-(core/if-feature-use-package! :assembly
-			 mips-mode
-			 :defer t)
+(use-package mips-mode :defer t)
 
-(core/if-feature-use-package! :fsharp
-			 fsharp-mode
-			 :mode "\\.fs\\'")
+(use-package fsharp-mode :mode "\\.fs\\'")
 
-(core/if-feature-use-package! :csharp
-			 csharp-mode
-			 :mode "\\.cs\\'")
+(use-package csharp-mode :mode "\\.cs\\'")
 
-(core/if-feature-use-package! :assembly
-			 nasm-mode
-			 :defer t)
+(use-package nasm-mode :defer t)
 
-(core/if-feature-use-package! :assembly
-			 haxor-mode
-			 :mode "\\.hax\\'")
+(use-package haxor-mode :mode "\\.hax\\'")
 
-(core/if-feature-use-package! :data
-			 json-mode
-			 :mode "\\.json\\'"
-			 :config
-			 (add-hook 'before-save-hook 'json-mode-beautify))
+(use-package json-mode
+  :mode "\\.json\\'"
+  :config
+  (add-hook 'before-save-hook 'json-mode-beautify))
 
-(core/if-feature-use-package! :data
-			 yaml-mode
-			 :mode
-			 "\\.ya?ml\\'")
+(use-package yaml-mode
+  :mode
+  "\\.ya?ml\\'")
 
-(core/if-feature-use-package! :data
-			 toml-mode
-			 :mode "\\.toml\\'")
+(use-package toml-mode
+  :mode "\\.toml\\'")
 
-(core/if-feature-use-package! :data
-			 csv-mode
-			 :mode "\\.csv\\'")
+(use-package csv-mode
+  :mode "\\.csv\\'")
 
-(core/if-feature-use-package! :data
-			 protobuf-mode
-			 :mode "\\.proto\\'")
+(use-package protobuf-mode
+  :mode "\\.proto\\'")
 
 
-(core/if-feature-use-package! :markdown
-			 markdown-mode
-			 :mode "\\.md\\'")
+(use-package markdown-mode
+  :mode "\\.md\\'")
 
 
-(core/if-feature-use-package! :golang
-			 go-mode
-			 :mode "\\.go\\'"
-			 :init
-			 (add-hook 'go-mode-hook (lambda () (add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))))
-			 :config
-			 (add-hook 'before-save-hook 'gofmt-before-save)
-			 (add-hook 'before-save-hook 'go-import-add)
-			 (add-hook 'before-save-hook 'go-remove-unused-import)
-			 (add-hook 'before-save-hook #'lsp-format-buffer t t)
-			 (add-hook 'before-save-hook #'lsp-organize-imports t t)
-			 (local-set-key (kbd "M-.") 'godef-jump)
-			 (local-set-key (kbd "M-*") 'pop-tag-mark))
+(use-package go-mode
+  :mode "\\.go\\'"
+  :init
+  (add-hook 'go-mode-hook (lambda () (add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))))
+  :config
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  (add-hook 'before-save-hook 'go-import-add)
+  (add-hook 'before-save-hook 'go-remove-unused-import)
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
 
-(core/if-feature-use-package! :golang
-			 go-add-tags
-			 :defer t)
+(use-package go-add-tags :defer t)
 
-(core/if-feature-use-package! :golang
-			 gotest
-			 :defer t)
+(use-package gotest :defer t)
 
 
-(core/if-feature-use-package! :haskell
-			 haskell-mode
-			 :mode "\\.hs\\'")
+(use-package haskell-mode
+  :mode "\\.hs\\'")
 
-(core/if-feature-use-package! :haskell
-			 lsp-haskell
-			 :hook haskell-mode)
+(use-package lsp-haskell
+  :hook haskell-mode)
 
-(core/if-feature-use-package! :scala
-			 scala-mode
-			 :mode "\\.scala\\'")
+(use-package scala-mode
+  :mode "\\.scala\\'")
 
-(core/if-feature-use-package! :scala
-			 sbt-mode
-			 :hook scala-mode)
+(use-package sbt-mode
+  :hook scala-mode)
 
-(core/if-feature-use-package! :python
-			 python-mode
-			 :mode "\\.py\\'")
+(use-package python-mode
+  :mode "\\.py\\'")
 
 
-(core/if-feature-use-package! :python
-			 lsp-python-ms
-			 :hook (python-mode))
+(use-package lsp-python-ms
+  :hook (python-mode))
 
 
-(core/if-feature-use-package! :python
-			 py-autopep8
-			 :hook python-mode)
+(use-package py-autopep8
+  :hook python-mode)
 
-(core/if-feature-use-package! :python
-			 jinja2-mode
-			 :mode "\\.j2$")
+(use-package jinja2-mode
+  :mode "\\.j2$")
 
-(core/if-feature-use-package! :elixir
-			 elixir-mode
-			 :mode "\\.ex\\'")
+(use-package elixir-mode
+  :mode "\\.ex\\'")
 
-(core/if-feature-use-package! :elixir
-			 alchemist
-			 :defer t)
+(use-package alchemist
+  :defer t)
 
-(core/if-feature-use-package! :rust
-			 rust-mode
-			 :mode "\\.rs\\'")
+(use-package rust-mode
+  :mode "\\.rs\\'")
 
-(core/if-feature-use-package! :rust
-			 flycheck-rust
-			 :mode "\\.rs\\'"
-			 :init (add-hook 'flycheck-mode-hook #'flycheck-rust-setup) :hook rust-mode)
+(use-package flycheck-rust
+ :mode "\\.rs\\'"
+ :init (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+ :hook rust-mode)
 
-(core/if-feature-use-package! :rust
-			 cargo
-			 :mode "\\.rs\\'"
-			 :init (add-hook 'rust-mode-hook #'cargo-minor-mode))
+(use-package cargo
+  :mode "\\.rs\\'"
+  :init (add-hook 'rust-mode-hook #'cargo-minor-mode))
 
 
-(core/if-feature-use-package! :lisp
-			 paredit
-			 :hook ((emacs-lisp-mode clojure-mode) . paredit-mode))
+(use-package paredit
+ :hook ((emacs-lisp-mode clojure-mode) . paredit-mode))
 
 
-(core/if-feature-use-package! :lisp
-			 parinfer
-			 :hook ((emacs-lisp-mode clojure-mode) . parinfer-mode))
+(use-package parinfer
+  :hook ((emacs-lisp-mode clojure-mode) . parinfer-mode))
 
-(core/if-feature-use-package! :lisp
-			 rainbow-delimiters
-			 :hook ((emacs-lisp-mode python-mode go-mode php-mode) . rainbow-delimiters-mode))
+(use-package rainbow-delimiters
+  :hook ((prog-mode) . rainbow-delimiters-mode))
 
-(core/if-feature-use-package! :clojure
-			 clojure-mode
-			 :mode "\\.cljs?\\'"
-			 )
+(use-package clojure-mode
+  :mode "\\.cljs?\\'")
 
 (core/if-feature-use-package! :clojure
 			 cider

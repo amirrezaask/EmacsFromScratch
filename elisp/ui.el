@@ -24,50 +24,24 @@
 
 ;;; Code:
 
-(defconst lisp--prettify-symbols-alist
-  '(("lambda"  . ?λ))) ;; shows lambda word as the symbol
-(global-prettify-symbols-mode 1)
+(use-package doom-themes :defer t)
 
-(defun ui-use-font (font-config)
-  "Use given FONT with given SIZE."
-  (interactive)
-  (add-to-list 'default-frame-alist (cons 'font (format "%s-%d" (car font-config) (car (last font-config))))))
+(use-package spacemacs-theme :defer t)
 
-(core/if-feature-use-package! :theme
-			 doom-themes
-			 :defer t)
+(use-package badwolf-theme :defer t)
 
-(core/if-feature-use-package! :theme
-			 spacemacs-theme
-			 :defer t)
+(load-theme 'doom-one t)
 
-(core/if-feature-use-package! :theme
-			 badwolf-theme
-			 :defer t)
+(use-package all-the-icons)
 
-(core/if-feature-use-package! :icons
-			 all-the-icons)
+(use-package all-the-icons-dired
+  :straight (all-the-icons-dired :type git :host github :repo "jtbm37/all-the-icons-dired")
+  :init
+  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
-(core/if-feature-use-package! :dired-icons
-			 all-the-icons-dired
-			 :straight (all-the-icons-dired :type git :host github :repo "jtbm37/all-the-icons-dired")
-			 :init
-			 (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+(use-package doom-modeline :config(doom-modeline-mode 1))
 
-(core/if-feature-eval! :theme
-		  (setq custom-safe-themes t)
-		  (load-theme (core/keyword-to-symbol (core/feature-get-argument :theme)) t))
-
-(core/if-feature-use-package! :doom-modeline
-			 doom-modeline
-			 :config (doom-modeline-mode 1))
-
-(core/if-feature-use-package! :show-emojis
-			 emojify
-			 :config (emojify-mode 1))
-
-(core/if-feature-eval! :font
-		  (ui-use-font (core/feature-get-argument :font)))
+(use-package emojify :config (emojify-mode 1))
 
 (setq inhibit-splash-screen 0) ;; turn off emacs annoying startup page.
 (tool-bar-mode 0) ;; turn off emacs GUI toolbar

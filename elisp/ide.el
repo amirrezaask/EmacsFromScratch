@@ -23,86 +23,45 @@
 ;; 
 
 ;;; Code:
+(use-package flycheck :hook (prog-mode . flycheck-mode))
 
-(core/if-feature-use-package! :flycheck
-			 flycheck
-			 :hook
-			 (prog-mode . flycheck-mode))
+(use-package dap-mode :hook prog-mode)
 
-(core/if-feature-use-package! :debugger-adapter-protocol
-			 dap-mode
-			 :hook
-			 prog-mode)
+(use-package magit
+  :commands (magit-status)
+  :bind
+  (("C-x g" . 'magit-status)))
+(use-package diff-hl :config (global-diff-hl-mode 1))
+(use-package gitconfig-mode :mode "/\\.gitconfig\\'")
 
-(core/if-feature-use-package! :git
-			 magit
-			 :commands (magit-status)
-			 :init
-			 (core/bindkey global-map 'magit-status :holy "C-x g" :evil (:normal "SPC g s")))
+(use-package gitignore-mode
+  :mode "/\\.gitignore\\'")
 
-(core/if-feature-use-package! :git
-			 diff-hl
-			 :config
-			 (global-diff-hl-mode))
+(use-package gitattributes-mode
+  :mode "/\\.gitattributes\\'")
 
-(core/if-feature-use-package! :git
-			 gitconfig-mode
-			 :mode "/\\.gitconfig\\'")
+(use-package lsp-mode
+  :hook
+  ((go-mode python-mode php-mode clojure-mode elixir-mode haskell-mode csharp-mode fsharp-mode) . #'lsp))
 
-(core/if-feature-use-package! :git
-			 gitignore-mode
-			 :mode "/\\.gitignore\\'")
+(use-package lsp-treemacs
+  :commands lsp-treemacs-errors-list)
 
-(core/if-feature-use-package! :git
-			 gitattributes-mode
-			 :mode "/\\.gitattributes\\'")
+(use-package lsp-ui
+  :commands lsp-ui-mode)
 
-(core/if-feature-use-package! :evil
-			 evil-magit
-			 :init
-			 (add-hook 'magit-mode-hook (lambda () (require 'evil-magit))))
+(use-package company-lsp
+  :config
+  (setq company-lsp-cache-candidates 'auto)
+  :commands (company-lsp))
 
-(core/if-feature-use-package! :language-server-protocol
-			 lsp-mode
-			 :defer t
-			 :hook
-			 ((go-mode python-mode php-mode clojure-mode elixir-mode haskell-mode csharp-mode fsharp-mode) . #'lsp)
-			 :config
-			 (core/bindkey lsp-mode-map 'treemacs :holy "C-x t" :evil (:normal "SPC l t")))
-
-(core/if-feature-use-package! :language-server-protocol
-			 lsp-treemacs
-			 :commands lsp-treemacs-errors-list)
-
-(core/if-feature-use-package! :snippets
-			 yasnippet
-			 :init
-			 (add-hook 'prog-mode-hook (lambda ()
-						     (yas-reload-all)
-						     (yas-minor-mode)
-						     )))
-(core/if-feature-use-package! :snippets
-			 yasnippet-snippets)
-
-(core/if-feature-use-package! :language-server-protocol
-			 lsp-ui
-			 :commands lsp-ui-mode)
-
-(core/if-feature-use-package! :language-server-protocol
-			 company-lsp
-			 :config
-			 (setq company-lsp-cache-candidates 'auto)
-			 :commands (company-lsp)
-			 )
-
-(core/if-feature-use-package! :auto-completion
-			 company
-			 :config
-			 (global-company-mode t)
-			 (setq company-tooltip-limit 30)
-			 (setq company-idle-delay .1)
-			 (setq company-echo-delay 0)
-			 (add-to-list 'company-backends '(company-capf company-dabbrev)))
+(use-package company
+  :config
+  (global-company-mode t)
+  (setq company-tooltip-limit 30)
+  (setq company-idle-delay .1)
+  (setq company-echo-delay 0)
+  (add-to-list 'company-backends '(company-capf company-dabbrev)))
 
 
 (provide 'ide)

@@ -24,19 +24,16 @@
 
 ;;; Code:
 
-(core/if-feature-use-package! :k8s
-			 kubel
-			 :commands
-			 (kubel))
+(use-package kubel
+  :commands
+  (kubel))
 
-(core/if-feature-use-package! :docker
-			 docker
-			 :bind
-			 ("C-c d" . docker))
+(use-package docker
+  :bind
+  ("C-c d" . docker))
 
-(core/if-feature-use-package! :ansible
-			 ansible
-			 :init
-			 (add-hook 'yaml-mode-hook (lambda () (ansible))))
+;; (use-package ansible
+;;   :init
+;;   (add-hook 'yaml-mode-hook (lambda () (ansible))))
 
 (provide 'devops)
