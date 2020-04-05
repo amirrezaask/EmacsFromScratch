@@ -1,0 +1,334 @@
+* Introduction
+This document contains my configuration on vanilla =Emacs= using the principles of =Literate Programming=.
+Literate programming allows us to be more expressive and deliberate.
+Not only we can use typography to its maximum potential,
+but can also employ techniques such as internal links between sections.
+This makes the end product much better for end users, than a terse script.
+This document is created using =Org-mode= which now ships with =Emacs= as a built-in mode.
+
+* Basic setup
+** Tweak GC
+#+BEGIN_SRC emacs-lisp
+(setq gc-cons-threshold most-positive-fixnum; 2^61 bytes
+      gc-cons-percentage 0.6)
+
+(add-hook 'emacs-startup-hook
+	  (lambda ()
+	    (setq gc-cons-threshold 16777216 ; 16mb
+		  gc-cons-percentage 0.1)))
+(defun defer-garbage-collection-h ()
+  (setq gc-cons-threshold 16777216))
+
+
+(defun restore-garbage-collection-h ()
+  (run-at-time
+   1 nil (lambda () (setq gc-cons-threshold most-positive-fixnum))))
+
+(add-hook 'minibuffer-setup-hook #'defer-garbage-collection-h)
+(add-hook 'minibuffer-exit-hook #'restore-garbage-collection-h)
+#+END_SRC
+** Empty file handlers variable at startup
+#+BEGIN_SRC emacs-lisp
+(defvar --file-name-handler-alist file-name-handler-alist)
+(setq file-name-handler-alist nil)
+(add-hook 'emacs-startup-hook
+	  (lambda ()
+	    (setq file-name-handler-alist --file-name-handler-alist)))
+#+END_SRC
+** Start in fundamental mode
+#+BEGIN_SRC emacs-lisp
+(setq initial-major-mode 'fundamental-mode)
+#+END_SRC
+** Package manager setup
+#+BEGIN_SRC emacs-lisp
+(require 'package)
+
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
+
+;; Initialise the packages, avoiding a re-initialisation.
+(unless (bound-and-true-p package--initialized)
+  (setq package-enable-at-startup nil)
+  (package-initialize))
+
+#+END_SRC
+** Install use-package
+#+BEGIN_SRC emacs-lisp
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(setq use-package-always-ensure t)
+
+(eval-when-compile
+  (require 'use-package))
+
+#+END_SRC
+** Always rebuild
+When =Emacs= wants to evaluate an =Org= file it creates a corresponding document with the same
+name but different extension for example for this file it creates a =README.el= containing all 
+=elisp= codes together, so to make sure we always are using the latest version of our configurations
+we delete the file on =Emacs= shutting down.
+#+BEGIN_SRC emacs-lisp
+(use-package emacs
+  :config
+  (defun amirreza/delete-this-file ()
+    (interactive)
+    (let ((configs "~/.emacs.d/README.el"))
+      (when configs
+        (delete-file configs))))
+  :hook (kill-emacs . amirreza/delete-this-file))
+#+END_SRC
+** Configure =modeline= lighters
+#+BEGIN_SRC emacs-lisp
+  (use-package delight
+    :ensure t)
+
+#+END_SRC
+** Disable GUI shits
+Emacs GUI starts up with a =menu-bar=, =tool-bar= and =scroll-bar= which I think literally 
+nobody is using.
+#+BEGIN_SRC emacs-lisp
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
+(menu-bar-mode 0)
+(setq use-dialog-box nil)
+#+END_SRC
+** Turn off startup screen
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-splash-screen 0)
+#+END_SRC
+** Prevent Emacs from medling with =init.el=
+=Emacs= has a package called =Customize= which stores some information about the theme, and installed packages
+in the init.el file but I put all my emacs configuration in a git repo so I need to prevent this
+from happening. 
+#+BEGIN_SRC emacs-lisp
+(setq custom-file "~/.emacs.d/custom.el")
+#+END_SRC
+** Font settings
+I don't have a default font but I use =Jetbrains Mono=, =Fira Code= and =Hack= font 
+almost all the time.
+#+BEGIN_SRC emacs-lisp
+  (defun amirreza/font (font size)
+    (add-to-list 'default-frame-alist (cons 'font (format "%s-%d" font size))))
+
+(amirreza/font "Jetbrains Mono" 12)
+#+END_SRC
+
+** y-or-n
+Emacs asks yes/no questions in minibuffer an you need to type yes or no completely which
+is kind of annoying.
+#+BEGIN_SRC emacs-lisp
+(defalias 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+* Completion and narrowing framework
+When using =Emacs= a task you probably do a thousand times is to find something in =minibuffer= 
+out of multiple choices that you have, basic =Emacs= is not that productive because of that there
+are multiple packages in community that help you do these kind of tasks simpler, the one that I
+use daily is called =ivy= which is basically a framework for narrowing down candidates, but it comes
+with a general frontend called =counsel= which provides replacement functions for default Emacs 
+functions like =find-file= and others you can see the ones I use in the code block below and
+a =C-s= replacement tool call swiper.
+#+BEGIN_SRC emacs-lisp
+  (use-package ivy
+     :bind
+    (("C-x b" . 'ivy-switch-buffer)))
+
+  (use-package swiper
+    :commands (swiper)
+    :init (global-set-key (kbd "C-s") 'swiper))
+
+  (use-package counsel
+    :commands (counsel-M-x counsel-find-file ivy-switch-buffer)
+    :bind
+    (("M-x" . 'counsel-M-x)
+     ("C-x C-f" . 'counsel-find-file)
+     ("C-h b" . 'counsel-descbinds)
+     ("C-h f" . 'counsel-describe-function)
+     ("C-h v" . 'counsel-describe-variable)
+     ("C-h a" . 'counsel-apropos)
+     ("<f2> " . 'counsel-ag)
+     ( "M-y" . 'counsel-yank-pop)))
+
+#+END_SRC
+
+* Improve general editor experience
+** Buffer switching (ibuffer)
+while =ivy= provides =switch-buffer= replacement for default Emacs =switch-to-buffer=, but it does
+not provide any replacement for Emacs built-in funtion called =list-buffers=, luckily Emacs now ships
+with =Ibuffer= package which is an interactive way to manage you buffers and provide a =magit= 
+like user-interface.
+#+BEGIN_SRC emacs-lisp
+  (use-package ibuffer
+    :bind (("C-x C-b" . 'ibuffer)))
+#+END_SRC
+** Line numbers
+=Emacs= has the minor mode for showing line numbers but it is not enabled by default so let's enable
+it to show line numbers every where.
+#+BEGIN_SRC emacs-lisp
+(global-display-line-numbers-mode 1)
+#+END_SRC
+** Cursor shape
+Emacs default cursor is in the shape of the box and it covers the current char under it so 
+let's change it. 
+#+BEGIN_SRC emacs-lisp
+(setq-default cursor-type 'bar)
+#+END_SRC
+
+** Current line highlight
+Only personal preference no factual reason behind it.
+#+BEGIN_SRC emacs-lisp
+(global-hl-line-mode 1)
+#+END_SRC
+** Stop blinking cursor
+It distracts my eyes.
+#+BEGIN_SRC emacs-lisp
+(blink-cursor-mode 0)
+#+END_SRC
+** Multiple cursors support
+I'm not a fan of multiple cursors myself but sometimes they are the simplest way possible.
+#+BEGIN_SRC emacs-lisp
+(use-package multiple-cursors)
+#+END_SRC
+** Improve Scrolling Experience
+#+BEGIN_SRC emacs-lisp
+(setq jit-lock-defer-time 0.05)
+(setq fast-but-imprecise-scrolling t)
+#+END_SRC
+** Highlight Indents
+This is a must have for me when I'm reading/writing yaml files since I always lose track
+of where I am in the data tree.
+#+BEGIN_SRC emacs-lisp
+(use-package highlight-indent-guides
+  :hook ((yaml-mode) . highlight-indent-guides-mode)
+  :init
+  (setq highlight-indent-guides-method 'character)
+  :config
+  (add-hook 'focus-in-hook #'highlight-indent-guides-auto-set-faces))
+#+END_SRC
+** Header for new files
+Emacs comes with a package called =auto-insert= which inserts headers for new files when you
+create them.
+#+BEGIN_SRC emacs-lis
+(auto-insert-mode 1)
+#+END_SRC
+** ripgrep (Better faster grep)
+Emacs users always had the goal of living inside Emacs, and how you can live inside Emacs 
+without =grep=.
+#+BEGIN_SRC emacs-lisp
+(use-package rg
+  :config
+  (rg-enable-default-bindings))
+#+END_SRC
+** FZF (fuzzy-file-finder)
+#+BEGIN_SRC emacs-lisp
+  (use-package fzf
+    :bind(("<f3>" . 'fzf)))
+#+END_SRC
+* Themes, Icons
+** Themes
+Let's install some themes :) and ofcourse use one of them.
+#+BEGIN_SRC emacs-lisp
+(use-package doom-themes :defer t)
+(use-package spacemacs-theme :defer t)
+(use-package badwolf-theme :defer t)
+(load-theme 'doom-one t)
+#+END_SRC
+** Icons
+#+BEGIN_SRC emacs-lisp
+(use-package all-the-icons)
+(use-package all-the-icons-dired
+  :init
+  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+#+END_SRC
+* Development Environment
+** Syntax checker and linter
+Syntax checking in my Emacs happens with the help of =Flycheck=, which does the linting
+and shows warnings or errors about the code and major modes can hook into it and provide
+language specific comments. I enable flycheck for all programming languages using =prog-mode=
+hook which basically covers all programming major modes.
+#+BEGIN_SRC emacs-lisp
+(use-package flycheck :hook (prog-mode . flycheck-mode))
+#+END_SRC
+** Code Completion
+=Company-mode= in Emacs is the package I use to add code-completion to my Emacs.
+It's neat package with great architecture, basically =company= is made from two parts
+=company-backends= and =company-frontend=, =company-backends= are a list of backends 
+and backends are modules that can provide company with completion candidates and 
+=company-frontend= is how company shows those completions to me which I use the default
+one.
+#+BEGIN_SRC emacs-lisp
+(use-package company
+  :config
+  (global-company-mode t)
+  (setq company-tooltip-limit 30)
+  (setq company-idle-delay .1)
+  (setq company-echo-delay 0)
+  (add-to-list 'company-backends '(company-capf company-dabbrev)))
+#+END_SRC
+
+*** Language Server Protocol
+=Company= gives us the infrastructre that we need for code completion but we need
+backends to feed it the completion candidates. There are specific backends for almost 
+all languages but I use LSP for everything, =LSP= or =LanguageServerProtocol= is a protocol
+developed by microsoft for =VSCode= but it's not limited to Microsoft and now it has huge
+community, multiple enterprises like =RedHat= and =Sourcegraph= behind it and support
+for almost all languages.
+[[List of supported langauges][https://langserver.org/#implementations-server]] 
+[[https://github.com/emacs-lsp/lsp-mode#supported-languages]]
+#+BEGIN_SRC emacs-lisp
+  (use-package lsp-mode
+    :hook
+    ((go-mode python-mode php-mode clojure-mode elixir-mode haskell-mode csharp-mode fsharp-mode)
+   . #'lsp-deferred))
+
+  (use-package lsp-treemacs
+    :commands (lsp-treemacs-errors-list))
+
+  (use-package lsp-ui
+    :commands (lsp-ui-mode))
+
+  ;; company backend to hook LSP to company
+  (use-package company-lsp
+    :config
+    (setq company-lsp-cache-candidates 'auto)
+    :commands (company-lsp))
+
+
+#+END_SRC
+** Git
+=magit= is the git wrapper I have seen out then, I have seen =vim-fugitive=, Jetbrains
+IDEs git plugin, VSCode git plugin + gitlens, but still =magit= is the best.
+#+BEGIN_SRC emacs-lisp
+(use-package magit
+  :commands (magit-status)
+  :bind
+  (("C-x g" . 'magit-status)))
+
+(use-package diff-hl :config (global-diff-hl-mode 1))
+
+(use-package gitconfig-mode :mode "/\\.gitconfig\\'")
+
+(use-package gitignore-mode
+  :mode "/\\.gitignore\\'")
+
+(use-package gitattributes-mode
+  :mode "/\\.gitattributes\\'")
+
+#+END_SRC
+* Operations Environment
+Recently I started using Emacs for opertion tasks.
+#+BEGIN_SRC emacs-lisp
+  (use-package kubel
+    :commands
+    (kubel))
+
+  (use-package docker
+    :bind
+    ("C-c d" . docker))
+
+  (use-package ansible
+    :init
+    (add-hook 'yaml-mode-hook (lambda () (ansible))))
+
+#+END_SRC

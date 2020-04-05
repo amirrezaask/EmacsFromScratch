@@ -5,7 +5,6 @@ ido*
 lsp*
 *~
 .\#.*
-assassin/**/*.elc
 *.elc
 straight
 transient
@@ -15,5 +14,6 @@ smex*
 eshell*
 session*
 elpa
-emacs-init.el
+README.el
 emojis
+custom.el
