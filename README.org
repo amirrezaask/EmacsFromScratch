@@ -1,7 +1,0 @@
-* Amirrezaask Emacs Configuration
-My Emacs configuration is built on top of the idea of =features=. Features are smallest
-pieces of configuration and most of the time they are configuration of a package so in summary
-features are =package + configs=.
-All feature related functions and macros are in =elisp/core.el=
-Also there is a list of features and some basic configuration in =$HOME=
-called =.emacs-features.el=.
