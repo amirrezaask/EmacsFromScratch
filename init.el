@@ -5,7 +5,7 @@
 
 
 (load-theme 'doom-one t)
-(font! "Jetbrains Mono" 10)
+(font! "Jetbrains Mono" 13)
 (message "startup took %s" (- (float-time) start-timestamp))
 (provide 'init)
 ;;; init.el ends here

@@ -40,7 +40,7 @@
   :init
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
-(use-package doom-modeline :config(doom-modeline-mode 1))
+;; (use-package doom-modeline :config(doom-modeline-mode 1))
 
 (use-package emojify :config (emojify-mode 1))
 
