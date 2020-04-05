@@ -52,8 +52,8 @@
 
 (setq read-process-output-max (* 1024 1024))
 
-(add-hook 'minibuffer-setup-hook #'defer-garbage-collection-h)
-(add-hook 'minibuffer-exit-hook #'restore-garbage-collection-h)
+;; (add-hook 'minibuffer-setup-hook #'defer-garbage-collection-h)
+;; (add-hook 'minibuffer-exit-hook #'restore-garbage-collection-h)
 
 (defvar --file-name-handler-alist file-name-handler-alist)
 (setq file-name-handler-alist nil)
