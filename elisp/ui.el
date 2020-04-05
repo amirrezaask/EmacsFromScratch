@@ -33,14 +33,6 @@
   (interactive)
   (add-to-list 'default-frame-alist (cons 'font (format "%s-%d" (car font-config) (car (last font-config))))))
 
-(core/if-feature-use-package! :dashboard
-			 dashboard
-			 :config
-			 (setq dashboard-center-content t)
-			 (setq dashboard-startup-banner 'logo)
-			 (setq dashboard-banner-logo-title "Hello again :)")
-			 (dashboard-setup-startup-hook))
-
 (core/if-feature-use-package! :theme
 			 doom-themes
 			 :defer t)
@@ -69,12 +61,6 @@
 (core/if-feature-use-package! :doom-modeline
 			 doom-modeline
 			 :config (doom-modeline-mode 1))
-
-(core/if-feature-use-package! :spacemacs-modeline
-			 spaceline
-			 :config
-			 (require 'spaceline-config)
-			 (spaceline-spacemacs-theme))
 
 (core/if-feature-use-package! :show-emojis
 			 emojify
