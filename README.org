@@ -105,6 +105,10 @@ from happening.
 #+BEGIN_SRC emacs-lisp
 (setq custom-file "~/.emacs.d/custom.el")
 #+END_SRC
+** Turn off annoying ring
+#+BEGIN_SRC emacs-lisp
+(setq ring-bell-function 'ignore)
+#+END_SRC
 ** Font settings
 I don't have a default font but I use =Jetbrains Mono=, =Fira Code= and =Hack= font 
 almost all the time.
@@ -205,6 +209,11 @@ of where I am in the data tree.
   (setq highlight-indent-guides-method 'character)
   :config
   (add-hook 'focus-in-hook #'highlight-indent-guides-auto-set-faces))
+#+END_SRC
+** Ace window
+#+BEGIN_SRC emacs-lisp
+  (use-package ace-window
+    :bind (("M-o" . 'ace-window)))
 #+END_SRC
 ** Header for new files
 Emacs comes with a package called =auto-insert= which inserts headers for new files when you
