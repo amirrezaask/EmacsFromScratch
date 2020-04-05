@@ -33,11 +33,12 @@
 	  (seq-filter (lambda (file) (string= (car (last (split-string file "\\."))) "el")) (directory-files path)) ))
 
 
-(setq gc-cons-threshold most-positive-fixnum ; 2^61 bytes
+(setq gc-cons-threshold most-positive-fixnum; 2^61 bytes
       gc-cons-percentage 0.6)
+
 (add-hook 'emacs-startup-hook
 	  (lambda ()
-	    (setq gc-cons-threshold 100000000 ; 16mb
+	    (setq gc-cons-threshold 16777216 ; 16mb
 		  gc-cons-percentage 0.1)))
 
 (defun defer-garbage-collection-h ()
@@ -52,15 +53,16 @@
 
 (setq read-process-output-max (* 1024 1024))
 
-;; (add-hook 'minibuffer-setup-hook #'defer-garbage-collection-h)
-;; (add-hook 'minibuffer-exit-hook #'restore-garbage-collection-h)
+(add-hook 'minibuffer-setup-hook #'defer-garbage-collection-h)
+(add-hook 'minibuffer-exit-hook #'restore-garbage-collection-h)
 
 (defvar --file-name-handler-alist file-name-handler-alist)
 (setq file-name-handler-alist nil)
+
 (add-hook 'emacs-startup-hook
 	  (lambda ()
 	    (setq file-name-handler-alist --file-name-handler-alist)))
-
+(setq jit-lock-defer-time 0.05)
 (setq initial-major-mode 'fundamental-mode)
 
 (defvar bootstrap-version)
@@ -81,6 +83,9 @@
 
 (use-package gnu-elpa-keyring-update)
 
-(use-package exec-path-from-shell :config (exec-path-from-shell-initialize))
+(use-package exec-path-from-shell
+  :config
+  (add-hook 'after-init-hook 'exec-path-from-shell-initialize)
+  )
 
 (provide 'core)
