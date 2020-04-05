@@ -74,7 +74,8 @@
 (setq-default cursor-type 'bar)
 (global-hl-line-mode 1)
 (blink-cursor-mode 0)
-(global-linum-mode 1)
+(display-line-numbers-mode 1)
+
 
 (setq custom-file "~/.__custom.el")
 (setq make-backup-files nil) ;; turn off emacs annoying ~ files
