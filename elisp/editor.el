@@ -46,13 +46,14 @@
   :commands (counsel-M-x counsel-find-file ivy-switch-buffer)
   :bind
   (("M-x" . 'counsel-M-x)
-  ("C-x C-f" . 'counsel-find-file)
-  ("C-h b" . 'counsel-descbinds)
-  ("C-h f" . 'counsel-describe-function)
-  ("C-h v" . 'counsel-describe-variable)
-  ("C-h a" . 'counsel-apropos)
-  ("C-x b" . 'ivy-switch-buffer)
-  ( "M-y" . 'counsel-yank-pop)))
+   ("C-x C-f" . 'counsel-find-file)
+   ("C-h b" . 'counsel-descbinds)
+   ("C-h f" . 'counsel-describe-function)
+   ("C-h v" . 'counsel-describe-variable)
+   ("C-h a" . 'counsel-apropos)
+   ("C-x b" . 'ivy-switch-buffer)
+   ("<f2> " . 'counsel-ag)
+   ( "M-y" . 'counsel-yank-pop)))
 
 (use-package highlight-indent-guides
   :hook ((prog-mode text-mode conf-mode) . highlight-indent-guides-mode)
