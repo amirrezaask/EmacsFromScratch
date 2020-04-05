@@ -25,6 +25,14 @@
 ;;; Code:
 (setq start-timestamp (float-time))
 
+(defun require-all (path)
+  "List of all elisp files in given PATH."
+  (require 'seq)
+  (mapcar (lambda (name)
+	    (require (intern (car (split-string name "\\.")))))
+	  (seq-filter (lambda (file) (string= (car (last (split-string file "\\."))) "el")) (directory-files path)) ))
+
+
 (setq gc-cons-threshold most-positive-fixnum ; 2^61 bytes
       gc-cons-percentage 0.6)
 (add-hook 'emacs-startup-hook

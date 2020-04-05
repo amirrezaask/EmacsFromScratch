@@ -34,6 +34,10 @@
   :init (setq echo-keystrokes 0.3)
   :config (which-key-mode 1))
 
+(use-package rg
+  :config
+  (rg-enable-default-bindings))
+
 (use-package swiper
   :commands (swiper)
   :init (global-set-key (kbd "C-s") 'swiper))
