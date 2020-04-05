@@ -48,8 +48,7 @@
 (tool-bar-mode 0) ;; turn off emacs GUI toolbar
 (scroll-bar-mode 0) ;; turn off emacs GUI scrollbar
 (menu-bar-mode 0) ;; turn emacs GUI menubar
-
-(global-linum-mode t) ;; core/enable? line numbers
+(setq fast-but-imprecise-scrolling t)
 (setq use-dialog-box nil)
 
 (provide 'ui)
