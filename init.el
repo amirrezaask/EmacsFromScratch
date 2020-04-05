@@ -1,9 +1,13 @@
 (setq debug-on-error t)
 (add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
-;; load core module
+
 (require 'core)
-(core/load-user-config)
-(core/initialize)
+(require 'ui)
+(require 'editor)
+(require 'ide)
+(require 'langs)
+(require 'devops)
+;; (require 'window-manager)
 
 (message "startup took %s" (- (float-time) start-timestamp))
 (provide 'init)
