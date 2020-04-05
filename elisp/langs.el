@@ -135,7 +135,8 @@
 
 (use-package cider
   :mode "\\.cljs?\\'"
-  :bind (("C-x C-e" . 'cider-eval-last-sexp)))
+  :bind (:map cider-mode-map
+	      ("C-x C-e" . 'cider-eval-last-sexp)))
 
 (use-package lua-mode
   :mode "\\.lua\\'")

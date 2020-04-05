@@ -30,7 +30,8 @@
 
 (use-package badwolf-theme :defer t)
 
-(load-theme 'doom-one t)
+(defmacro font! (font size)
+  `(add-to-list 'default-frame-alist (cons 'font (format "%s-%d" ,font ,size))))
 
 (use-package all-the-icons)
 

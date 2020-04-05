@@ -9,6 +9,8 @@
 (require 'devops)
 ;; (require 'window-manager)
 
+(load-theme 'doom-one t)
+(font! "Jetbrains Mono" 10)
 (message "startup took %s" (- (float-time) start-timestamp))
 (provide 'init)
 ;;; init.el ends here
