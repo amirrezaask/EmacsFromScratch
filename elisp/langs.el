@@ -133,74 +133,50 @@
 (use-package clojure-mode
   :mode "\\.cljs?\\'")
 
-(core/if-feature-use-package! :clojure
-			 cider
-			 :mode "\\.cljs?\\'"
-			 :config
-			 (core/bindkey cider-mode-map 'cider-eval-last-sexp :evil (:normal "SPC e e") :holy "C-x C-e"))
+(use-package cider
+  :mode "\\.cljs?\\'"
+  :bind (("C-x C-e" . 'cider-eval-last-sexp)))
 
-(core/if-feature-use-package! :lua
-			 lua-mode
-			 :mode "\\.lua\\'")
+(use-package lua-mode
+  :mode "\\.lua\\'")
 
-(core/if-feature-use-package! :php
-			 php-mode
-			 :mode "\\.php\\'"
-			 :init (add-hook 'php-mode-hook 'eglot-ensure)
-			 )
+(use-package php-mode
+  :mode "\\.php\\'")
 
-(core/if-feature-use-package! :php
-			 phpunit
-			 :defer t
-			 :bind
-			 (("C-c C-t t" . phpunit-current-test)
-			  ("C-c C-t c" . phpunit-current-class)
-			  ("C-c C-t p" . phpunit-current-project)))
+(use-package phpunit
+  :bind
+  (("C-c C-t t" . phpunit-current-test)
+   ("C-c C-t c" . phpunit-current-class)
+   ("C-c C-t p" . phpunit-current-project)))
 
-(core/if-feature-use-package! :javascript
-			 js2-mode
-			 :hook js-mode)
+(use-package js2-mode
+  :hook js-mode)
 
-(core/if-feature-use-package! :typescript
-			 tide
-			 :mode "\\.ts\\'")
+(use-package tide
+  :mode "\\.ts\\'")
 
-(core/if-feature-use-package! :web
-			 web-mode
-			 :mode ("\\.html\\'" "\\.css\\'"))
+(use-package web-mode
+  :mode ("\\.html\\'" "\\.css\\'"))
 
-(core/if-feature-use-package! :dockerfile
-			 dockerfile-mode
-			 :mode "Dockerfile")
+(use-package dockerfile-mode
+  :mode "Dockerfile")
 
-(core/if-feature-use-package! :groovy
-			 groovy-mode
-			 :mode ("\\.gradle\\'" "\\.groovy\\'"))
+(use-package groovy-mode
+  :mode ("\\.gradle\\'" "\\.groovy\\'"))
 
-(core/if-feature-use-package! :java
-			 gradle-mode
-			 :mode "\\.gradle\\'")
+(use-package gradle-mode
+  :mode "\\.gradle\\'")
 
-(core/if-feature-eval! :java
-		  (c-set-offset 'arglist-intro '+)
-		  (setq java-basic-offset 2)
-		  (setq c-basic-offset 2))
+(add-hook 'java-mode-hook (lambda ()
+			    (c-set-offset 'arglist-intro '+)
+			    (setq java-basic-offset 2)
+			    (setq c-basic-offset 2)))
 
-(core/if-feature-use-package! :java
-			 lsp-java
-			 :hook (java-mode))
+(use-package lsp-java
+  :hook (java-mode))
 
-(core/if-feature-use-package! :racket
-			 racket-mode
-			 :mode "\\.rkt\\'")
-
-(core/if-feature-use-package! :org ob-go
-			 :defer t)
-
-(core/if-feature-use-package! :org ob-rust
-			 :defer t)
-
-
+(use-package racket-mode
+  :mode "\\.rkt\\'")
 
 (provide 'langs)
 ;;; langs.el ends here
