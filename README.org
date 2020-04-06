@@ -311,9 +311,11 @@ such a simple program, while some language servers are not ready for big project
 #+END_SRC
 ** Org-mode
 #+BEGIN_SRC emacs-lisp
-  (eval-and-compile 'org
-		    (require 'ox-md)
-		    (require 'ox-html))
+  (use-package org
+    :config
+    (require 'ox-md)
+    (require 'ox-html)
+    (setq org-support-shift-select t))
 
   (use-package org-bullets
     :hook ((org-mode) . 'org-bullets-mode))
