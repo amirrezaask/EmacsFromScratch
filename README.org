@@ -139,8 +139,21 @@ functions like =find-file= and others you can see the ones I use in the code blo
 a =C-s= replacement tool call swiper.
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
-     :bind
+    :bind
     (("C-x b" . 'ivy-switch-buffer)))
+
+  (use-package ivy-posframe
+    :config
+    (setq ivy-posframe-height-alist
+	  '((swiper . 15)
+	    (swiper-isearch . 15)
+	    (t . 10)))
+    (setq ivy-posframe-display-functions-alist
+	  '((complete-symbol . ivy-posframe-display-at-point)
+	    (swiper . nil)
+	    (swiper-isearch . nil)
+	    (t . ivy-posframe-display-at-frame-center)))
+    (ivy-posframe-mode 1))
 
   (use-package swiper
     :commands (swiper)
