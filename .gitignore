@@ -17,3 +17,4 @@ elpa
 README.el
 emojis
 custom.el
+.mc*
