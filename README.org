@@ -9,23 +9,23 @@ This document is created using =Org-mode= which now ships with =Emacs= as a buil
 * Basic setup
 ** Tweak GC
 #+BEGIN_SRC emacs-lisp
-(setq gc-cons-threshold most-positive-fixnum; 2^61 bytes
-      gc-cons-percentage 0.6)
+  (setq gc-cons-threshold most-positive-fixnum; 2^61 bytes
+	gc-cons-percentage 0.6)
 
-(add-hook 'emacs-startup-hook
-	  (lambda ()
-	    (setq gc-cons-threshold 16777216 ; 16mb
-		  gc-cons-percentage 0.1)))
-(defun defer-garbage-collection-h ()
-  (setq gc-cons-threshold 16777216))
+  (add-hook 'emacs-startup-hook
+	    (lambda ()
+	      (setq gc-cons-threshold 16777216 ; 16mb
+		    gc-cons-percentage 0.1)))
+  (defun defer-garbage-collection-h ()
+    (setq gc-cons-threshold 16777216))
 
 
-(defun restore-garbage-collection-h ()
-  (run-at-time
-   1 nil (lambda () (setq gc-cons-threshold most-positive-fixnum))))
+  (defun restore-garbage-collection-h ()
+    (run-at-time
+     1 nil (lambda () (setq gc-cons-threshold most-positive-fixnum))))
 
-(add-hook 'minibuffer-setup-hook #'defer-garbage-collection-h)
-(add-hook 'minibuffer-exit-hook #'restore-garbage-collection-h)
+  (add-hook 'minibuffer-setup-hook #'defer-garbage-collection-h)
+  (add-hook 'minibuffer-exit-hook #'restore-garbage-collection-h)
 #+END_SRC
 ** Empty file handlers variable at startup
 #+BEGIN_SRC emacs-lisp
@@ -208,7 +208,6 @@ a =C-s= replacement tool call swiper.
      ( "M-y" . 'counsel-yank-pop)))
 
 #+END_SRC
-
 * Improve general editor experience
 ** Buffer switching (ibuffer)
 Emacs built-in funtion called =list-buffers= is not that much productive, luckily Emacs now ships
@@ -220,7 +219,8 @@ like user-interface.
 #+END_SRC
 ** iedit
 #+BEGIN_SRC emacs-lisp
-(use-package iedit)
+  (use-package iedit
+    :bind (("C-;" . 'iedit-mode)))
 #+END_SRC
 ** Line numbers
 =Emacs= has the minor mode for showing line numbers but it is not enabled by default so let's enable
@@ -311,6 +311,12 @@ such a simple program, while some language servers are not ready for big project
 #+BEGIN_SRC emacs-lisp
   (use-package fzf
     :bind(("<f3>" . 'fzf)))
+#+END_SRC
+** Ag (SilverSearcher)
+#+BEGIN_SRC emacs-lisp
+  (use-package ag
+    :bind
+    (("<f2>" . 'ag))) ; this will override 'counsel-ag, if using ivy disable this
 #+END_SRC
 ** Org-mode
 #+BEGIN_SRC emacs-lisp
@@ -627,3 +633,4 @@ Emacs is so extensible that you can use it as a X window manager using =exwm= pa
      ("C-x /" . 'exwm-input-toggle-keyboard)))
 
 #+END_SRC
+
