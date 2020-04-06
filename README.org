@@ -79,12 +79,6 @@ we delete the file on =Emacs= shutting down.
         (delete-file configs))))
   :hook (kill-emacs . amirreza/delete-this-file))
 #+END_SRC
-** Configure =modeline= lighters
-#+BEGIN_SRC emacs-lisp
-  (use-package delight
-    :ensure t)
-
-#+END_SRC
 ** Disable GUI shits
 Emacs GUI starts up with a =menu-bar=, =tool-bar= and =scroll-bar= which I think literally 
 nobody is using.
@@ -153,13 +147,12 @@ Ido mode is a built-in completion and narrowing framework for Emacs.
     (setq ido-enable-flex-matching t))
 
   (use-package ido-vertical-mode
-
+    :disabled t
     :config
     (ido-vertical-mode 1)
     (setq ido-vertical-define-keys 'C-n-and-C-p-only))
 
   (use-package ido-completing-read+
-
     :config
     (ido-ubiquitous-mode 1))
 #+END_SRC
@@ -213,8 +206,7 @@ a =C-s= replacement tool call swiper.
 
 * Improve general editor experience
 ** Buffer switching (ibuffer)
-while =ivy= provides =switch-buffer= replacement for default Emacs =switch-to-buffer=, but it does
-not provide any replacement for Emacs built-in funtion called =list-buffers=, luckily Emacs now ships
+Emacs built-in funtion called =list-buffers= is not that much productive, luckily Emacs now ships
 with =Ibuffer= package which is an interactive way to manage you buffers and provide a =magit= 
 like user-interface.
 #+BEGIN_SRC emacs-lisp
@@ -268,7 +260,8 @@ of where I am in the data tree.
 ** Ace window
 #+BEGIN_SRC emacs-lisp
   (use-package ace-window
-    :bind (("M-o" . 'ace-window)))
+    :bind (("C-x o" . 'ace-window) 
+	   ("C-x C-o" . 'ace-window)))
 #+END_SRC
 ** Header for new files
 Emacs comes with a package called =auto-insert= which inserts headers for new files when you
