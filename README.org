@@ -149,8 +149,8 @@ Ido mode is a built-in completion and narrowing framework for Emacs.
   (use-package ido-at-point
      :config
      (ido-at-point-mode 1)
-     (global-set-key (kbd "M-/") 'completion-at-point))
-   
+     (global-set-key (kbd "M-;") 'completion-at-point))
+
   (use-package ido-vertical-mode
     :disabled t
     :config
