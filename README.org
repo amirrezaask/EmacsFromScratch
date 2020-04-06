@@ -146,6 +146,11 @@ Ido mode is a built-in completion and narrowing framework for Emacs.
     (ido-everywhere 1)
     (setq ido-enable-flex-matching t))
 
+  (use-package ido-at-point
+     :config
+     (ido-at-point-mode 1)
+     (global-set-key (kbd "M-/") 'completion-at-point))
+   
   (use-package ido-vertical-mode
     :disabled t
     :config
@@ -213,6 +218,10 @@ like user-interface.
   (use-package ibuffer
     :bind (("C-x C-b" . 'ibuffer)))
 #+END_SRC
+** iedit
+#+BEGIN_SRC emacs-lisp
+(use-package iedit)
+#+END_SRC
 ** Line numbers
 =Emacs= has the minor mode for showing line numbers but it is not enabled by default so let's enable
 it to show line numbers every where.
@@ -239,7 +248,11 @@ It distracts my eyes.
 ** Multiple cursors support
 I'm not a fan of multiple cursors myself but sometimes they are the simplest way possible.
 #+BEGIN_SRC emacs-lisp
-(use-package multiple-cursors)
+  (use-package multiple-cursors
+    :bind (("C->" . 'mc/mark-next-like-this)
+	   ("C-<" . 'mc/mark-previous-like-this)
+	   ("C-c C-<" . 'mc/mark-all-like-this)
+	   ("C-M-," . 'mc/edit-lines)))
 #+END_SRC
 ** Improve Scrolling Experience
 #+BEGIN_SRC emacs-lisp
