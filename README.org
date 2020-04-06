@@ -409,20 +409,27 @@ for almost all languages.
 =magit= is the git wrapper I have seen out then, I have seen =vim-fugitive=, Jetbrains
 IDEs git plugin, VSCode git plugin + gitlens, but still =magit= is the best.
 #+BEGIN_SRC emacs-lisp
-(use-package magit
-  :commands (magit-status)
-  :bind
-  (("C-x g" . 'magit-status)))
+  (use-package magit
+    :commands (magit-status)
+    :bind
+    (("C-x g" . 'magit-status)))
 
-(use-package diff-hl :config (global-diff-hl-mode 1))
+  (use-package diff-hl :config (global-diff-hl-mode 1))
 
-(use-package gitconfig-mode :mode "/\\.gitconfig\\'")
+  (use-package gitconfig-mode :mode "/\\.gitconfig\\'")
 
-(use-package gitignore-mode
-  :mode "/\\.gitignore\\'")
+  (use-package gitignore-mode
+    :mode "/\\.gitignore\\'")
 
-(use-package gitattributes-mode
-  :mode "/\\.gitattributes\\'")
+  (use-package gitattributes-mode
+    :mode "/\\.gitattributes\\'")
+
+  (use-package git-messenger
+    :bind
+    (("C-M-c" . 'git-messenger:popup-message))
+    :config
+    (setq git-messenger:show-detail t)
+    (setq git-messenger:use-magit-popup t))
 
 #+END_SRC
 ** Programming Languages
