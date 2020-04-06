@@ -336,7 +336,7 @@ Let's install some themes :) and ofcourse use one of them.
   (use-package badwolf-theme :defer t)
   (use-package modus-operandi-theme :defer t) ;; light version of modus theme
   (use-package modus-vivendi-theme :defer t) ;; dark version of modus theme
-  (load-theme 'modus-vivendi t)
+  (load-theme 'doom-one t)
 #+END_SRC
 ** Icons
 #+BEGIN_SRC emacs-lisp
@@ -392,7 +392,7 @@ for almost all languages.
 [[https://github.com/emacs-lsp/lsp-mode#supported-languages]]
 #+BEGIN_SRC emacs-lisp
   (use-package lsp-mode
-    :hook (prog-mode)
+    :hook ((prog-mode) . lsp)
     :commands
     (lsp))
 
@@ -420,8 +420,8 @@ for almost all languages.
     (dumb-jump-mode 1))
 #+END_SRC
 ** Git
-=magit= is the git wrapper I have seen out then, I have seen =vim-fugitive=, Jetbrains
-IDEs git plugin, VSCode git plugin + gitlens, but still =magit= is the best.
+=magit= is the git wrapper I have seen out then, I have seen =vim-fugitive=, =Jetbrains
+IDEA=, =VSCode+Gitlens=, but still =magit= is the best.
 #+BEGIN_SRC emacs-lisp
   (use-package magit
     :commands (magit-status)
@@ -514,8 +514,7 @@ Support for every programming language I have ever used.
 
   (use-package python-mode
     :config
-    (setq python-shell-interpreter "python")
-    (setq flycheck-python-pycompile-executable "python3")
+    (eldoc-mode 0) ; for some reason eldoc doesn't work
     :mode "\\.py\\'")
 
   (use-package pipenv
@@ -610,7 +609,6 @@ Support for every programming language I have ever used.
 
 
 #+END_SRC
-** 
 * Operations Environment
 Recently I started using Emacs for opertion tasks.
 #+BEGIN_SRC emacs-lisp
