@@ -109,7 +109,6 @@ almost all the time.
 #+BEGIN_SRC emacs-lisp
   (defun amirreza/font (font size)
     (add-to-list 'default-frame-alist (cons 'font (format "%s-%d" font size))))
-
 (amirreza/font "Jetbrains Mono" 12)
 #+END_SRC
 
@@ -332,12 +331,12 @@ such a simple program, while some language servers are not ready for big project
 ** Themes
 Let's install some themes :) and ofcourse use one of them.
 #+BEGIN_SRC emacs-lisp
-(use-package doom-themes :defer t)
-(use-package spacemacs-theme :defer t)
-(use-package badwolf-theme :defer t)
-(use-package modus-operandi-theme :defer t)
-(use-package modus-vivendi-theme :defer t)
-(load-theme 'modus-vivendi t)
+  (use-package doom-themes :defer t)
+  (use-package spacemacs-theme :defer t)
+  (use-package badwolf-theme :defer t)
+  (use-package modus-operandi-theme :defer t) ;; light version of modus theme
+  (use-package modus-vivendi-theme :defer t) ;; dark version of modus theme
+  (load-theme 'modus-vivendi t)
 #+END_SRC
 ** Icons
 #+BEGIN_SRC emacs-lisp
@@ -346,6 +345,13 @@ Let's install some themes :) and ofcourse use one of them.
   :init
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 #+END_SRC
+** Modeline
+#+BEGIN_SRC emacs-lisp
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
+(setq doom-modeline-height 35)
+#+END_SRC
 * Development Environment
 ** Syntax checker and linter
 Syntax checking in my Emacs happens with the help of =Flycheck=, which does the linting
@@ -353,6 +359,8 @@ and shows warnings or errors about the code and major modes can hook into it and
 language specific comments. I enable flycheck for all programming languages using =prog-mode=
 hook which basically covers all programming major modes.
 #+BEGIN_SRC emacs-lisp
+(add-hook 'prog-mode-hook (lambda () (flymake-mode 0)))
+
 (use-package flycheck :hook (prog-mode . flycheck-mode))
 #+END_SRC
 ** Code Completion
@@ -373,7 +381,7 @@ one.
 
 #+END_SRC
 
-*** Language Server Protocol
+** Language Server Protocol
 =Company= gives us the infrastructre that we need for code completion but we need
 backends to feed it the completion candidates. There are specific backends for almost 
 all languages but I use LSP for everything, =LSP= or =LanguageServerProtocol= is a protocol
@@ -384,9 +392,9 @@ for almost all languages.
 [[https://github.com/emacs-lsp/lsp-mode#supported-languages]]
 #+BEGIN_SRC emacs-lisp
   (use-package lsp-mode
-    :hook
-    ((go-mode python-mode php-mode clojure-mode elixir-mode haskell-mode csharp-mode fsharp-mode)
-   . #'lsp-deferred))
+    :hook (prog-mode)
+    :commands
+    (lsp))
 
   (use-package lsp-treemacs
     :commands (lsp-treemacs-errors-list))
@@ -441,163 +449,168 @@ IDEs git plugin, VSCode git plugin + gitlens, but still =magit= is the best.
 ** Programming Languages
 Support for every programming language I have ever used.
 #+BEGIN_SRC emacs-lisp
-(use-package cquery :defer t)
+  (use-package cquery :defer t)
 
-(use-package mips-mode :defer t)
+  (use-package mips-mode :defer t)
 
-(use-package fsharp-mode :mode "\\.fs\\'")
+  (use-package fsharp-mode :mode "\\.fs\\'")
 
-(use-package csharp-mode :mode "\\.cs\\'")
+  (use-package csharp-mode :mode "\\.cs\\'")
 
-(use-package nasm-mode :defer t)
+  (use-package nasm-mode :defer t)
 
-(use-package haxor-mode :mode "\\.hax\\'")
+  (use-package haxor-mode :mode "\\.hax\\'")
 
-(use-package json-mode
-  :mode "\\.json\\'"
-  :config
-  (add-hook 'before-save-hook 'json-mode-beautify))
+  (use-package json-mode
+    :mode "\\.json\\'"
+    :config
+    (add-hook 'before-save-hook 'json-mode-beautify))
 
-(use-package yaml-mode
-  :mode
-  "\\.ya?ml\\'")
+  (use-package yaml-mode
+    :mode
+    "\\.ya?ml\\'")
 
-(use-package toml-mode
-  :mode "\\.toml\\'")
+  (use-package toml-mode
+    :mode "\\.toml\\'")
 
-(use-package csv-mode
-  :mode "\\.csv\\'")
+  (use-package csv-mode
+    :mode "\\.csv\\'")
 
-(use-package protobuf-mode
-  :mode "\\.proto\\'")
-
-
-(use-package markdown-mode
-  :mode "\\.md\\'")
+  (use-package protobuf-mode
+    :mode "\\.proto\\'")
 
 
-(use-package go-mode
-  :mode "\\.go\\'"
-  :init
-  (add-hook 'go-mode-hook (lambda () (add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))))
-  :config
-  (add-hook 'before-save-hook 'gofmt-before-save)
-  (add-hook 'before-save-hook 'go-import-add)
-  (add-hook 'before-save-hook 'go-remove-unused-import)
-  (add-hook 'before-save-hook #'lsp-format-buffer t t)
-  (add-hook 'before-save-hook #'lsp-organize-imports t t))
-
-(use-package go-add-tags :defer t)
-
-(use-package gotest :defer t)
+  (use-package markdown-mode
+    :mode "\\.md\\'")
 
 
-(use-package haskell-mode
-  :mode "\\.hs\\'")
+  (use-package go-mode
+    :mode "\\.go\\'"
+    :init
+    (add-hook 'go-mode-hook (lambda () (add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))))
+    :config
+    (add-hook 'before-save-hook 'gofmt-before-save)
+    (add-hook 'before-save-hook 'go-import-add)
+    (add-hook 'before-save-hook 'go-remove-unused-import)
+    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t))
 
-(use-package lsp-haskell
-  :hook haskell-mode)
+  (use-package go-add-tags :defer t)
 
-(use-package scala-mode
-  :mode "\\.scala\\'")
-
-(use-package sbt-mode
-  :hook scala-mode)
-
-(use-package python-mode
-  :mode "\\.py\\'")
-
-
-(use-package lsp-python-ms
-  :hook (python-mode))
+  (use-package gotest :defer t)
 
 
-(use-package py-autopep8
-  :hook python-mode)
+  (use-package haskell-mode
+    :mode "\\.hs\\'")
 
-(use-package jinja2-mode
-  :mode "\\.j2$")
+  (use-package lsp-haskell
+    :hook haskell-mode)
 
-(use-package elixir-mode
-  :mode "\\.ex\\'")
+  (use-package scala-mode
+    :mode "\\.scala\\'")
 
-(use-package alchemist
-  :defer t)
+  (use-package sbt-mode
+    :hook scala-mode)
 
-(use-package rust-mode
-  :mode "\\.rs\\'")
+  (use-package python-mode
+    :config
+    (setq python-shell-interpreter "python")
+    (setq flycheck-python-pycompile-executable "python3")
+    :mode "\\.py\\'")
 
-(use-package flycheck-rust
- :mode "\\.rs\\'"
- :init (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
- :hook rust-mode)
+  (use-package pipenv
+    :defer t)
 
-(use-package cargo
-  :mode "\\.rs\\'"
-  :init (add-hook 'rust-mode-hook #'cargo-minor-mode))
+  (use-package lsp-python-ms
+    :defer t)
+
+  (use-package py-autopep8
+    :hook python-mode)
+
+  (use-package jinja2-mode
+    :mode "\\.j2$")
+
+  (use-package elixir-mode
+    :mode "\\.ex\\'")
+
+  (use-package alchemist
+    :defer t)
+
+  (use-package rust-mode
+    :mode "\\.rs\\'")
+
+  (use-package flycheck-rust
+   :mode "\\.rs\\'"
+   :init (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+   :hook rust-mode)
+
+  (use-package cargo
+    :mode "\\.rs\\'"
+    :init (add-hook 'rust-mode-hook #'cargo-minor-mode))
 
 
-(use-package paredit
- :hook ((emacs-lisp-mode clojure-mode) . paredit-mode))
+  (use-package paredit
+   :hook ((emacs-lisp-mode clojure-mode) . paredit-mode))
 
 
-(use-package parinfer
-  :hook ((emacs-lisp-mode clojure-mode) . parinfer-mode))
+  (use-package parinfer
+    :hook ((emacs-lisp-mode clojure-mode) . parinfer-mode))
 
-(use-package rainbow-delimiters
-  :hook ((prog-mode) . rainbow-delimiters-mode))
+  (use-package rainbow-delimiters
+    :hook ((prog-mode) . rainbow-delimiters-mode))
 
-(use-package clojure-mode
-  :mode "\\.cljs?\\'")
+  (use-package clojure-mode
+    :mode "\\.cljs?\\'")
 
-(use-package cider
-  :mode "\\.cljs?\\'"
-  :bind (:map cider-mode-map
-	      ("C-x C-e" . 'cider-eval-last-sexp)))
+  (use-package cider
+    :mode "\\.cljs?\\'"
+    :bind (:map cider-mode-map
+		("C-x C-e" . 'cider-eval-last-sexp)))
 
-(use-package lua-mode
-  :mode "\\.lua\\'")
+  (use-package lua-mode
+    :mode "\\.lua\\'")
 
-(use-package php-mode
-  :mode "\\.php\\'")
+  (use-package php-mode
+    :mode "\\.php\\'")
 
-(use-package phpunit
-  :bind
-  (("C-c C-t t" . phpunit-current-test)
-   ("C-c C-t c" . phpunit-current-class)
-   ("C-c C-t p" . phpunit-current-project)))
+  (use-package phpunit
+    :bind
+    (("C-c C-t t" . phpunit-current-test)
+     ("C-c C-t c" . phpunit-current-class)
+     ("C-c C-t p" . phpunit-current-project)))
 
-(use-package js2-mode
-  :hook js-mode)
+  (use-package js2-mode
+    :hook js-mode)
 
-(use-package tide
-  :mode "\\.ts\\'")
+  (use-package tide
+    :mode "\\.ts\\'")
 
-(use-package web-mode
-  :mode ("\\.html\\'" "\\.css\\'"))
+  (use-package web-mode
+    :mode ("\\.html\\'" "\\.css\\'"))
 
-(use-package dockerfile-mode
-  :mode "Dockerfile")
+  (use-package dockerfile-mode
+    :mode "Dockerfile")
 
-(use-package groovy-mode
-  :mode ("\\.gradle\\'" "\\.groovy\\'"))
+  (use-package groovy-mode
+    :mode ("\\.gradle\\'" "\\.groovy\\'"))
 
-(use-package gradle-mode
-  :mode "\\.gradle\\'")
+  (use-package gradle-mode
+    :mode "\\.gradle\\'")
 
-(add-hook 'java-mode-hook (lambda ()
-			    (c-set-offset 'arglist-intro '+)
-			    (setq java-basic-offset 2)
-			    (setq c-basic-offset 2)))
+  (add-hook 'java-mode-hook (lambda ()
+			      (c-set-offset 'arglist-intro '+)
+			      (setq java-basic-offset 2)
+			      (setq c-basic-offset 2)))
 
-(use-package lsp-java
-  :hook (java-mode))
+  (use-package lsp-java
+    :hook (java-mode))
 
-(use-package racket-mode
-  :mode "\\.rkt\\'")
+  (use-package racket-mode
+    :mode "\\.rkt\\'")
 
 
 #+END_SRC
+** 
 * Operations Environment
 Recently I started using Emacs for opertion tasks.
 #+BEGIN_SRC emacs-lisp
