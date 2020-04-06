@@ -132,13 +132,16 @@ is kind of annoying.
 * Completion and narrowing framework
 ** Icomplete
 =Icomplete= is probably the oldest completion framework out there, it was first released in the 90s and out of the box it can not compete with other options like =Ido= or third 
-party ones like =Ivy= or =Helm=.
+party ones like =Ivy= or =Helm=. To get the best possible result from =Icomplete= we need to customize the =minibuffer= as well.
 #+BEGIN_SRC emacs-lisp
+  ;; (eval-and-compile 'minibuffer
+  ;;       (setq completion-casere-case t)
+  ;;       (setq completion-styles '(flex))) ;; emacs 27 only
+
   (use-package icomplete
     :disabled t
     :config
-    (icomplete-mode 1)
-    (setq icomplete-separator "\n"))
+    (icomplete-mode 1))
 #+END_SRC
 ** Ido
 Ido mode is a built-in completion and narrowing framework for Emacs.
@@ -150,11 +153,13 @@ Ido mode is a built-in completion and narrowing framework for Emacs.
     (setq ido-enable-flex-matching t))
 
   (use-package ido-vertical-mode
+
     :config
     (ido-vertical-mode 1)
     (setq ido-vertical-define-keys 'C-n-and-C-p-only))
 
   (use-package ido-completing-read+
+
     :config
     (ido-ubiquitous-mode 1))
 #+END_SRC
@@ -263,7 +268,7 @@ of where I am in the data tree.
 ** Ace window
 #+BEGIN_SRC emacs-lisp
   (use-package ace-window
-    :bind (("C-x o" . 'ace-window)))
+    :bind (("M-o" . 'ace-window)))
 #+END_SRC
 ** Header for new files
 Emacs comes with a package called =auto-insert= which inserts headers for new files when you
