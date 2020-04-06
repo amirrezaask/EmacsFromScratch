@@ -364,6 +364,7 @@ one.
   (setq company-idle-delay .1)
   (setq company-echo-delay 0)
   (add-to-list 'company-backends '(company-capf company-dabbrev)))
+
 #+END_SRC
 
 *** Language Server Protocol
@@ -394,6 +395,15 @@ for almost all languages.
     :commands (company-lsp))
 
 
+#+END_SRC
+** Jumping to defenition
+#+BEGIN_SRC emacs-lisp
+  (use-package dumb-jump
+    :bind
+    (("C-M-j" . 'dumb-jump-go)
+     ("C-M-p" . 'dumb-jump-back))
+    :config
+    (dumb-jump-mode 1))
 #+END_SRC
 ** Git
 =magit= is the git wrapper I have seen out then, I have seen =vim-fugitive=, Jetbrains
