@@ -7,38 +7,6 @@ This makes the end product much better for end users, than a terse script.
 This document is created using =Org-mode= which now ships with =Emacs= as a built-in mode.
 
 * Basic setup
-** Tweak GC
-#+BEGIN_SRC emacs-lisp
-  (setq gc-cons-threshold most-positive-fixnum; 2^61 bytes
-	gc-cons-percentage 0.6)
-
-  (add-hook 'emacs-startup-hook
-	    (lambda ()
-	      (setq gc-cons-threshold 16777216 ; 16mb
-		    gc-cons-percentage 0.1)))
-  (defun defer-garbage-collection-h ()
-    (setq gc-cons-threshold 16777216))
-
-
-  (defun restore-garbage-collection-h ()
-    (run-at-time
-     1 nil (lambda () (setq gc-cons-threshold most-positive-fixnum))))
-
-  (add-hook 'minibuffer-setup-hook #'defer-garbage-collection-h)
-  (add-hook 'minibuffer-exit-hook #'restore-garbage-collection-h)
-#+END_SRC
-** Empty file handlers variable at startup
-#+BEGIN_SRC emacs-lisp
-(defvar --file-name-handler-alist file-name-handler-alist)
-(setq file-name-handler-alist nil)
-(add-hook 'emacs-startup-hook
-	  (lambda ()
-	    (setq file-name-handler-alist --file-name-handler-alist)))
-#+END_SRC
-** Start in fundamental mode
-#+BEGIN_SRC emacs-lisp
-(setq initial-major-mode 'fundamental-mode)
-#+END_SRC
 ** Package manager setup
 #+BEGIN_SRC emacs-lisp
 (require 'package)
@@ -63,6 +31,26 @@ This document is created using =Org-mode= which now ships with =Emacs= as a buil
 (eval-when-compile
   (require 'use-package))
 
+#+END_SRC
+** Tweak GC
+#+BEGIN_SRC emacs-lisp
+  (use-package gcmh
+    :config
+    (setq gcmh-idle-delay 10
+	  gcmh-high-cons-threshold 16777216
+	  gc-cons-percentage 0.1))
+#+END_SRC
+** Empty file handlers variable at startup
+#+BEGIN_SRC emacs-lisp
+(defvar --file-name-handler-alist file-name-handler-alist)
+(setq file-name-handler-alist nil)
+(add-hook 'emacs-startup-hook
+	  (lambda ()
+	    (setq file-name-handler-alist --file-name-handler-alist)))
+#+END_SRC
+** Start in fundamental mode
+#+BEGIN_SRC emacs-lisp
+(setq initial-major-mode 'fundamental-mode)
 #+END_SRC
 ** Always rebuild
 When =Emacs= wants to evaluate an =Org= file it creates a corresponding document with the same
@@ -146,12 +134,13 @@ Ido mode is a built-in completion and narrowing framework for Emacs.
     (setq ido-enable-flex-matching t))
 
   (use-package ido-at-point
+    :disabled t
      :config
      (ido-at-point-mode 1)
      (global-set-key (kbd "M-;") 'completion-at-point))
 
   (use-package ido-vertical-mode
-    :disabled t
+
     :config
     (ido-vertical-mode 1)
     (setq ido-vertical-define-keys 'C-n-and-C-p-only))
@@ -171,12 +160,13 @@ a =C-s= replacement tool call swiper.
 
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
-  :disabled
+    :disabled t
     :bind
     (("C-x b" . 'ivy-switch-buffer)))
 
   (use-package ivy-posframe
-  :disabled
+    :disabled t
+
     :config
     (setq ivy-posframe-height-alist
 	  '((swiper . 15)
@@ -189,12 +179,14 @@ a =C-s= replacement tool call swiper.
     (ivy-posframe-mode 1))
 
   (use-package swiper
-  :disabled
+    :disabled t
+
     :commands (swiper)
     :init (global-set-key (kbd "C-s") 'swiper))
 
   (use-package counsel
-  :disabled
+    :disabled t
+
     :commands (counsel-M-x counsel-find-file ivy-switch-buffer)
     :bind
     (("M-x" . 'counsel-M-x)
@@ -336,7 +328,8 @@ Let's install some themes :) and ofcourse use one of them.
   (use-package badwolf-theme :defer t)
   (use-package modus-operandi-theme :defer t) ;; light version of modus theme
   (use-package modus-vivendi-theme :defer t) ;; dark version of modus theme
-  (load-theme 'doom-one t)
+  (load-theme 'doom-dracula t)
+
 #+END_SRC
 ** Icons
 #+BEGIN_SRC emacs-lisp
