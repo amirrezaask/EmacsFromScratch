@@ -125,6 +125,10 @@ is kind of annoying.
 #+BEGIN_SRC emacs-lisp
 (defalias 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
+** Use PATH from OS
+#+BEGIN_SRC emacs-lisp
+(use-package exec-path-from-shell :config (exec-path-from-shell-initialize))
+#+END_SRC
 * Completion and narrowing framework
 When using =Emacs= a task you probably do a thousand times is to find something in =minibuffer= 
 out of multiple choices that you have, basic =Emacs= is not that productive because of that there
@@ -229,6 +233,19 @@ without =grep=.
   :config
   (rg-enable-default-bindings))
 #+END_SRC
+** Tags
+If you are familiar with =ctags= you know how much power lies behind
+such a simple program, while some language servers are not ready for big projects
+(talking to you gopls) I am going to have ctags feature in my Emacs.
+#+BEGIN_SRC emacs-lisp
+  (defun update-ctags ()
+    "Update Ctags file in current directory."
+    (interactive)
+    (cd default-directory)
+    (start-process "ctags" "*CTAGS*" "ctags" "-eR" "."))
+(global-set-key (kbd "C-x C-r") 'update-ctags)
+
+#+END_SRC
 ** FZF (fuzzy-file-finder)
 #+BEGIN_SRC emacs-lisp
   (use-package fzf
@@ -241,7 +258,7 @@ Let's install some themes :) and ofcourse use one of them.
 (use-package doom-themes :defer t)
 (use-package spacemacs-theme :defer t)
 (use-package badwolf-theme :defer t)
-(load-theme 'doom-one t)
+(load-theme 'doom-dracula t)
 #+END_SRC
 ** Icons
 #+BEGIN_SRC emacs-lisp
