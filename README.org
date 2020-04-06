@@ -249,6 +249,14 @@ I'm not a fan of multiple cursors myself but sometimes they are the simplest way
 	   ("C-c C-<" . 'mc/mark-all-like-this)
 	   ("C-M-," . 'mc/edit-lines)))
 #+END_SRC
+** expand region
+expand region is package that helps you expand/ a selected text region based
+on semantics.
+#+BEGIN_SRC emacs-lisp
+  (use-package expand-region
+    :bind (("C-=" . 'er/expand-region)
+	   ("C--" . 'er/contract-region)))
+#+END_SRC
 ** Improve Scrolling Experience
 #+BEGIN_SRC emacs-lisp
 (setq jit-lock-defer-time 0.05)
