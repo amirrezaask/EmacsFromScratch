@@ -130,6 +130,35 @@ is kind of annoying.
 (use-package exec-path-from-shell :config (exec-path-from-shell-initialize))
 #+END_SRC
 * Completion and narrowing framework
+** Icomplete
+=Icomplete= is probably the oldest completion framework out there, it was first released in the 90s and out of the box it can not compete with other options like =Ido= or third 
+party ones like =Ivy= or =Helm=.
+#+BEGIN_SRC emacs-lisp
+  (use-package icomplete
+    :disabled t
+    :config
+    (icomplete-mode 1)
+    (setq icomplete-separator "\n"))
+#+END_SRC
+** Ido
+Ido mode is a built-in completion and narrowing framework for Emacs.
+#+BEGIN_SRC emacs-lisp
+  (use-package ido
+    :config
+    (ido-mode 1)
+    (ido-everywhere 1)
+    (setq ido-enable-flex-matching t))
+
+  (use-package ido-vertical-mode
+    :config
+    (ido-vertical-mode 1)
+    (setq ido-vertical-define-keys 'C-n-and-C-p-only))
+
+  (use-package ido-completing-read+
+    :config
+    (ido-ubiquitous-mode 1))
+#+END_SRC
+** Ivy
 When using =Emacs= a task you probably do a thousand times is to find something in =minibuffer= 
 out of multiple choices that you have, basic =Emacs= is not that productive because of that there
 are multiple packages in community that help you do these kind of tasks simpler, the one that I
@@ -137,29 +166,33 @@ use daily is called =ivy= which is basically a framework for narrowing down cand
 with a general frontend called =counsel= which provides replacement functions for default Emacs 
 functions like =find-file= and others you can see the ones I use in the code block below and
 a =C-s= replacement tool call swiper.
+
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
+  :disabled
     :bind
     (("C-x b" . 'ivy-switch-buffer)))
 
   (use-package ivy-posframe
+  :disabled
     :config
     (setq ivy-posframe-height-alist
 	  '((swiper . 15)
 	    (swiper-isearch . 15)
 	    (t . 10)))
     (setq ivy-posframe-display-functions-alist
-	  '((complete-symbol . ivy-posframe-display-at-point)
-	    (swiper . nil)
+	  '((swiper . nil)
 	    (swiper-isearch . nil)
 	    (t . ivy-posframe-display-at-frame-center)))
     (ivy-posframe-mode 1))
 
   (use-package swiper
+  :disabled
     :commands (swiper)
     :init (global-set-key (kbd "C-s") 'swiper))
 
   (use-package counsel
+  :disabled
     :commands (counsel-M-x counsel-find-file ivy-switch-buffer)
     :bind
     (("M-x" . 'counsel-M-x)
@@ -264,6 +297,16 @@ such a simple program, while some language servers are not ready for big project
   (use-package fzf
     :bind(("<f3>" . 'fzf)))
 #+END_SRC
+** Org-mode
+#+BEGIN_SRC emacs-lisp
+  (eval-and-compile 'org
+		    (require 'ox-md)
+		    (require 'ox-html))
+
+  (use-package org-bullets
+    :hook ((org-mode) . 'org-bullets-mode))
+
+#+END_SRC
 * Themes, Icons
 ** Themes
 Let's install some themes :) and ofcourse use one of them.
@@ -271,7 +314,9 @@ Let's install some themes :) and ofcourse use one of them.
 (use-package doom-themes :defer t)
 (use-package spacemacs-theme :defer t)
 (use-package badwolf-theme :defer t)
-(load-theme 'doom-dracula t)
+(use-package modus-operandi-theme :defer t)
+(use-package modus-vivendi-theme :defer t)
+(load-theme 'modus-vivendi t)
 #+END_SRC
 ** Icons
 #+BEGIN_SRC emacs-lisp
