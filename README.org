@@ -214,6 +214,13 @@ Ido mode is a built-in completion and narrowing framework for Emacs.
   (global-set-key (kbd "M-n") (lambda () (interactive) (next-line 5)))
   (global-set-key (kbd "M-p") (lambda () (interactive) (previous-line 5)))
 #+END_SRC
+** Neotree
+Neotree is the side file browser for Emacs.
+#+BEGIN_SRC emacs-lisp
+  (use-package neotree
+    :commands (neotree-toggle)
+    :bind (("<f8>" . neotree-toggle)))
+#+END_SRC
 ** Buffer switching (ibuffer)
 Emacs built-in funtion called =list-buffers= is not that much productive, luckily Emacs now ships
 with =Ibuffer= package which is an interactive way to manage you buffers and provide a =magit= 
