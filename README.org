@@ -207,7 +207,11 @@ Ido mode is a built-in completion and narrowing framework for Emacs.
   ;; sane zoom-in and zoom-out 
   (global-set-key (kbd "C-+") 'text-scale-increase)
   (global-set-key (kbd "C-_") 'text-scale-decrease)
-
+#+END_SRC
+** Custom motions
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "M-n") (lambda () (interactive) (next-line 5)))
+  (global-set-key (kbd "M-p") (lambda () (interactive) (previous-line 5)))
 #+END_SRC
 ** Buffer switching (ibuffer)
 Emacs built-in funtion called =list-buffers= is not that much productive, luckily Emacs now ships
@@ -228,20 +232,7 @@ like user-interface.
     :custom
     ;; Always delete and copy recursively
     (dired-recursive-deletes 'always)
-    (dired-recursive-copies 'always)
-    ;; Auto refresh Dired, but be quiet about it
-    (global-auto-revert-non-file-buffers t)
-    (auto-revert-verbose nil)
-    ;; Quickly copy/move file in Dired
-    (dired-dwim-target t)
-    ;; Move files to trash when deleting
-    (delete-by-moving-to-trash t)
-    ;; Load the newest version of a file
-    (load-prefer-newer t)
-    (global-auto-revert-mode 1)
-    (put 'dired-find-alternate-file 'disabled nil))
-  
-
+    (dired-recursive-copies 'always))
 #+END_SRC
 ** Winner mode
 #+BEGIN_SRC emacs-lisp
@@ -345,9 +336,10 @@ create them.
 #+END_SRC
 ** Ripgrep (Better faster grep)
 Emacs users always had the goal of living inside Emacs, and how you can live inside Emacs 
-without =grep=.
+without =grep=. I'm using counsel-projectile-rg instead of this but it's here for percaution.
 #+BEGIN_SRC emacs-lisp
-(use-package rg :commands (rg))
+  (use-package rg
+    :commands (rg))
 #+END_SRC
 ** cTags
 If you are familiar with =ctags= you know how much power lies behind
@@ -364,7 +356,7 @@ such a simple program, while some language servers are not ready for big project
 Fuzzy file search, but I use =counsel-fzf= since it has the best match for all of my workflow.
 #+BEGIN_SRC emacs-lisp
   (use-package fzf
-    :disabled t
+    :commands (fzf)
     :bind(("<f3>" . 'fzf)))
 #+END_SRC
 ** Sudo edit
