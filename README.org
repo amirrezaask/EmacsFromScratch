@@ -704,6 +704,22 @@ Recently I started using Emacs for opertion tasks.
     (add-hook 'yaml-mode-hook (lambda () (ansible))))
 
 #+END_SRC
+* Gnus setup
+Emacs =Gnus= basic setup for Gmail.
+#+BEGIN_SRC emacs-lisp
+  (setq user-mail-address "raskarpour@gmail.com"
+	user-full-name "amirrezaask")
+
+  (setq gnus-select-method
+	'(nnimap "gmail"
+		 (nnimap-address "imap.gmail.com")  ; it could also be imap.googlemail.com if that's your server.
+		 (nnimap-server-port "imaps")
+		 (nnimap-stream ssl)))
+  (setq smtpmail-smtp-server "smtp.gmail.com"
+	smtpmail-smtp-service 587
+	gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
+
+#+END_SRC
 * Window manager
 Emacs is so extensible that you can use it as a X window manager using =exwm= package which is a wrapper around =xeldb=.
 #+BEGIN_SRC emacs-lisp
