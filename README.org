@@ -159,9 +159,10 @@ a =C-s= replacement tool call swiper.
 =Icomplete= is probably the oldest completion framework out there, it was first released in the 90s and out of the box it can not compete with other options like =Ido= or third 
 party ones like =Ivy= or =Helm=. To get the best possible result from =Icomplete= we need to customize the =minibuffer= as well.
 #+BEGIN_SRC emacs-lisp
-  ;; (eval-and-compile 'minibuffer
-  ;;       (setq completion-casere-case t)
-  ;;       (setq completion-styles '(flex))) ;; emacs 27 only
+  (use-package minibuffer
+    :ensure nil
+    (setq completion-casere-case t)
+    (setq completion-styles '(flex))) ;; emacs 27 only
 
   (use-package icomplete
     :disabled t
