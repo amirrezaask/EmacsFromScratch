@@ -111,6 +111,50 @@ is kind of annoying.
 (use-package exec-path-from-shell :config (exec-path-from-shell-initialize))
 #+END_SRC
 * Completion and narrowing framework
+** Ivy
+When using =Emacs= a task you probably do a thousand times is to find something in =minibuffer= 
+out of multiple choices that you have, basic =Emacs= is not that productive because of that there
+are multiple packages in community that help you do these kind of tasks simpler, the one that I
+use daily is called =ivy= which is basically a framework for narrowing down candidates, but it comes
+with a general frontend called =counsel= which provides replacement functions for default Emacs 
+functions like =find-file= and others you can see the ones I use in the code block below and
+a =C-s= replacement tool call swiper.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ivy
+    :bind
+    (("C-x b" . 'ivy-switch-buffer)))
+
+  (use-package ivy-posframe
+    :disabled t
+    :config
+    (setq ivy-posframe-height-alist
+	  '((swiper . 15)
+	    (swiper-isearch . 15)
+	    (t . 10)))
+    (setq ivy-posframe-display-functions-alist
+	  '((swiper . nil)
+	    (swiper-isearch . nil)
+	    (t . ivy-posframe-display-at-frame-center)))
+    (ivy-posframe-mode 1))
+
+  (use-package swiper
+    :commands (swiper)
+    :init (global-set-key (kbd "C-s") 'swiper))
+
+  (use-package counsel
+    :commands (counsel-M-x counsel-find-file ivy-switch-buffer)
+    :bind
+    (("M-x" . 'counsel-M-x)
+     ("C-x C-f" . 'counsel-find-file)
+     ("C-h b" . 'counsel-descbinds)
+     ("C-h f" . 'counsel-describe-function)
+     ("C-h v" . 'counsel-describe-variable)
+     ("C-h a" . 'counsel-apropos)
+     ("<f4>"  . 'counsel-fzf)
+     ("M-y" . 'counsel-yank-pop)))
+
+#+END_SRC
 ** Icomplete
 =Icomplete= is probably the oldest completion framework out there, it was first released in the 90s and out of the box it can not compete with other options like =Ido= or third 
 party ones like =Ivy= or =Helm=. To get the best possible result from =Icomplete= we need to customize the =minibuffer= as well.
@@ -128,6 +172,7 @@ party ones like =Ivy= or =Helm=. To get the best possible result from =Icomplete
 Ido mode is a built-in completion and narrowing framework for Emacs.
 #+BEGIN_SRC emacs-lisp
   (use-package ido
+    :disabled t
     :config
     (ido-mode 1)
     (ido-everywhere 1)
@@ -140,66 +185,29 @@ Ido mode is a built-in completion and narrowing framework for Emacs.
      (global-set-key (kbd "M-;") 'completion-at-point))
 
   (use-package ido-vertical-mode
-
+    :disabled t
     :config
     (ido-vertical-mode 1)
     (setq ido-vertical-define-keys 'C-n-and-C-p-only))
 
   (use-package ido-completing-read+
+    :disabled t
     :config
     (ido-ubiquitous-mode 1))
 #+END_SRC
-** Ivy
-When using =Emacs= a task you probably do a thousand times is to find something in =minibuffer= 
-out of multiple choices that you have, basic =Emacs= is not that productive because of that there
-are multiple packages in community that help you do these kind of tasks simpler, the one that I
-use daily is called =ivy= which is basically a framework for narrowing down candidates, but it comes
-with a general frontend called =counsel= which provides replacement functions for default Emacs 
-functions like =find-file= and others you can see the ones I use in the code block below and
-a =C-s= replacement tool call swiper.
-
+* Improve general editor experience
+** General keybindings
 #+BEGIN_SRC emacs-lisp
-  (use-package ivy
-    :disabled t
-    :bind
-    (("C-x b" . 'ivy-switch-buffer)))
+  ;; disabling some useless annoying keys
+  (global-set-key (kbd "C-z") nil)
+  (global-set-key (kbd "M-z") nil)
+  (global-set-key (kbd "C-x C-z") nil)
 
-  (use-package ivy-posframe
-    :disabled t
-
-    :config
-    (setq ivy-posframe-height-alist
-	  '((swiper . 15)
-	    (swiper-isearch . 15)
-	    (t . 10)))
-    (setq ivy-posframe-display-functions-alist
-	  '((swiper . nil)
-	    (swiper-isearch . nil)
-	    (t . ivy-posframe-display-at-frame-center)))
-    (ivy-posframe-mode 1))
-
-  (use-package swiper
-    :disabled t
-
-    :commands (swiper)
-    :init (global-set-key (kbd "C-s") 'swiper))
-
-  (use-package counsel
-    :disabled t
-
-    :commands (counsel-M-x counsel-find-file ivy-switch-buffer)
-    :bind
-    (("M-x" . 'counsel-M-x)
-     ("C-x C-f" . 'counsel-find-file)
-     ("C-h b" . 'counsel-descbinds)
-     ("C-h f" . 'counsel-describe-function)
-     ("C-h v" . 'counsel-describe-variable)
-     ("C-h a" . 'counsel-apropos)
-     ("<f2> " . 'counsel-ag)
-     ( "M-y" . 'counsel-yank-pop)))
+  ;; sane zoom-in and zoom-out 
+  (global-set-key (kbd "C-+") 'text-scale-increase)
+  (global-set-key (kbd "C-_") 'text-scale-decrease)
 
 #+END_SRC
-* Improve general editor experience
 ** Buffer switching (ibuffer)
 Emacs built-in funtion called =list-buffers= is not that much productive, luckily Emacs now ships
 with =Ibuffer= package which is an interactive way to manage you buffers and provide a =magit= 
@@ -207,11 +215,49 @@ like user-interface.
 #+BEGIN_SRC emacs-lisp
   (use-package ibuffer
     :bind (("C-x C-b" . 'ibuffer)))
+  (use-package ibuffer-vc :disabled t)
 #+END_SRC
-** iedit
+** Dired
+#+BEGIN_SRC emacs-lisp
+  (use-package dired
+    :ensure nil
+    :bind
+    (("C-x C-j" . dired-jump)
+     ("C-x j" . dired-jump-other-window))
+    :custom
+    ;; Always delete and copy recursively
+    (dired-recursive-deletes 'always)
+    (dired-recursive-copies 'always)
+    ;; Auto refresh Dired, but be quiet about it
+    (global-auto-revert-non-file-buffers t)
+    (auto-revert-verbose nil)
+    ;; Quickly copy/move file in Dired
+    (dired-dwim-target t)
+    ;; Move files to trash when deleting
+    (delete-by-moving-to-trash t)
+    ;; Load the newest version of a file
+    (load-prefer-newer t)
+    (global-auto-revert-mode 1)
+    (put 'dired-find-alternate-file 'disabled nil))
+  
+
+#+END_SRC
+** Winner mode
+#+BEGIN_SRC emacs-lisp
+  (use-package winner 
+    :ensure nil)
+#+END_SRC
+** IEdit
 #+BEGIN_SRC emacs-lisp
   (use-package iedit
     :bind (("C-;" . 'iedit-mode)))
+#+END_SRC
+** Crux
+Crux is a collection of useful emacs functions.
+#+BEGIN_SRC emacs-lisp
+  (use-package crux
+    :bind (("C-S-k" . 'crux-kill-whole-line)
+	   ("C-x K" . 'crux-kill-other-buffers)))
 #+END_SRC
 ** Line numbers
 =Emacs= has the minor mode for showing line numbers but it is not enabled by default so let's enable
@@ -249,7 +295,7 @@ I'm not a fan of multiple cursors myself but sometimes they are the simplest way
 	   ("C-c C-<" . 'mc/mark-all-like-this)
 	   ("C-M-," . 'mc/edit-lines)))
 #+END_SRC
-** expand region
+** Expand region
 expand region is package that helps you expand/ a selected text region based
 on semantics.
 #+BEGIN_SRC emacs-lisp
@@ -259,8 +305,19 @@ on semantics.
 #+END_SRC
 ** Improve Scrolling Experience
 #+BEGIN_SRC emacs-lisp
-(setq jit-lock-defer-time 0.05)
-(setq fast-but-imprecise-scrolling t)
+;; Vertical Scroll
+(setq scroll-step 1)
+(setq scroll-margin 1)
+(setq scroll-conservatively 101)
+(setq scroll-up-aggressively 0.01)
+(setq scroll-down-aggressively 0.01)
+(setq auto-window-vscroll nil)
+(setq fast-but-imprecise-scrolling nil)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+(setq mouse-wheel-progressive-speed nil)
+;; Horizontal Scroll
+(setq hscroll-step 1)
+(setq hscroll-margin 1)
 #+END_SRC
 ** Highlight Indents
 This is a must have for me when I'm reading/writing yaml files since I always lose track
@@ -285,15 +342,13 @@ create them.
 #+BEGIN_SRC emacs-lisp
 (auto-insert-mode 1)
 #+END_SRC
-** ripgrep (Better faster grep)
+** Ripgrep (Better faster grep)
 Emacs users always had the goal of living inside Emacs, and how you can live inside Emacs 
 without =grep=.
 #+BEGIN_SRC emacs-lisp
-(use-package rg
-  :config
-  (rg-enable-default-bindings))
+(use-package rg :commands (rg))
 #+END_SRC
-** Tags
+** cTags
 If you are familiar with =ctags= you know how much power lies behind
 such a simple program, while some language servers are not ready for big projects
 (talking to you gopls) I am going to have ctags feature in my Emacs.
@@ -303,19 +358,18 @@ such a simple program, while some language servers are not ready for big project
     (interactive)
     (cd default-directory)
     (start-process "ctags" "*CTAGS*" "ctags" "-eR" "."))
-(global-set-key (kbd "C-x C-r") 'update-ctags)
-
 #+END_SRC
 ** FZF (fuzzy-file-finder)
+Fuzzy file search, but I use =counsel-fzf= since it has the best match for all of my workflow.
 #+BEGIN_SRC emacs-lisp
   (use-package fzf
+    :disabled t
     :bind(("<f3>" . 'fzf)))
 #+END_SRC
-** Ag (SilverSearcher)
+** Sudo edit
 #+BEGIN_SRC emacs-lisp
-  (use-package ag
-    :bind
-    (("<f2>" . 'ag))) ; this will override 'counsel-ag, if using ivy disable this
+(use-package sudo-edit
+  :commands (sudo-edit))
 #+END_SRC
 ** Org-mode
 #+BEGIN_SRC emacs-lisp
@@ -356,6 +410,22 @@ Let's install some themes :) and ofcourse use one of them.
 (setq doom-modeline-height 35)
 #+END_SRC
 * Development Environment
+** Projectile
+#+BEGIN_SRC emacs-lisp
+  (use-package projectile
+    :bind
+    (("C-x p" . 'projectile-command-map)
+     ("C-c p" . 'projectile-add-known-project))
+    :custom
+    (projectile-completion-system 'ivy)
+    :config
+    (projectile-mode 1)
+    (add-to-list 'projectile-globally-ignored-directories "node_modules"))
+
+  (use-package counsel-projectile
+    :bind (("<f2>" . counsel-projectile-rg)))
+
+#+END_SRC
 ** Syntax checker and linter
 Syntax checking in my Emacs happens with the help of =Flycheck=, which does the linting
 and shows warnings or errors about the code and major modes can hook into it and provide
@@ -413,7 +483,7 @@ for almost all languages.
 
 
 #+END_SRC
-** Jumping to defenition
+** Dumb jump
 #+BEGIN_SRC emacs-lisp
   (use-package dumb-jump
     :bind
