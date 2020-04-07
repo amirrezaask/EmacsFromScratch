@@ -52,21 +52,7 @@ This document is created using =Org-mode= which now ships with =Emacs= as a buil
 #+BEGIN_SRC emacs-lisp
 (setq initial-major-mode 'fundamental-mode)
 #+END_SRC
-** Always rebuild
-When =Emacs= wants to evaluate an =Org= file it creates a corresponding document with the same
-name but different extension for example for this file it creates a =README.el= containing all 
-=elisp= codes together, so to make sure we always are using the latest version of our configurations
-we delete the file on =Emacs= shutting down.
-#+BEGIN_SRC emacs-lisp
-(use-package emacs
-  :config
-  (defun amirreza/delete-this-file ()
-    (interactive)
-    (let ((configs "~/.emacs.d/README.el"))
-      (when configs
-        (delete-file configs))))
-  :hook (kill-emacs . amirreza/delete-this-file))
-#+END_SRC
+
 ** Disable GUI shits
 Emacs GUI starts up with a =menu-bar=, =tool-bar= and =scroll-bar= which I think literally 
 nobody is using.
