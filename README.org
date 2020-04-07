@@ -146,9 +146,13 @@ one.
 #+BEGIN_SRC emacs-lisp
   (use-package company
     :config
-    (global-company-mode t))
-#+END_SRC
+    (global-company-mode 1)
+    (setq company-tooltip-limit 30)
+    (setq company-idle-delay .1)
+    (setq company-echo-delay 0)
+    (add-to-list 'company-backends '(company-capf company-dabbrev)))
 
+#+END_SRC
 ** Ivy
 When using =Emacs= a task you probably do a thousand times is to find something in =minibuffer= 
 out of multiple choices that you have, basic =Emacs= is not that productive because of that there
@@ -198,6 +202,7 @@ a =C-s= replacement tool call swiper.
 party ones like =Ivy= or =Helm=. To get the best possible result from =Icomplete= we need to customize the =minibuffer= as well.
 #+BEGIN_SRC emacs-lisp
   (use-package minibuffer
+    :disabled ;; somehow it screws company mode :)
     :ensure nil
     :config
     (setq completion-casere-case t)
