@@ -19,3 +19,5 @@ emojis
 custom.el
 .mc*
 elpy
+projectile-bookmarks.eld
+tramp
