@@ -161,6 +161,7 @@ party ones like =Ivy= or =Helm=. To get the best possible result from =Icomplete
 #+BEGIN_SRC emacs-lisp
   (use-package minibuffer
     :ensure nil
+    :config
     (setq completion-casere-case t)
     (setq completion-styles '(flex))) ;; emacs 27 only
 
@@ -398,7 +399,6 @@ Let's install some themes :) and ofcourse use one of them.
 ** Modeline
 #+BEGIN_SRC emacs-lisp
 (use-package doom-modeline
-  :ensure t
   :init (doom-modeline-mode 1))
 (setq doom-modeline-height 35)
 #+END_SRC
