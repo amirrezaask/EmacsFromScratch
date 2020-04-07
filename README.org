@@ -220,12 +220,13 @@ Ido mode is a built-in completion and narrowing framework for Emacs.
   (global-set-key (kbd "M-n") (lambda () (interactive) (next-line 5)))
   (global-set-key (kbd "M-p") (lambda () (interactive) (previous-line 5)))
 #+END_SRC
-** Neotree
-Neotree is the side file browser for Emacs.
+** Treemacs
+Modern tree file browser.
 #+BEGIN_SRC emacs-lisp
-  (use-package neotree
-    :commands (neotree-toggle)
-    :bind (("<f8>" . neotree-toggle)))
+  (use-package treemacs
+    :bind (("<f8>" . treemacs))) ;; toggles the treemacs
+  (use-package treemacs-projectile)
+  (use-package treemacs-magit)
 #+END_SRC
 ** Buffer switching (ibuffer)
 Emacs built-in funtion called =list-buffers= is not that much productive, luckily Emacs now ships
@@ -389,8 +390,7 @@ Fuzzy file search, but I use =counsel-fzf= since it has the best match for all o
   (use-package org-bullets
     :hook ((org-mode) . 'org-bullets-mode))
 
-  (use-package toc-org
-    :hook org-mode)
+  (use-package toc-org)
 #+END_SRC
 * Themes, Icons
 ** Themes
