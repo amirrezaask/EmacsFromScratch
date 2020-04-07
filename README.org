@@ -110,7 +110,45 @@ is kind of annoying.
 #+BEGIN_SRC emacs-lisp
 (use-package exec-path-from-shell :config (exec-path-from-shell-initialize))
 #+END_SRC
+* Themes, Icons
+** Themes
+Let's install some themes :) and ofcourse use one of them.
+#+BEGIN_SRC emacs-lisp
+  (use-package doom-themes :defer t)
+  (use-package spacemacs-theme :defer t)
+  (use-package badwolf-theme :defer t)
+  (use-package modus-operandi-theme :defer t) ;; light version of modus theme
+  (use-package modus-vivendi-theme :defer t) ;; dark version of modus theme
+  (load-theme 'doom-one t)
+
+#+END_SRC
+** Icons
+#+BEGIN_SRC emacs-lisp
+(use-package all-the-icons)
+(use-package all-the-icons-dired
+  :init
+  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+#+END_SRC
+** Modeline
+#+BEGIN_SRC emacs-lisp
+(use-package doom-modeline
+  :init (doom-modeline-mode 1))
+(setq doom-modeline-height 35)
+#+END_SRC
 * Completion and narrowing framework
+** Code Completion
+=Company-mode= in Emacs is the package I use to add code-completion to my Emacs.
+It's neat package with great architecture, basically =company= is made from two parts
+=company-backends= and =company-frontend=, =company-backends= are a list of backends 
+and backends are modules that can provide company with completion candidates and 
+=company-frontend= is how company shows those completions to me which I use the default
+one.
+#+BEGIN_SRC emacs-lisp
+  (use-package company
+    :config
+    (global-company-mode t))
+#+END_SRC
+
 ** Ivy
 When using =Emacs= a task you probably do a thousand times is to find something in =minibuffer= 
 out of multiple choices that you have, basic =Emacs= is not that productive because of that there
@@ -392,31 +430,6 @@ Fuzzy file search, but I use =counsel-fzf= since it has the best match for all o
 
   (use-package toc-org)
 #+END_SRC
-* Themes, Icons
-** Themes
-Let's install some themes :) and ofcourse use one of them.
-#+BEGIN_SRC emacs-lisp
-  (use-package doom-themes :defer t)
-  (use-package spacemacs-theme :defer t)
-  (use-package badwolf-theme :defer t)
-  (use-package modus-operandi-theme :defer t) ;; light version of modus theme
-  (use-package modus-vivendi-theme :defer t) ;; dark version of modus theme
-  (load-theme 'doom-one t)
-
-#+END_SRC
-** Icons
-#+BEGIN_SRC emacs-lisp
-(use-package all-the-icons)
-(use-package all-the-icons-dired
-  :init
-  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
-#+END_SRC
-** Modeline
-#+BEGIN_SRC emacs-lisp
-(use-package doom-modeline
-  :init (doom-modeline-mode 1))
-(setq doom-modeline-height 35)
-#+END_SRC
 * Development Environment
 ** Projectile
 #+BEGIN_SRC emacs-lisp
@@ -444,24 +457,6 @@ hook which basically covers all programming major modes.
 
 (use-package flycheck :hook (prog-mode . flycheck-mode))
 #+END_SRC
-** Code Completion
-=Company-mode= in Emacs is the package I use to add code-completion to my Emacs.
-It's neat package with great architecture, basically =company= is made from two parts
-=company-backends= and =company-frontend=, =company-backends= are a list of backends 
-and backends are modules that can provide company with completion candidates and 
-=company-frontend= is how company shows those completions to me which I use the default
-one.
-#+BEGIN_SRC emacs-lisp
-(use-package company
-  :config
-  (global-company-mode t)
-  (setq company-tooltip-limit 30)
-  (setq company-idle-delay .1)
-  (setq company-echo-delay 0)
-  (add-to-list 'company-backends '(company-capf company-dabbrev)))
-
-#+END_SRC
-
 ** Language Server Protocol
 =Company= gives us the infrastructre that we need for code completion but we need
 backends to feed it the completion candidates. There are specific backends for almost 
@@ -594,8 +589,6 @@ Support for every programming language I have ever used.
     :hook scala-mode)
 
   (use-package python-mode
-    :config
-    (eldoc-mode 0) ; for some reason eldoc doesn't work
     :mode "\\.py\\'")
 
   (use-package pipenv
