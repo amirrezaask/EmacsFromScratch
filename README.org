@@ -531,6 +531,7 @@ for almost all languages.
 
   ;; company backend to hook LSP to company
   (use-package company-lsp
+    :disabled t ;; `company-capf` does a better job, I keep this here for some time and then I will remove it.
     :config
     (setq company-lsp-cache-candidates 'auto)
     :commands (company-lsp))
