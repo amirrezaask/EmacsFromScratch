@@ -27,12 +27,10 @@
 
 (defvar init-timestamp (float-time) "Emacs initialize timestamp.")
 (defvar misc-path (expand-file-name ".misc" user-emacs-directory) "All misc files of various packages.")
-(defvar src-dir (expand-file-name "src" user-emacs-directory))
-(defvar modules-dir (expand-file-name "modules" src-dir))
+(defvar elisp-dir (expand-file-name "elisp" user-emacs-directory))
+(defvar modules-dir (expand-file-name "modules" elisp-dir))
 (defvar user-config-path (expand-file-name "~/.user-config.el"))
 (defvar amirreza/gc-cons-threshold 16777216)
-
-(add-to-list 'load-path src-dir)
 
 ;; --- -----------------------------
 ;; disable gui shits
@@ -52,7 +50,7 @@
 ;; ---------------------------------------------------------
 ;; Defer GC in startup
 (setq gc-cons-threshold most-positive-fixnum)
-gc-cons-percentage 0.6
+(setq gc-cons-percentage 0.6)
 
 (add-hook 'emacs-startup-hook
 	  (lambda ()
@@ -117,11 +115,13 @@ gc-cons-percentage 0.6
   (add-to-list 'load-path path)
   (let ((files (amirreza/all-el-files path)))
     (mapcar (lambda (file)
-	    (let ((module-name (intern(car (split-string file "\\.")))))
-	      (message "%s OK" module-name)
-	      (require module-name))) files)))
+	      (let ((module-name (intern(car (split-string file "\\.")))))
+		(message "%s OK" module-name)
+		(require module-name))) files)))
 
-(byte-recompile-directory modules-dir 0)
+(defun amirreza/compile-modules ()
+  (interactive)
+  (byte-recompile-directory modules-dir 0))
 
 
 (defun amirreza/load-user-config (path))

@@ -1,3 +1,3 @@
-(load-file (expand-file-name "src/bootstrap.el" user-emacs-directory))
+(load-file (expand-file-name "elisp/bootstrap.el" user-emacs-directory))
 
  
