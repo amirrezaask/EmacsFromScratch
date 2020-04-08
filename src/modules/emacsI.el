@@ -47,10 +47,12 @@
 
 
 (use-package crux
+  :config
+  (require 'crux)
   :bind (("C-S-k" . 'crux-kill-whole-line)
 	 ("C-x K" . 'crux-kill-other-buffers)))
 
-(setq backup-directory-alist '(("." . emacs-backup-directory)))
+(setq make-backup-files nil)
 
 (provide 'emacsI)
 ;;; emacsI.el ends here
