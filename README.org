@@ -7,38 +7,57 @@ This makes the end product much better for end users, than a terse script.
 This document is created using =Org-mode= which now ships with =Emacs= as a built-in mode.
 
 * Basic setup
+** Store timestamp
+#+BEGIN_SRC emacs-lisp
+(defvar init-timestamp (float-time))
+#+END_SRC
 ** Package manager setup
 #+BEGIN_SRC emacs-lisp
-(require 'package)
-
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
-
-;; Initialise the packages, avoiding a re-initialisation.
-(unless (bound-and-true-p package--initialized)
   (setq package-enable-at-startup nil)
-  (package-initialize))
-
+  (defvar bootstrap-version)
+  (let ((bootstrap-file
+	 (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+	(bootstrap-version 5))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+	  (url-retrieve-synchronously
+	   "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+	   'silent 'inhibit-cookies)
+	(goto-char (point-max))
+	(eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage))
+  (setq straight-use-package-by-default t)
 #+END_SRC
 ** Install use-package
 #+BEGIN_SRC emacs-lisp
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
-(setq use-package-always-ensure t)
-
-(eval-when-compile
-  (require 'use-package))
-
+(straight-use-package 'use-package)
 #+END_SRC
 ** Tweak GC
 #+BEGIN_SRC emacs-lisp
+  (defvar amirreza/gc-cons-threshold 16777216)
+  (setq gc-cons-threshold most-positive-fixnum
+	gc-cons-percentage 0.6)
+
+  (add-hook 'emacs-startup-hook
+	    (lambda ()
+	      (setq gc-cons-threshold amirreza/gc-cons-threshold)
+	      gc-cons-percentage 0.1))
+
+  (defun defer-garbage-collection-h ()
+    (setq gc-cons-threshold most-positive-fixnum))
+
+  (defun restore-garbage-collection-h ()
+    (run-at-time
+     1 nil (lambda () (setq gc-cons-threshold amirreza/gc-cons-threshold))))
+
+  (add-hook 'minibuffer-setup-hook #'defer-garbage-collection-h)
+  (add-hook 'minibuffer-exit-hook #'restore-garbage-collection-h)
+
   (use-package gcmh
     :config
     (setq gcmh-idle-delay 10
-	  gcmh-high-cons-threshold 16777216
-	  gc-cons-percentage 0.1))
+	  gcmh-high-cons-threshold amirreza/gc-cons-threshold
+ 	  gc-cons-percentage 0.1))
 #+END_SRC
 ** Empty file handlers variable at startup
 #+BEGIN_SRC emacs-lisp
@@ -122,7 +141,7 @@ Let's install some themes :) and ofcourse use one of them.
 (setq doom-modeline-height 35)
 #+END_SRC
 * Completion and narrowing framework
-** Code Completion
+** Code Completion (company)
 =Company-mode= in Emacs is the package I use to add code-completion to my Emacs.
 It's neat package with great architecture, basically =company= is made from two parts
 =company-backends= and =company-frontend=, =company-backends= are a list of backends 
@@ -236,14 +255,6 @@ Ido mode is a built-in completion and narrowing framework for Emacs.
   (global-set-key (kbd "M-n") (lambda () (interactive) (next-line 5)))
   (global-set-key (kbd "M-p") (lambda () (interactive) (previous-line 5)))
 #+END_SRC
-** Treemacs
-Modern tree file browser.
-#+BEGIN_SRC emacs-lisp
-  (use-package treemacs
-    :bind (("<f8>" . treemacs))) ;; toggles the treemacs
-  (use-package treemacs-projectile)
-  (use-package treemacs-magit)
-#+END_SRC
 ** Buffer switching (ibuffer)
 Emacs built-in funtion called =list-buffers= is not that much productive, luckily Emacs now ships
 with =Ibuffer= package which is an interactive way to manage you buffers and provide a =magit= 
@@ -257,6 +268,7 @@ like user-interface.
 #+BEGIN_SRC emacs-lisp
   (use-package dired
     :ensure nil
+    :straight nil
     :bind
     (("C-x C-j" . dired-jump)
      ("C-x j" . dired-jump-other-window))
@@ -268,7 +280,8 @@ like user-interface.
 ** Winner mode
 #+BEGIN_SRC emacs-lisp
   (use-package winner 
-    :ensure nil)
+    :ensure nil
+    :straight nil)
 #+END_SRC
 ** IEdit
 #+BEGIN_SRC emacs-lisp
@@ -313,6 +326,7 @@ It distracts my eyes.
 I'm not a fan of multiple cursors myself but sometimes they are the simplest way possible.
 #+BEGIN_SRC emacs-lisp
   (use-package multiple-cursors
+    :defer t
     :bind (("C->" . 'mc/mark-next-like-this)
 	   ("C-<" . 'mc/mark-previous-like-this)
 	   ("C-c C-<" . 'mc/mark-all-like-this)
@@ -399,14 +413,14 @@ Fuzzy file search, but I use =counsel-fzf= since it has the best match for all o
 #+END_SRC
 ** Org-mode
 #+BEGIN_SRC emacs-lisp
-  (use-package org
-    :config
-    (require 'ox-md)
-    (require 'ox-html)
-    (setq org-support-shift-select t))
+    (use-package org
+      :ensure nil
+      :straight nil
+      :custom
+      (org-support-shift-select t))
 
-  (use-package org-bullets
-    :hook ((org-mode) . 'org-bullets-mode))
+    (use-package org-bullets
+      :hook ((org-mode) . 'org-bullets-mode))
 #+END_SRC
 * Development Environment
 ** Projectile
@@ -503,7 +517,9 @@ IDEA=, =VSCode+Gitlens=, but still =magit= is the best.
 ** Programming Languages
 Support for every programming language I have ever used.
 #+BEGIN_SRC emacs-lisp
+  ;; C language server
   (use-package cquery :defer t)
+
 
   (use-package mips-mode :defer t)
 
@@ -536,7 +552,6 @@ Support for every programming language I have ever used.
 
   (use-package markdown-mode
     :mode "\\.md\\'")
-
 
   (use-package go-mode
     :mode "\\.go\\'"
@@ -599,9 +614,12 @@ Support for every programming language I have ever used.
     :mode "\\.rs\\'"
     :init (add-hook 'rust-mode-hook #'cargo-minor-mode))
 
+  ;; Common Lisp environment
+  (use-package sly
+    :hook lisp-mode)
 
   (use-package paredit
-   :hook ((emacs-lisp-mode clojure-mode) . paredit-mode))
+    :hook ((emacs-lisp-mode clojure-mode) . paredit-mode))
 
 
   (use-package parinfer
@@ -671,26 +689,27 @@ Recently I started using Emacs for opertion tasks.
   (use-package docker
     :bind
     ("C-c d" . docker))
-
-  (use-package ansible
-    :init
-    (add-hook 'yaml-mode-hook (lambda () (ansible))))
-
 #+END_SRC
 * Gnus setup
 Emacs =Gnus= basic setup for Gmail.
 #+BEGIN_SRC emacs-lisp
-  (setq user-mail-address "raskarpour@gmail.com"
-	user-full-name "amirrezaask")
-
-  (setq gnus-select-method
-	'(nnimap "gmail"
-		 (nnimap-address "imap.gmail.com")  ; it could also be imap.googlemail.com if that's your server.
-		 (nnimap-server-port "imaps")
-		 (nnimap-stream ssl)))
-  (setq smtpmail-smtp-server "smtp.gmail.com"
-	smtpmail-smtp-service 587
-	gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
+  (use-package gnus
+    :straight nil
+    :ensure nil
+    :defer t
+    :commands (gnus)
+    :config
+    (setq user-mail-address "raskarpour@gmail.com"
+	  user-full-name "amirrezaask")
+  
+    (setq gnus-select-method
+	  '(nnimap "gmail"
+		   (nnimap-address "imap.gmail.com")
+		   (nnimap-server-port "imaps")
+		   (nnimap-stream ssl)))
+    (setq smtpmail-smtp-server "smtp.gmail.com"
+	  smtpmail-smtp-service 587
+	  gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]"))
 
 #+END_SRC
 * Window manager
@@ -713,3 +732,7 @@ Emacs is so extensible that you can use it as a X window manager using =exwm= pa
 
 #+END_SRC
 
+* Benchmark
+#+BEGIN_SRC emacs-lisp
+(message "Startup took %s" (- (float-time) init-timestamp))
+#+END_SRC
