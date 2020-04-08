@@ -300,6 +300,20 @@ Crux is a collection of useful emacs functions.
     :bind (("C-S-k" . 'crux-kill-whole-line)
 	   ("C-x K" . 'crux-kill-other-buffers)))
 #+END_SRC
+** Centaur-Tabs
+#+BEGIN_SRC emacs-lisp
+  (use-package centaur-tabs
+    :disabled t
+    :init
+    (setq centaur-tabs-set-icons t
+	  centaur-tabs-gray-out-icons 'buffer
+	  centaur-tabs-set-bar 'left
+	  centaur-tabs-set-modified-marker t
+	  centaur-tabs-close-button "✕"
+	  centaur-tabs-modified-marker "⬤")
+    :config
+    (centaur-tabs-mode 1))
+#+END_SRC
 ** Line numbers
 =Emacs= has the minor mode for showing line numbers but it is not enabled by default so let's enable
 it to show line numbers every where.
