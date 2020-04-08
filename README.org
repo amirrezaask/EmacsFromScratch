@@ -1,7 +1,6 @@
 * Hans
 ** Intro
 =Hans= was named after legendary composer =Hans Zimmer=.
-
 ** Ideas
 =Hans= is built around some main ideas, some of them are not implemented yet.
 + First class support for Emacs keybindings.
@@ -11,6 +10,13 @@
 + Modularity comes first .
 + No duplicate packages, focus on one (ex helm & ivy)
 + Ability to install modules from third-party resources (TBA).
+** Getting Started
+#+BEGIN_SRC sh
+# backup your existing .emacs.d
+git clone git@gitlab.com:amirrezaask/hans.git ~/.emacs.d
+cd ~/.emacs.d
+make compile # only first time or after the updates
+#+END_SRC
 ** Terminology
 *** Core
 =Hans= core consists of a few macros and functions, UI settings, and bootstrap code of =Hans=. This part should stay as small
