@@ -129,7 +129,13 @@ Let's install some themes :) and ofcourse use one of them.
 #+END_SRC
 ** Icons
 #+BEGIN_SRC emacs-lisp
-(use-package all-the-icons)
+(use-package all-the-icons :commands 
+  :commands (all-the-icons-octicon
+             all-the-icons-faicon
+             all-the-icons-fileicon
+             all-the-icons-wicon
+             all-the-icons-material
+             all-the-icons-alltheicon))
 (use-package all-the-icons-dired
   :init
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
@@ -270,6 +276,20 @@ like user-interface.
 #+BEGIN_SRC emacs-lisp
   (use-package iedit
     :bind (("C-;" . 'iedit-mode)))
+#+END_SRC
+** Treemacs
+#+BEGIN_SRC emacs-lisp
+  (use-package treemacs
+    :disabled t
+    :bind (("M-0" . treemacs-select-window))
+    :init
+    (setq treemacs-follow-after-init t
+	  treemacs-is-never-other-window nil
+	  treemacs-sorting 'alphabetic-case-insensitive-asc)
+    :config 
+    (treemacs-follow-mode -1))
+  (use-package treemacs-projectile :disabled t)
+  (use-package treemacs-magit :disabled t)
 #+END_SRC
 ** Crux
 Crux is a collection of useful emacs functions.
