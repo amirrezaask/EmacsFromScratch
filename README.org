@@ -405,6 +405,19 @@ Fuzzy file search, but I use =counsel-fzf= since it has the best match for all o
     (use-package org-bullets
       :hook ((org-mode) . 'org-bullets-mode))
 #+END_SRC
+** hl-todo
+#+BEGIN_SRC emacs-lisp
+  (use-package hl-todo
+    :hook (prog-mode . hl-todo)
+      (setq hl-todo-highlight-punctuation ":"
+	  hl-todo-keyword-faces
+	  `(("TODO"       warning bold)
+	    ("FIXME"      error bold)
+	    ("HACK"       font-lock-constant-face bold)
+	    ("REVIEW"     font-lock-keyword-face bold)
+	    ("NOTE"       success bold)
+	    ("DEPRECATED" font-lock-doc-face bold))))
+#+END_SRC
 * Development Environment
 ** Projectile
 #+BEGIN_SRC emacs-lisp
@@ -444,14 +457,40 @@ for almost all languages.
 #+BEGIN_SRC emacs-lisp
   (use-package lsp-mode
     :hook ((prog-mode) . lsp)
+    :init
+    ;; Guess root with the help of `projectile`
+    (setq lsp-auto-guess-root t)
+    ;; Kill Lsp server when last buffer associated with that server killed
+    (setq lsp-keep-workspace-alive nil)
+    ;; disable unncessary stuff
+    (setq lsp-enable-folding nil
+        ;; Potentially slow
+        lsp-enable-file-watchers nil
+        lsp-enable-text-document-color nil
+        lsp-enable-semantic-highlighting nil
+        ;; Don't modify our code without our permission
+        lsp-enable-indentation nil
+        lsp-enable-on-type-formatting nil)
     :commands
-    (lsp))
-
-  (use-package lsp-treemacs
-    :commands (lsp-treemacs-errors-list))
+    (lsp lsp-install-server))
 
   (use-package lsp-ui
+    :hook (lsp-mode . lsp-ui-mode)
+    :config
+    (setq lsp-ui-doc-max-height 8
+        lsp-ui-doc-max-width 35
+        lsp-ui-sideline-ignore-duplicate t
+        ;; lsp-ui-doc is redundant with and more invasive than
+        ;; `+lookup/documentation'
+        lsp-ui-doc-enable nil
+        ;; Don't show symbol definitions in the sideline. They are pretty noisy,
+        ;; and there is a bug preventing Flycheck errors from being shown (the
+        ;; errors flash briefly and then disappear).
+        lsp-ui-sideline-show-hover nil)
     :commands (lsp-ui-mode))
+
+  (use-package lsp-ivy
+    :commands (lsp-ivy-workspace-symbol lsp-ivy-global-workspace-symbol))
 
   ;; company backend to hook LSP to company
   (use-package company-lsp
