@@ -244,7 +244,7 @@ a =C-s= replacement tool call swiper.
   (global-set-key (kbd "M-n") (lambda () (interactive) (next-line 5)))
   (global-set-key (kbd "M-p") (lambda () (interactive) (previous-line 5)))
 #+END_SRC
-** Buffer switching (ibuffer)
+** IBuffer
 Emacs built-in funtion called =list-buffers= is not that much productive, luckily Emacs now ships
 with =Ibuffer= package which is an interactive way to manage you buffers and provide a =magit= 
 like user-interface.
@@ -252,6 +252,8 @@ like user-interface.
   (use-package ibuffer
     :bind (("C-x C-b" . 'ibuffer)))
   (use-package ibuffer-vc :disabled t)
+  (use-package ibuffer-projectile 
+    :hook (ibuffer . ibuffer-projectile-set-filter-groups))
 #+END_SRC
 ** Dired
 #+BEGIN_SRC emacs-lisp
@@ -636,9 +638,6 @@ Support for every programming language I have ever used.
   (use-package py-autopep8
     :hook python-mode)
 
-  (use-package jinja2-mode
-    :mode "\\.j2$")
-
   (use-package elixir-mode
     :mode "\\.ex\\'")
 
@@ -724,14 +723,31 @@ Support for every programming language I have ever used.
 #+END_SRC
 * Operations Environment
 Recently I started using Emacs for opertion tasks.
+** Kubernetes
 #+BEGIN_SRC emacs-lisp
   (use-package kubel
     :commands
     (kubel))
-
+#+END_SRC
+** Docker
+#+BEGIN_SRC emacs-lisp
   (use-package docker
     :bind
     ("C-c d" . docker))
+
+#+END_SRC
+** Ansible
+#+BEGIN_SRC emacs-lisp
+  (use-package ansible
+    :commands ansible-auto-decrypt-encrypt
+    :init
+    (put 'ansible-vault-password-file 'safe-local-variable #'stringp)
+    :config
+    (setq ansible-section-face 'font-lock-variable-name-face
+	  ansible-task-label-face 'font-lock-doc-face))
+  (use-package jinja2-mode
+    :mode "\\.j2$")
+
 #+END_SRC
 * Gnus setup
 Emacs =Gnus= basic setup for Gmail.
