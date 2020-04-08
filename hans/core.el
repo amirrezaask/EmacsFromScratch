@@ -77,6 +77,7 @@
   (setq initial-major-mode 'fundamental-mode))
 
 (defun hans/core-sync-path ()
+  (setq exec-path-from-shell-check-startup-files nil)
   (use-package exec-path-from-shell :config (exec-path-from-shell-initialize)))
 
 (defun hans/core-all-el-files (path)

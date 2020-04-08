@@ -108,7 +108,7 @@
 
 (use-package org
   :defer t
-  :mode "\\.org\\'"
+  :mode ("\\.org\\'" . org-mode)
   :ensure nil
   :straight nil
   :custom

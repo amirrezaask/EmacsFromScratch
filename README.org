@@ -1,6 +1,4 @@
-
-
-* Benchmark
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
+* Hans
+** Intro
+=Hans= was named after legendary composer =Hans Zimmer=.
+[[file:./hans/hans.jpg]]
