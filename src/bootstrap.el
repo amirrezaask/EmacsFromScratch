@@ -86,6 +86,8 @@ gc-cons-percentage 0.6
 (setq straight-use-package-by-default t)
 (straight-use-package 'use-package)
 
+(require 'use-package)
+
 ;; GC when emacs is idle
 (use-package gcmh
   :config
@@ -107,14 +109,19 @@ gc-cons-percentage 0.6
 ;; Sync exec-path with Shell PATH var
 (use-package exec-path-from-shell :config (exec-path-from-shell-initialize))
 
+(defun amirreza/all-el-files (path)
+  (directory-files path nil "\\.el$"))
+
 ;; modules loader
 (defun amirreza/require-directory (path)
   (add-to-list 'load-path path)
-  (let ((files (directory-files path nil "\\.el$")))
+  (let ((files (amirreza/all-el-files path)))
     (mapcar (lambda (file)
-	      (let ((module-name (intern(car (split-string file "\\.")))))
-		(message "%s" module-name)
-		(require module-name))) files)))
+	    (let ((module-name (intern(car (split-string file "\\.")))))
+	      (message "%s OK" module-name)
+	      (require module-name))) files)))
+
+(byte-recompile-directory modules-dir 0)
 
 
 (defun amirreza/load-user-config (path))
