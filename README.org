@@ -129,7 +129,7 @@ Let's install some themes :) and ofcourse use one of them.
 #+END_SRC
 ** Icons
 #+BEGIN_SRC emacs-lisp
-(use-package all-the-icons :commands 
+(use-package all-the-icons
   :commands (all-the-icons-octicon
              all-the-icons-faicon
              all-the-icons-fileicon
@@ -754,6 +754,7 @@ Recently I started using Emacs for opertion tasks.
 ** Ansible
 #+BEGIN_SRC emacs-lisp
   (use-package ansible
+    :straight nil
     :commands ansible-auto-decrypt-encrypt
     :init
     (put 'ansible-vault-password-file 'safe-local-variable #'stringp)
