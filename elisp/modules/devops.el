@@ -25,26 +25,26 @@
 ;;; Code:
 
 (use-package kubel
-	     :commands
-	     (kubel))
+	      :commands
+	      (kubel))
 
 (use-package docker
-	     :bind
-	     ("C-c d" . docker))
+	      :bind
+	      ("C-c d" . docker))
 
 (use-package dockerfile-mode
-	     :mode "Dockerfile")
+	      :mode "Dockerfile")
 
 (use-package ansible
-	     :straight nil
-	     :commands ansible-auto-decrypt-encrypt
-	     :init
-	     (put 'ansible-vault-password-file 'safe-local-variable #'stringp)
-	     :config
-	     (setq ansible-section-face 'font-lock-variable-name-face
-		   ansible-task-label-face 'font-lock-doc-face))
+	      :straight nil
+	      :commands ansible-auto-decrypt-encrypt
+	      :init
+	      (put 'ansible-vault-password-file 'safe-local-variable #'stringp)
+	      :config
+	      (setq ansible-section-face 'font-lock-variable-name-face
+		    ansible-task-label-face 'font-lock-doc-face))
 (use-package jinja2-mode
-	     :mode "\\.j2$")
+	      :mode "\\.j2$")
 
 
 (provide 'devops)

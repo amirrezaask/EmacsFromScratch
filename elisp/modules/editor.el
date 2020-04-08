@@ -107,10 +107,12 @@
 ;; ----------------------------------------------- Org Mode ----------------------------------------
 
 (use-package org
-	     :ensure nil
-	     :straight nil
-	     :custom
-	     (org-support-shift-select t))
+  :defer t
+  :mode "\\.org\\'"
+  :ensure nil
+  :straight nil
+  :custom
+  (org-support-shift-select t))
 
 (use-package org-bullets
 	     :hook ((org-mode) . 'org-bullets-mode))

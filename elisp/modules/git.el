@@ -29,7 +29,8 @@
 	     :bind
 	     (("C-x g" . 'magit-status)))
 
-(use-package diff-hl :config (global-diff-hl-mode 1))
+(use-package diff-hl
+  :config (global-diff-hl-mode 1))
 
 (use-package gitconfig-mode :mode "/\\.gitconfig\\'")
 

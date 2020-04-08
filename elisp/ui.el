@@ -23,6 +23,15 @@
 ;; 
 
 ;;; Code:
+;; ------------------------------ Disable GUI shits
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
+(menu-bar-mode 0)
+(setq use-dialog-box nil)
+(setq inhibit-splash-screen 0)
+(setq ring-bell-function 'ignore)
+(defalias 'yes-or-no-p 'y-or-n-p)
+
 ;;-------------------------------- Themes
 
 (use-package doom-themes :defer t)

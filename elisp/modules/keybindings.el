@@ -45,7 +45,7 @@
 ;;; ---------------------------- Which-key ---------------------------
 
 (use-package which-key
-	     :config
+  	     :config
 	     (which-key-mode 1))
 
 ;;; 
