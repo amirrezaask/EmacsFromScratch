@@ -23,9 +23,9 @@
 ;; 
 
 ;;; Code:
-(defvar amirreza/langs-dir (expand-file-name "langs" modules-dir))
+(defvar hans/modules-langs-dir (expand-file-name "langs" modules-dir))
 
-(amirreza/require-directory amirreza/langs-dir)
+(hans/core-require-directory hans/modules-langs-dir)
 
 (provide 'langs)
 ;;; langs.el ends here

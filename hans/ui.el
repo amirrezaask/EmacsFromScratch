@@ -1,4 +1,4 @@
-;;; ui.el --- UI module of amirreza                  -*- lexical-binding: t; -*-
+;;; ui.el --- UI module of hans                  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirreza
 
@@ -62,10 +62,10 @@
 (setq doom-modeline-height 35)
 ;; ------------------------------------- Font
 
-(defun amirreza/font (font size)
+(defun hans/font (font size)
   (add-to-list 'default-frame-alist (cons 'font (format "%s-%d" font size))))
 
-(amirreza/font "Fira Code" 10)
+(hans/font "Fira Code" 10)
 
 ;; -------------------------------------- Tabs
 (use-package centaur-tabs

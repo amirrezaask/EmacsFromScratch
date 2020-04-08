@@ -1,4 +1,4 @@
-;;; boostrap.el --- boostrap Emacs         -*- lexical-binding: t; -*-
+;;; boostrap.el --- boostrap hans         -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirrezaask
 
@@ -27,27 +27,28 @@
 
 (defvar init-timestamp (float-time) "Emacs initialize timestamp.")
 (defvar misc-path (expand-file-name ".misc" user-emacs-directory) "All misc files of various packages.")
-(defvar elisp-dir (expand-file-name "elisp" user-emacs-directory))
-(defvar modules-dir (expand-file-name "modules" elisp-dir))
+(defvar core-dir (expand-file-name "hans" user-emacs-directory))
+(defvar modules-dir (expand-file-name "modules" core-dir))
 (defvar user-config-path (expand-file-name "~/.user-config.el"))
-(defvar amirreza/gc-cons-threshold 16777216)
-(defvar amirreza/init-time nil)
-(add-to-list 'load-path elisp-dir)
+(defvar hans/gc-cons-threshold 16777216)
+(defvar hans/init-time nil)
+
+(add-to-list 'load-path core-dir)
 
 (require 'core)
-(core/package-manager-init)
-(core/fast-startup)
-(core/better-gc)
-(idle! (core/sync-path))
-(amirreza/compile-dir elisp-dir)
+(hans/core-package-manager-init)
+(hans/core-fast-startup)
+(hans/core-better-gc)
+(idle! (hans/core-sync-path))
+;; (hans/core-compile-dir core-dir)
 
 
 (require 'ui)
 
 ;; load modules
-(amirreza/require-directory modules-dir)
-(setq amirreza/init-time (- (float-time) init-timestamp))
+(hans/core-require-directory modules-dir)
+(setq hans/init-time (- (float-time) init-timestamp))
 
-(message "Startup took %s" amirreza/init-time)
+(message "Startup took %s" hans/init-time)
 (provide 'boostrap)
 ;;; boostrap.el ends here

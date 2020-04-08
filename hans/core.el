@@ -1,4 +1,4 @@
-;;; core.el --- core element                         -*- lexical-binding: t; -*-
+;;; core.el --- hans core functionality                         -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirrezaask
 
@@ -27,7 +27,8 @@
 ;; custom file
 (setq custom-file (expand-file-name "custom.el" misc-path))
 
-(defun core/package-manager-init ()
+(defun hans/core-package-manager-init ()
+  (interactive)
   (setq package-enable-at-startup nil)
   (defvar bootstrap-version)
   (let ((bootstrap-file
@@ -49,14 +50,14 @@
   `(run-with-idle-timer 1 nil (lambda ()
 				,@body)))
 
-(defun core/fast-startup ()
+(defun hans/core-fast-startup ()
   (setq frame-inhibit-implied-resize t)
   (setq gc-cons-threshold most-positive-fixnum)
   (setq gc-cons-percentage 0.6)
 
   (add-hook 'emacs-startup-hook
 	    (lambda ()
-	      (setq gc-cons-threshold amirreza/gc-cons-threshold)
+	      (setq gc-cons-threshold hans/gc-cons-threshold)
 	      gc-cons-percentage 0.1))
 
   (defun defer-garbage-collection-h ()
@@ -64,7 +65,7 @@
 
   (defun restore-garbage-collection-h ()
     (run-at-time
-     1 nil (lambda () (setq gc-cons-threshold amirreza/gc-cons-threshold))))
+     1 nil (lambda () (setq gc-cons-threshold hans/gc-cons-threshold))))
 
   (add-hook 'minibuffer-setup-hook #'defer-garbage-collection-h)
   (add-hook 'minibuffer-exit-hook #'restore-garbage-collection-h)
@@ -75,36 +76,36 @@
 	      (setq file-name-handler-alist --file-name-handler-alist)))
   (setq initial-major-mode 'fundamental-mode))
 
-(defun core/sync-path ()
+(defun hans/core-sync-path ()
   (use-package exec-path-from-shell :config (exec-path-from-shell-initialize)))
 
-(defun amirreza/all-el-files (path)
+(defun hans/core-all-el-files (path)
   (directory-files path nil "\\.el$"))
 
 
 
 ;; modules loader
-(defun amirreza/require-directory (path)
+(defun hans/core-require-directory (path)
   (add-to-list 'load-path path)
-  (let ((files (amirreza/all-el-files path)))
+  (let ((files (hans/core-all-el-files path)))
     (mapcar (lambda (file)
 	      (let ((module-name (intern(car (split-string file "\\.")))) (module-timestamp (float-time)))
 		(require module-name)
 		(message "Loading %s" module-name))) files)))
 
-(defun core/better-gc ()
+(defun hans/core-better-gc ()
   (idle! (use-package gcmh
    :config
    (setq gcmh-idle-delay 10
-	 gcmh-high-cons-threshold amirreza/gc-cons-threshold
+	 gcmh-high-cons-threshold hans/gc-cons-threshold
 	 gc-cons-percentage 0.1))))
 
 
-(defun amirreza/compile-dir (dir)
+(defun hans/core-compile-dir (dir)
   (interactive)
   (byte-recompile-directory dir 0))
 
-(defun amirreza/load-user-config (path))
+(defun hans/core-load-user-config (path))
 
 
 
