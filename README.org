@@ -96,27 +96,18 @@ from happening.
 #+BEGIN_SRC emacs-lisp
 (setq ring-bell-function 'ignore)
 #+END_SRC
-** Font settings
-I don't have a default font but I use =Jetbrains Mono=, =Fira Code= and =Hack= font 
-almost all the time.
-#+BEGIN_SRC emacs-lisp
-  (defun amirreza/font (font size)
-    (add-to-list 'default-frame-alist (cons 'font (format "%s-%d" font size))))
-(amirreza/font "Jetbrains Mono" 12)
-#+END_SRC
-
 ** y-or-n
-Emacs asks yes/no questions in minibuffer an you need to type yes or no completely which
-is kind of annoying.
-#+BEGIN_SRC emacs-lisp
-(defalias 'yes-or-no-p 'y-or-n-p)
-#+END_SRC
+ Emacs asks yes/no questions in minibuffer an you need to type yes or no completely which
+ is kind of annoying.
+ #+BEGIN_SRC emacs-lisp
+ (defalias 'yes-or-no-p 'y-or-n-p)
+ #+END_SRC
 ** Use PATH from OS
-#+BEGIN_SRC emacs-lisp
-(use-package exec-path-from-shell :config (exec-path-from-shell-initialize))
-#+END_SRC
-* Themes, Icons
-** Themes
+ #+BEGIN_SRC emacs-lisp
+ (use-package exec-path-from-shell :config (exec-path-from-shell-initialize))
+ #+END_SRC
+* UI
+** themes
 Let's install some themes :) and ofcourse use one of them.
 #+BEGIN_SRC emacs-lisp
   (use-package doom-themes :defer t)
@@ -127,7 +118,7 @@ Let's install some themes :) and ofcourse use one of them.
   (load-theme 'doom-one t)
 
 #+END_SRC
-** Icons
+** icons
 #+BEGIN_SRC emacs-lisp
 (use-package all-the-icons
   :commands (all-the-icons-octicon
@@ -140,14 +131,23 @@ Let's install some themes :) and ofcourse use one of them.
   :init
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 #+END_SRC
-** Modeline
+** modeline
 #+BEGIN_SRC emacs-lisp
 (use-package doom-modeline
   :init (doom-modeline-mode 1))
 (setq doom-modeline-height 35)
 #+END_SRC
+** font
+ I don't have a default font but I use =Jetbrains Mono=, =Fira Code= and =Hack= font 
+ almost all the time.
+ #+BEGIN_SRC emacs-lisp
+   (defun amirreza/font (font size)
+     (add-to-list 'default-frame-alist (cons 'font (format "%s-%d" font size))))
+
+ (amirreza/font "Fira Code" 10)
+ #+END_SRC
 * Completion and narrowing framework
-** Code Completion (company)
+** Company
 =Company-mode= in Emacs is the package I use to add code-completion to my Emacs.
 It's neat package with great architecture, basically =company= is made from two parts
 =company-backends= and =company-frontend=, =company-backends= are a list of backends 
@@ -449,7 +449,7 @@ Fuzzy file search, but I use =counsel-fzf= since it has the best match for all o
 ** hl-todo
 #+BEGIN_SRC emacs-lisp
   (use-package hl-todo
-    :hook (prog-mode . hl-todo)
+    :hook (prog-mode . hl-todo-mode)
     :config
     (setq hl-todo-highlight-punctuation ":"
 	  hl-todo-keyword-faces
