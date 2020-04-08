@@ -409,7 +409,8 @@ Fuzzy file search, but I use =counsel-fzf= since it has the best match for all o
 #+BEGIN_SRC emacs-lisp
   (use-package hl-todo
     :hook (prog-mode . hl-todo)
-      (setq hl-todo-highlight-punctuation ":"
+    :config
+    (setq hl-todo-highlight-punctuation ":"
 	  hl-todo-keyword-faces
 	  `(("TODO"       warning bold)
 	    ("FIXME"      error bold)
