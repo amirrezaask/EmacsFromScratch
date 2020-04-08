@@ -232,6 +232,11 @@ a =C-s= replacement tool call swiper.
   ;; sane zoom-in and zoom-out 
   (global-set-key (kbd "C-+") 'text-scale-increase)
   (global-set-key (kbd "C-_") 'text-scale-decrease)
+
+  ;; buffer switching
+  (global-set-key (kbd "C-.") 'next-buffer)
+  (global-set-key (kbd "C-,") 'previous-buffer)
+
 #+END_SRC
 ** Which Key
 #+BEGIN_SRC emacs-lisp
@@ -575,22 +580,27 @@ IDEA=, =VSCode+Gitlens=, but still =magit= is the best.
 
 #+END_SRC
 ** Programming Languages
-Support for every programming language I have ever used.
+** C/Cpp
 #+BEGIN_SRC emacs-lisp
-  ;; C language server
-  (use-package cquery :defer t)
-
-
+  (use-package cquery :defer t)   
+#+END_SRC
+** Assembly
+#+BEGIN_SRC emacs-lisp
   (use-package mips-mode :defer t)
-
-  (use-package fsharp-mode :mode "\\.fs\\'")
-
-  (use-package csharp-mode :mode "\\.cs\\'")
-
   (use-package nasm-mode :defer t)
-
   (use-package haxor-mode :mode "\\.hax\\'")
 
+#+END_SRC
+** C#
+#+BEGIN_SRC emacs-lisp
+  (use-package csharp-mode :mode "\\.cs\\'")
+#+END_SRC
+** F#
+#+BEGIN_SRC emacs-lisp
+  (use-package fsharp-mode :mode "\\.fs\\'")
+#+END_SRC
+** Data (JSON, YAML, TOML, CSV, Proto)
+#+BEGIN_SRC emacs-lisp
   (use-package json-mode
     :mode "\\.json\\'"
     :config
@@ -613,6 +623,9 @@ Support for every programming language I have ever used.
   (use-package markdown-mode
     :mode "\\.md\\'")
 
+#+END_SRC
+** Go
+#+BEGIN_SRC emacs-lisp
   (use-package go-mode
     :mode "\\.go\\'"
     :init
@@ -627,20 +640,43 @@ Support for every programming language I have ever used.
   (use-package go-add-tags :defer t)
 
   (use-package gotest :defer t)
-
-
+#+END_SRC
+** Haskell
+#+BEGIN_SRC emacs-lisp
   (use-package haskell-mode
     :mode "\\.hs\\'")
 
   (use-package lsp-haskell
     :hook haskell-mode)
-
+#+END_SRC
+** Scala
+#+BEGIN_SRC emacs-lisp
   (use-package scala-mode
     :mode "\\.scala\\'")
 
   (use-package sbt-mode
     :hook scala-mode)
+#+END_SRC
+** Java
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'java-mode-hook (lambda ()
+			      (c-set-offset 'arglist-intro '+)
+			      (setq java-basic-offset 2)
+			      (setq c-basic-offset 2)))
 
+  (use-package lsp-java
+    :hook (java-mode))
+#+END_SRC
+*** Groovy
+#+BEGIN_SRC emacs-lisp
+  (use-package groovy-mode
+    :mode ("\\.gradle\\'" "\\.groovy\\'"))
+
+  (use-package gradle-mode
+    :mode "\\.gradle\\'")
+#+END_SRC
+** Python
+#+BEGIN_SRC emacs-lisp
   (use-package python-mode
     :mode "\\.py\\'")
 
@@ -652,26 +688,17 @@ Support for every programming language I have ever used.
 
   (use-package py-autopep8
     :hook python-mode)
-
+#+END_SRC
+** Elixir
+#+BEGIN_SRC emacs-lisp
   (use-package elixir-mode
     :mode "\\.ex\\'")
 
   (use-package alchemist
     :defer t)
-
-  (use-package rust-mode
-    :mode "\\.rs\\'")
-
-  (use-package flycheck-rust
-   :mode "\\.rs\\'"
-   :init (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
-   :hook rust-mode)
-
-  (use-package cargo
-    :mode "\\.rs\\'"
-    :init (add-hook 'rust-mode-hook #'cargo-minor-mode))
-
-  ;; Common Lisp environment
+#+END_SRC
+** Common-lisp (+Basics for other lisps)
+#+BEGIN_SRC emacs-lisp
   (use-package sly
     :hook lisp-mode)
 
@@ -684,7 +711,9 @@ Support for every programming language I have ever used.
 
   (use-package rainbow-delimiters
     :hook ((prog-mode) . rainbow-delimiters-mode))
-
+#+END_SRC
+** Clojure
+#+BEGIN_SRC emacs-lisp
   (use-package clojure-mode
     :mode "\\.cljs?\\'")
 
@@ -693,9 +722,29 @@ Support for every programming language I have ever used.
     :bind (:map cider-mode-map
 		("C-x C-e" . 'cider-eval-last-sexp)))
 
+#+END_SRC
+** Rust
+#+BEGIN_SRC emacs-lisp
+  (use-package rust-mode
+    :mode "\\.rs\\'")
+
+  (use-package flycheck-rust
+   :mode "\\.rs\\'"
+   :init (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+   :hook rust-mode)
+
+  (use-package cargo
+    :mode "\\.rs\\'"
+    :init (add-hook 'rust-mode-hook #'cargo-minor-mode))
+
+#+END_SRC
+** Lua
+#+BEGIN_SRC emacs-lisp
   (use-package lua-mode
     :mode "\\.lua\\'")
-
+#+END_SRC
+** PHP
+#+BEGIN_SRC emacs-lisp
   (use-package php-mode
     :mode "\\.php\\'")
 
@@ -705,36 +754,24 @@ Support for every programming language I have ever used.
      ("C-c C-t c" . phpunit-current-class)
      ("C-c C-t p" . phpunit-current-project)))
 
-  (use-package js2-mode
-    :hook js-mode)
-
-  (use-package tide
-    :mode "\\.ts\\'")
-
+#+END_SRC
+** Web
+#+BEGIN_SRC emacs-lisp
   (use-package web-mode
     :mode ("\\.html\\'" "\\.css\\'"))
 
-  (use-package dockerfile-mode
-    :mode "Dockerfile")
-
-  (use-package groovy-mode
-    :mode ("\\.gradle\\'" "\\.groovy\\'"))
-
-  (use-package gradle-mode
-    :mode "\\.gradle\\'")
-
-  (add-hook 'java-mode-hook (lambda ()
-			      (c-set-offset 'arglist-intro '+)
-			      (setq java-basic-offset 2)
-			      (setq c-basic-offset 2)))
-
-  (use-package lsp-java
-    :hook (java-mode))
-
+  (use-package js2-mode
+    :hook js-mode)
+#+END_SRC
+** Typescript
+#+BEGIN_SRC emacs-lisp
+  (use-package tide
+    :mode "\\.ts\\'")
+#+END_SRC
+** Racket
+#+BEGIN_SRC emacs-lisp
   (use-package racket-mode
     :mode "\\.rkt\\'")
-
-
 #+END_SRC
 * Operations Environment
 Recently I started using Emacs for opertion tasks.
@@ -749,6 +786,9 @@ Recently I started using Emacs for opertion tasks.
   (use-package docker
     :bind
     ("C-c d" . docker))
+
+  (use-package dockerfile-mode
+    :mode "Dockerfile")
 
 #+END_SRC
 ** Ansible
