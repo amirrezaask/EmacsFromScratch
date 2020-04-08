@@ -21,3 +21,4 @@ custom.el
 elpy
 projectile-bookmarks.eld
 tramp
+.backups
