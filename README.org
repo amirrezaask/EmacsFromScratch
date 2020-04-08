@@ -153,19 +153,6 @@ a =C-s= replacement tool call swiper.
     :bind
     (("C-x b" . 'ivy-switch-buffer)))
 
-  (use-package ivy-posframe
-    :disabled t
-    :config
-    (setq ivy-posframe-height-alist
-	  '((swiper . 15)
-	    (swiper-isearch . 15)
-	    (t . 10)))
-    (setq ivy-posframe-display-functions-alist
-	  '((swiper . nil)
-	    (swiper-isearch . nil)
-	    (t . ivy-posframe-display-at-frame-center)))
-    (ivy-posframe-mode 1))
-
   (use-package swiper
     :commands (swiper)
     :init (global-set-key (kbd "C-s") 'swiper))
@@ -383,6 +370,7 @@ Emacs users always had the goal of living inside Emacs, and how you can live ins
 without =grep=. I'm using counsel-projectile-rg instead of this but it's here for percaution.
 #+BEGIN_SRC emacs-lisp
   (use-package rg
+    :disabled t
     :commands (rg))
 #+END_SRC
 ** cTags
@@ -400,6 +388,7 @@ such a simple program, while some language servers are not ready for big project
 Fuzzy file search, but I use =counsel-fzf= since it has the best match for all of my workflow.
 #+BEGIN_SRC emacs-lisp
   (use-package fzf
+    :disabled t
     :commands (fzf)
     :bind(("<f3>" . 'fzf)))
 #+END_SRC
@@ -418,8 +407,6 @@ Fuzzy file search, but I use =counsel-fzf= since it has the best match for all o
 
   (use-package org-bullets
     :hook ((org-mode) . 'org-bullets-mode))
-
-  (use-package toc-org)
 #+END_SRC
 * Development Environment
 ** Projectile
