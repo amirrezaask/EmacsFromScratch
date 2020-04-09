@@ -42,6 +42,8 @@
     (message "%s" args)
     `(setq ,module-args-name (quote ,args))))
 
+(defun hans/enable? (module-args feature)
+  (member feature module-args))
 
 (defun hans/core-package-manager-init ()
   (interactive)

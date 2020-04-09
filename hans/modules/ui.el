@@ -66,9 +66,12 @@
 ;------------------------------------Modeline------------------------------------
 
 (use-package doom-modeline
-  :init (doom-modeline-mode 1))
+  :if (hans/enable? hans/--modules-ui-args '+doom-modeline)
+  :init (doom-modeline-mode 1)
+  :custom
+  (doom-modeline-height 35))
 
-(setq doom-modeline-height 35)
+
 
 ;---------------------------------Font settings---------------------------------
 
