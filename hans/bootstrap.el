@@ -26,7 +26,7 @@
 
 (defvar init-timestamp (float-time) "Emacs initialize timestamp.")
 (defvar misc-path (expand-file-name ".misc" user-emacs-directory) "All misc files of various packages.")
-(defvar core-dir (expand-file-name "elisp" user-emacs-directory))
+(defvar core-dir (expand-file-name "hans" user-emacs-directory))
 (defvar modules-dir (expand-file-name "modules" core-dir))
 (defvar user-config-path (expand-file-name "~/.user-config.el"))
 (defvar hans/gc-cons-threshold 16777216)
