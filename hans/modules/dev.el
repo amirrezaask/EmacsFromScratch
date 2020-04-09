@@ -24,7 +24,7 @@
 
 ;;; Code:
 ;; ---------------------------------- Syntax checking --------------------------------------
-(use-package flycheck :hook (prog-mode . flycheck-mode))
+(use-package flycheck :hook ((prog-mode) . flycheck-mode))
 
 ;; ----------------------------------- Git integration -------------------------------------
 (use-package magit
@@ -40,8 +40,8 @@
 (use-package gitignore-mode
        :mode "/\\.gitignore\\'")
 
-(use-package gitattributes-mode
-       :mode "/\\.gitattributes\\'")
+(use-package gitattributes-mode)
+       :mode "/\\.gitattributes\\'"
 
 (use-package git-messenger
        :bind

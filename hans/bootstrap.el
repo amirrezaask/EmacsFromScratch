@@ -1,4 +1,4 @@
-;;; boostrap.el --- boostrap hans         -*- lexical-binding: t; -*-
+
 
 ;; Copyright (C) 2020  amirrezaask
 
@@ -37,11 +37,11 @@
 
 (require 'core)
 (hans/core-package-manager-init)
+(require 'use-package)
 (hans/core-fast-startup)
 (hans/core-better-gc)
 (idle! (hans/core-sync-path))
 
-(require 'ui)
 
 ;; load modules
 (hans/core-require-directory modules-dir)

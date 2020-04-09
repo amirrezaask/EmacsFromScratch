@@ -1,3 +1,4 @@
+;; -*- no-byte-compile: t; -*-
 ;;; core.el --- hans core functionality                         -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirrezaask

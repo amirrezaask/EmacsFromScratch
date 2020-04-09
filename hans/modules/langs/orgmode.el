@@ -41,5 +41,5 @@
        :hook ((org-mode) . 'org-bullets-mode))
 
 
-(provide 'org)
+(provide 'orgmode)
 ;;; org.el ends here
