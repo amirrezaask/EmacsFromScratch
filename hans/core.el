@@ -24,9 +24,23 @@
 
 ;;; Code:
 ;; ----------------------- VARS --------------------------------------------------
+(defvar hans/--enabled-modules '() "Enabled modules.")
 
 ;; custom file
 (setq custom-file (expand-file-name "custom.el" misc-path))
+
+(defun keywordify (sym)
+  "Create a keyword from given SYM."
+  (intern (concat ":" (symbol-name sym))))
+
+(defun hans/module-args-name (module)
+  (intern (format "hans/--modules-%s-args" module)))
+
+(defmacro +module (module &rest args)
+  "Enable given MODULE with given ARGS."
+  (let ((module-args-name (hans/module-args-name module)))
+  `(setq ,module-args-name ,args)))
+
 
 (defun hans/core-package-manager-init ()
   (interactive)
@@ -107,7 +121,8 @@
   (interactive)
   (byte-recompile-directory dir 0))
 
-(defun hans/core-load-user-config (path))
+(defun hans/core-load-user-config (path)
+  (load-file path))
 
 
 

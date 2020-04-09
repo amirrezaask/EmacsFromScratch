@@ -23,7 +23,14 @@
 ;; 
 
 ;;; Code:
-;; ------------------------------ Disable GUI shits
+
+
+;--------------------------------------VARS--------------------------------------
+(defvar hans/theme 'doom-one "Hans default theme.")
+(defvar hans/font '(:family "Jetbrains Mono" :size 10))
+
+;-------------------------------Disable Emacs GUIs-------------------------------
+
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (menu-bar-mode 0)
@@ -32,7 +39,8 @@
 (setq ring-bell-function 'ignore)
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-;;-------------------------------- Themes
+
+;-------------------------------------Themes-------------------------------------
 
 (use-package doom-themes :defer t)
 (use-package spacemacs-theme :defer t)
@@ -41,7 +49,8 @@
 (use-package modus-vivendi-theme :defer t) ;; dark version of modus theme
 (load-theme 'doom-one t)
 
-;; ----------------------------------Icons
+
+;-------------------------------------Icons-------------------------------------
 
 (use-package all-the-icons
   :commands (all-the-icons-octicon
@@ -55,19 +64,26 @@
   :init
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
-;; ------------------------------------ Modeline
+
+;------------------------------------Modeline------------------------------------
 
 (use-package doom-modeline
   :init (doom-modeline-mode 1))
+
 (setq doom-modeline-height 35)
-;; ------------------------------------- Font
 
-(defun hans/font (font size)
-  (add-to-list 'default-frame-alist (cons 'font (format "%s-%d" font size))))
+;---------------------------------Font settings---------------------------------
 
-(hans/font "Fira Code" 10)
+(defun hans/font (font)
+  "Set font for Emacs."
+  (let ((family (plist-get font :family))
+	(size (plist-get font :size)))
+    (add-to-list 'default-frame-alist (cons 'font (format "%s-%d" family size)))))
 
-;; -------------------------------------- Tabs
+(hans/font hans/font)
+
+
+;----------------------------------Tabs support----------------------------------
 (use-package centaur-tabs
 	     :disabled t
 	     :init
@@ -80,7 +96,8 @@
 	     :config
 	     (centaur-tabs-mode 1))
 
-;; ----------------------------------------Improve scrolling experience ---------------------------
+
+;--------------------------Improve scrolling experience--------------------------
 (setq scroll-step 1)
 (setq scroll-margin 1)
 (setq scroll-conservatively 101)
