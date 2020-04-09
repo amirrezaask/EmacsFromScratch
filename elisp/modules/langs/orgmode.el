@@ -26,15 +26,8 @@
 
 
 ;------------------------------------Org mode------------------------------------
-(use-package org
-  :defer t
-  :mode "\\.org\\'"
-  :ensure nil
-  :straight nil
-  :custom
-  (org-support-shift-select t))
-
-
+(with-eval-after-load 'org
+  (setq org-support-shift-select t))
 
 ;----------------------------------Org bullets----------------------------------
 (use-package org-bullets
