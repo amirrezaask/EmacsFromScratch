@@ -1,8 +1,8 @@
-;;; web.el --- Web support                           -*- lexical-binding: t; -*-
+;;; kotlin.el --- Kotlin support                     -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2020  amirreza
+;; Copyright (C) 2020  amirrezaask
 
-;; Author: amirreza <amirreza@nobody.invalid>
+;; Author: amirrezaask <raskarpour@gmail.com>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,10 +24,9 @@
 
 ;;; Code:
 
-(use-package web-mode
-	     :mode ("\\.html\\'" "\\.css\\'"))
-(use-package emmet-mode
-  :hook (css-mode web-mode html-mode haml-mode nxml-mode rjsx-mode reason-mode))
+(use-package kotlin-mode :mode "\\.kts?\\'")
 
-(provide 'web)
-;;; web.el ends here
+(use-package flycheck-kotlin :hook kotlin)
+
+(provide 'kotlin)
+;;; kotlin.el ends here

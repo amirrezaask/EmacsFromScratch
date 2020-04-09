@@ -46,7 +46,8 @@
 (use-package markdown-mode
 	     :mode "\\.md\\'")
 
-
+(use-package graphql-mode
+  :mode "\\.gql\\'")
 
 (provide 'data)
 ;;; data.el ends here

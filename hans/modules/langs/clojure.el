@@ -32,6 +32,8 @@
 	     :bind (:map cider-mode-map
 			 ("C-x C-e" . 'cider-eval-last-sexp)))
 
+(use-package clj-refactor
+  :hook (clojure-mode . clj-refactor-mode))
 
 (provide 'clojure)
 ;;; clojure.el ends here

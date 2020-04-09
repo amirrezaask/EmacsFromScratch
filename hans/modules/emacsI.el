@@ -30,9 +30,8 @@
 (use-package ibuffer
   :bind (("C-x C-b" . 'ibuffer)))
 
-(use-package ibuffer-vc :disabled t)
 (use-package ibuffer-projectile 
-	     :hook (ibuffer . ibuffer-projectile-set-filter-groups))
+  :hook (ibuffer . ibuffer-projectile-set-filter-groups))
 
 (use-package dired
 	     :ensure nil

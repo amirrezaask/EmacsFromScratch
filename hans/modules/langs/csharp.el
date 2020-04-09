@@ -26,5 +26,9 @@
 
 (use-package csharp-mode :mode "\\.cs\\'")
 
+(use-package omnisharp
+  :hook csharp-mode
+  :commands (omnisharp omnisharp-install-server))
+
 (provide 'csharp)
 ;;; csharp.el ends here

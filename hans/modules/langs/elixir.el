@@ -29,7 +29,9 @@
 
 (use-package alchemist
 	     :defer t)
-
+(use-package flycheck-credo
+  :defer t
+  :init (add-hook 'elixir-mode-hook #'flycheck-credo-setup))
 
 (provide 'elixir)
 ;;; elixir.el ends here
