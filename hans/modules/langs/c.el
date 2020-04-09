@@ -24,6 +24,20 @@
 
 ;;; Code:
 
+(define-auto-insert
+  '("\\.\\(CC?\\|cc\\|cxx\\|cpp\\|c++\\)\\'" . "C skeleton")
+  '("Short description: "
+    "/*" \n
+    (file-name-nondirectory (buffer-file-name))
+    " -- " str \n
+    " */" > \n \n
+    "#include <iostream>" \n \n
+    "using namespace std;" \n \n
+    "main()" \n
+    "{" \n
+    > _ \n
+    "}" > \n))
+
 (use-package cquery :defer t)   
 
 (provide 'c)
