@@ -36,15 +36,16 @@
 	      :mode "Dockerfile")
 
 (use-package ansible
-	      :straight nil
-	      :commands ansible-auto-decrypt-encrypt
-	      :init
-	      (put 'ansible-vault-password-file 'safe-local-variable #'stringp)
-	      :config
-	      (setq ansible-section-face 'font-lock-variable-name-face
-		    ansible-task-label-face 'font-lock-doc-face))
+  :disabled t
+  :commands ansible-auto-decrypt-encrypt
+  :init
+  (put 'ansible-vault-password-file 'safe-local-variable #'stringp)
+  :config
+  (setq ansible-section-face 'font-lock-variable-name-face
+	ansible-task-label-face 'font-lock-doc-face))
+
 (use-package jinja2-mode
-	      :mode "\\.j2$")
+  :mode "\\.j2$")
 
 
 (provide 'devops)

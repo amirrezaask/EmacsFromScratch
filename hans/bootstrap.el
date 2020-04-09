@@ -39,7 +39,7 @@
 (hans/core-fast-startup)
 (hans/core-better-gc)
 (idle! (hans/core-sync-path))
-
+(hans/core-compile-dir modules-dir)
 
 ;; load modules
 (hans/core-require-directory modules-dir)
