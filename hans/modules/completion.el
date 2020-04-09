@@ -40,29 +40,36 @@
   (global-company-mode 1)
   (add-to-list 'company-backends '(company-capf company-dabbrev)))
 
+
+;------------------------Completion sorting and filtering------------------------
+
+(use-package company-prescient
+  :hook ((company-mode) . company-prescient-mode))
+
+
 ;; ------------------------------------General completion----------------------------
 (use-package ivy
-	      :bind
-	      (("C-x b" . 'ivy-switch-buffer))
-	      :custom
-	      (ivy-height 17)
-	      (ivy-wrap t)
-	      (ivy-fixed-height-minibuffer t)
-	      (projectile-completion-system 'ivy)
-	      ;; disable magic slash on non-match
-	      (ivy-magic-slash-non-match-action nil)
-	      ;; don't show recent files in switch-buffer
-	      (ivy-use-virtual-buffers nil)
-	      ;; ...but if that ever changes, show their full path
-	      (ivy-virtual-abbreviate 'full)
-	      ;; don't quit minibuffer on delete-error
-	      (ivy-on-del-error-function #'ignore)
-	      ;; enable ability to select prompt (alternative to `ivy-immediate-done')
-	      (ivy-use-selectable-prompt t)
-	      :config
-	      (setf (alist-get 't ivy-format-functions-alist)
-		    #'ivy-format-function-line)
-	      (ivy-mode +1))
+  :bind
+  (("C-x b" . 'ivy-switch-buffer))
+  :custom
+  (ivy-height 17)
+  (ivy-wrap t)
+  (ivy-fixed-height-minibuffer t)
+  (projectile-completion-system 'ivy)
+  ;; disable magic slash on non-match
+  (ivy-magic-slash-non-match-action nil)
+  ;; don't show recent files in switch-buffer
+  (ivy-use-virtual-buffers nil)
+  ;; ...but if that ever changes, show their full path
+  (ivy-virtual-abbreviate 'full)
+  ;; don't quit minibuffer on delete-error
+  (ivy-on-del-error-function #'ignore)
+  ;; enable ability to select prompt (alternative to `ivy-immediate-done')
+  (ivy-use-selectable-prompt t)
+  :config
+  (setf (alist-get 't ivy-format-functions-alist)
+	#'ivy-format-function-line)
+  (ivy-mode +1))
 
 (use-package counsel
 	      :commands (counsel-M-x counsel-find-file ivy-switch-buffer)
@@ -73,8 +80,8 @@
 	       ("C-h f" . 'counsel-describe-function)
 	       ("C-h v" . 'counsel-describe-variable)
 	       ("C-h a" . 'counsel-apropos)
-	       ("<f4>"  . 'counsel-fzf)
-	       ("<f2>" . 'counsel-rg)
+	       ("C-c C-c f"  . 'counsel-fzf)
+	       ("C-c C-c r" . 'counsel-rg)
 	       ("M-y" . 'counsel-yank-pop)))
 
 

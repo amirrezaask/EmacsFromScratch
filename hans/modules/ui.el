@@ -46,7 +46,7 @@
 (use-package modus-operandi-theme :defer t) ;; light version of modus theme
 (use-package modus-vivendi-theme :defer t) ;; dark version of modus theme
 
-(load-theme (plist-get hans/--modules-ui-args :hans/theme))
+(load-theme (plist-get hans/--modules-ui-args :hans/theme) t)
 
 ;-------------------------------------Icons-------------------------------------
 
@@ -79,7 +79,7 @@
     (message "%s" font)
     (add-to-list 'default-frame-alist (cons 'font (format "%s-%d" family size)))))
 
-(hans/font (plist-get hans/modules/ui-args :hans/font))
+(hans/font (plist-get hans/--modules-ui-args :hans/font))
 
 
 ;----------------------------------Tabs support----------------------------------

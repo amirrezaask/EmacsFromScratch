@@ -50,5 +50,20 @@
        (setq git-messenger:show-detail t)
        (setq git-messenger:use-magit-popup t))
 
+;; -------------------------------- projectile -------------------------------------------------------
+(use-package projectile
+       :bind
+       (("C-x p" . 'projectile-command-map)
+        ("C-c p" . 'projectile-add-known-project))
+       :custom
+       (projectile-completion-system 'ivy)
+       :config
+       (projectile-mode 1)
+       (add-to-list 'projectile-globally-ignored-directories "node_modules"))
+;; ------------------------------- projectile integration for counsel --------------------------------
+(use-package counsel-projectile
+  :bind (("C-c C-p r" . counsel-projectile-rg)))
+
+
 (provide 'dev)
 ;;; dev.el ends here
