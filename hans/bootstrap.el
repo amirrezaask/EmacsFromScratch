@@ -1,5 +1,4 @@
-
-
+;; -*- no-byte-compile: t; -*-
 ;; Copyright (C) 2020  amirrezaask
 
 ;; Author: amirrezaask <raskarpour@gmail.com>
@@ -37,7 +36,6 @@
 
 (require 'core)
 (hans/core-package-manager-init)
-(require 'use-package)
 (hans/core-fast-startup)
 (hans/core-better-gc)
 (idle! (hans/core-sync-path))

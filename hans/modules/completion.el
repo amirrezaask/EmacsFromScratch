@@ -25,21 +25,20 @@
 ;;; Code:
 
 ;;  ----------------------------Code completion (company)-----------------------------
-
 (use-package company
-    :custom
-    (company-idle-delay 0.25)
-    (company-minimum-prefix-length 2)
-    (company-tooltip-limit 14)
-    (company-tooltip-align-annotations t)
-    (company-require-match 'never)
-    (company-global-modes '(not erc-mode message-mode help-mode gud-mode eshell-mode))
-    (company-backends  '(company-capf))
-    (company-frontends '(company-pseudo-tooltip-frontend
-			 company-echo-metadata-frontend))
-    :config
-    (global-company-mode 1)
-    (add-to-list 'company-backends '(company-capf company-dabbrev)))
+  :custom
+  (company-idle-delay 0.25)
+  (company-minimum-prefix-length 2)
+  (company-tooltip-limit 14)
+  (company-tooltip-align-annotations t)
+  (company-require-match 'never)
+  (company-global-modes '(not erc-mode message-mode help-mode gud-mode eshell-mode))
+  (company-backends  '(company-capf))
+  (company-frontends '(company-pseudo-tooltip-frontend
+		       company-echo-metadata-frontend))
+  :config
+  (global-company-mode 1)
+  (add-to-list 'company-backends '(company-capf company-dabbrev)))
 
 ;; ------------------------------------General completion----------------------------
 (use-package ivy

@@ -28,7 +28,7 @@
 ;------------------------------------Org mode------------------------------------
 (use-package org
   :defer t
-  :mode ("\\.org\\'" . org-mode)
+  :mode "\\.org\\'"
   :ensure nil
   :straight nil
   :custom
