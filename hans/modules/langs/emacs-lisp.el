@@ -1,4 +1,4 @@
-;;; emacs-lisp.el --- Emacs lisp module for amirreza-emacs     -*- lexical-binding: t; -*-
+;;; emacs-lisp.el --- Emacs lisp module for hans     -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirrezaask
 
@@ -25,18 +25,18 @@
 ;;; Code:
 
 ;-----------------------------------Emacs Lisp-----------------------------------
-(defun --amirreza-emacs/modules/langs/emacs-lisp-dashes (count)
+(defun --hans/modules/langs/emacs-lisp-dashes (count)
   "Create dashes with given COUNT."
   (let ((dashes ""))
   (dotimes (iterator count dashes)
     (setq dashes (concat dashes "-")))))
 
-(defun amirreza-emacs/modules/emacs-lisp-insert-comment-line (text)
+(defun hans/modules/emacs-lisp-insert-comment-line (text)
   "Insert a comment line with given TEXT."
   (interactive "sComment: ")
   (let* ((len (length text))
 	(len-dashes (- 80 len))
-	(dashes (--amirreza-emacs/modules/langs/emacs-lisp-dashes (/ len-dashes 2))))
+	(dashes (--hans/modules/langs/emacs-lisp-dashes (/ len-dashes 2))))
     (insert (format "\n;%s%s%s" dashes text dashes))))
 
 (use-package elisp-mode
@@ -44,7 +44,7 @@
   :straight nil
   :bind
   (:map emacs-lisp-mode-map
-	("C-c C-c C-d" . 'amirreza-emacs/modules/emacs-lisp-insert-comment-line)))
+	("C-c C-c C-d" . 'hans/modules/emacs-lisp-insert-comment-line)))
 
 
 (provide 'emacs-lisp)

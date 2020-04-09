@@ -23,9 +23,9 @@
 ;; 
 
 ;;; Code:
-(defvar amirreza-emacs/modules-langs-dir (expand-file-name "langs" modules-dir))
+(defvar hans/modules-langs-dir (expand-file-name "langs" modules-dir))
 
-(amirreza-emacs/core-require-directory amirreza-emacs/modules-langs-dir)
+(hans/core-require-directory hans/modules-langs-dir)
 
 (provide 'langs)
 ;;; langs.el ends here

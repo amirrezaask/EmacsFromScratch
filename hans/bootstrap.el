@@ -29,22 +29,22 @@
 (defvar core-dir (expand-file-name "elisp" user-emacs-directory))
 (defvar modules-dir (expand-file-name "modules" core-dir))
 (defvar user-config-path (expand-file-name "~/.user-config.el"))
-(defvar amirreza-emacs/gc-cons-threshold 16777216)
-(defvar amirreza-emacs/init-time nil)
+(defvar hans/gc-cons-threshold 16777216)
+(defvar hans/init-time nil)
 
 (add-to-list 'load-path core-dir)
 
 (require 'core)
-(amirreza-emacs/core-package-manager-init)
-(amirreza-emacs/core-fast-startup)
-(amirreza-emacs/core-better-gc)
-(idle! (amirreza-emacs/core-sync-path))
-;; (amirreza-emacs/core-compile-dir modules-dir)
+(hans/core-package-manager-init)
+(hans/core-fast-startup)
+(hans/core-better-gc)
+(idle! (hans/core-sync-path))
+;; (hans/core-compile-dir modules-dir)
 
 ;; load modules
-(amirreza-emacs/core-require-directory modules-dir)
-(setq amirreza-emacs/init-time (- (float-time) init-timestamp))
+(hans/core-require-directory modules-dir)
+(setq hans/init-time (- (float-time) init-timestamp))
 
-(message "Startup took %s" amirreza-emacs/init-time)
+(message "Startup took %s" hans/init-time)
 (provide 'boostrap)
 ;;; boostrap.el ends here
