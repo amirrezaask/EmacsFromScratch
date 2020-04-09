@@ -1,6 +1,11 @@
 * Hans
 ** Intro
 =Hans= was named after legendary composer =Hans Zimmer=.
+*** Important Note
+I really encourage all Emacs users to use their own configs and write their own, we can learn a lot about Emacs
+internals and Emacs way of doing things, I learned a lot from =doom-emacs= and =spacemacs= and I'm using =doom-themes= almost
+all the time and I really hope that you find something useful in my source code, I don't expect anyone to use the whole codebase
+but if so I would be so happy that you contribute and use this project.
 ** Ideas
 =Hans= is built around some main ideas, some of them are not implemented yet.
 + First class support for Emacs keybindings.
