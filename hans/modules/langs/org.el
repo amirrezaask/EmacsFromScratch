@@ -1,8 +1,8 @@
-;;; syntax-checking.el --- provides syntax checking capanalities  -*- lexical-binding: t; -*-
+;;; org.el --- Org mode support                      -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2020  amirreza
+;; Copyright (C) 2020  amirrezaask
 
-;; Author: amirreza <amirreza@nobody.invalid>
+;; Author: amirrezaask <raskarpour@gmail.com>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,7 +24,22 @@
 
 ;;; Code:
 
-(use-package flycheck :hook (prog-mode . flycheck-mode))
 
-(provide 'syntax-checking)
-;;; syntax-checking.el ends here
+;------------------------------------Org mode------------------------------------
+(use-package org
+  :defer t
+  :mode ("\\.org\\'" . org-mode)
+  :ensure nil
+  :straight nil
+  :custom
+  (org-support-shift-select t))
+
+
+
+;----------------------------------Org bullets----------------------------------
+(use-package org-bullets
+       :hook ((org-mode) . 'org-bullets-mode))
+
+
+(provide 'org)
+;;; org.el ends here

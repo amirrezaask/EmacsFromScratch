@@ -1,9 +1,9 @@
-;;; vcs.el --- version controls integration          -*- lexical-binding: t; -*-
+;;; dev.el --- provides syntax checking capanalities  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirreza
 
 ;; Author: amirreza <amirreza@nobody.invalid>
-;; Keywords: 
+
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -23,11 +23,14 @@
 ;; 
 
 ;;; Code:
+;; ---------------------------------- Syntax checking --------------------------------------
+(use-package flycheck :hook (prog-mode . flycheck-mode))
 
+;; ----------------------------------- Git integration -------------------------------------
 (use-package magit
-	     :commands (magit-status)
-	     :bind
-	     (("C-x g" . 'magit-status)))
+       :commands (magit-status)
+       :bind
+       (("C-x g" . 'magit-status)))
 
 (use-package diff-hl
   :config (global-diff-hl-mode 1))
@@ -35,19 +38,17 @@
 (use-package gitconfig-mode :mode "/\\.gitconfig\\'")
 
 (use-package gitignore-mode
-	     :mode "/\\.gitignore\\'")
+       :mode "/\\.gitignore\\'")
 
 (use-package gitattributes-mode
-	     :mode "/\\.gitattributes\\'")
+       :mode "/\\.gitattributes\\'")
 
 (use-package git-messenger
-	     :bind
-	     (("C-M-c" . 'git-messenger:popup-message))
-	     :config
-	     (setq git-messenger:show-detail t)
-	     (setq git-messenger:use-magit-popup t))
+       :bind
+       (("C-M-c" . 'git-messenger:popup-message))
+       :config
+       (setq git-messenger:show-detail t)
+       (setq git-messenger:use-magit-popup t))
 
-
-
-(provide 'git)
-;;; vcs.el ends here
+(provide 'dev)
+;;; dev.el ends here
