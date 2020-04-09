@@ -30,7 +30,6 @@
 (defvar hans/font '(:family "Jetbrains Mono" :size 10))
 
 ;-------------------------------Disable Emacs GUIs-------------------------------
-
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (menu-bar-mode 0)
@@ -39,7 +38,6 @@
 (setq ring-bell-function 'ignore)
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-
 ;-------------------------------------Themes-------------------------------------
 
 (use-package doom-themes :defer t)
@@ -47,8 +45,8 @@
 (use-package badwolf-theme :defer t)
 (use-package modus-operandi-theme :defer t) ;; light version of modus theme
 (use-package modus-vivendi-theme :defer t) ;; dark version of modus theme
-(load-theme 'doom-one t)
 
+(load-theme (plist-get hans/--modules-ui-args :hans/theme))
 
 ;-------------------------------------Icons-------------------------------------
 
@@ -78,9 +76,10 @@
   "Set font for Emacs."
   (let ((family (plist-get font :family))
 	(size (plist-get font :size)))
+    (message "%s" font)
     (add-to-list 'default-frame-alist (cons 'font (format "%s-%d" family size)))))
 
-(hans/font hans/font)
+(hans/font (plist-get hans/modules/ui-args :hans/font))
 
 
 ;----------------------------------Tabs support----------------------------------

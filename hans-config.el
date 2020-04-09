@@ -25,7 +25,8 @@
 ;;; Code:
 
 (+module ui
-	 :hans/font '(:family "Jetbrains Mono" :size 10))
+	 :hans/font (:family "Jetbrains Mono" :size 10)
+	 :hans/theme doom-dracula)
 
 (provide 'hans-config)
 ;;; hans-config.el ends here

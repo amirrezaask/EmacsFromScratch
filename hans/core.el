@@ -39,7 +39,8 @@
 (defmacro +module (module &rest args)
   "Enable given MODULE with given ARGS."
   (let ((module-args-name (hans/module-args-name module)))
-  `(setq ,module-args-name ,args)))
+    (message "%s" args)
+    `(setq ,module-args-name (quote ,args))))
 
 
 (defun hans/core-package-manager-init ()
