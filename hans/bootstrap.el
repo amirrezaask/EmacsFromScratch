@@ -28,25 +28,28 @@
 (defvar hans/init-timestamp (float-time) "Emacs initialize timestamp.")
 (defvar hans/misc-path (expand-file-name ".misc" user-emacs-directory) "All misc files of various packages.")
 (defvar hans/root-path (expand-file-name "hans" user-emacs-directory))
-(defvar hans/pkgs-path (expand-file-name "packages" hans/root-path))
+(defvar hans/pkgs-path (expand-file-name "pkgs" hans/root-path))
 (defvar hans/config-path (expand-file-name "~/.config/hans/config.el"))
 (defvar hans/gc-cons-threshold 16777216)
 (defvar hans/init-time-elapsed nil)
+
 ;;================================================================================
 ;;                                 Add hans to load path
 ;;================================================================================
 
 (add-to-list 'load-path hans/root-path)
+(add-to-list 'load-path hans/pkgs-path)
 ;;================================================================================
 ;;                                 Load Hans Core
 ;;================================================================================
-(require 'core)
-(hans/core-package-manager-init)
-(hans/core-fast-startup)
-(hans/core-better-gc)
-(idle! (hans/core-sync-path))
+(require 'pkgmgr)
+(local-use-package hans-core
+		   :config
+		   (require 'hans-core);; we need to figure out a way to get ride of this
+		   (hans/core-fast-startup)
+		   (hans/core-better-gc)
+		   (idle! (hans/core-sync-path)))
 
-(setq hans/config-path "~/.config/hans/config.el")
 ;;================================================================================
 ;;                            Load user configuration
 ;;================================================================================
