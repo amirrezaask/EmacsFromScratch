@@ -43,5 +43,5 @@
   `(use-package ,pkg-name :ensure nil ,@options))
 
 
-(provide 'pkgmgr)
+(provide 'hans-pkgmgr)
 ;;; pkgmgr.el ends here

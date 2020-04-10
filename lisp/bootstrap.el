@@ -42,7 +42,7 @@
 ;;================================================================================
 ;;                                 Load Hans Core
 ;;================================================================================
-(require 'pkgmgr)
+(require 'hans-pkgmgr)
 (local-use-package hans-core
 		   :config
 		   (hans/core-fast-startup)
