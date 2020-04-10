@@ -53,5 +53,5 @@
 
 (setq make-backup-files nil)
 
-(provide 'emacsI)
+(provide 'modules/emacsI)
 ;;; emacsI.el ends here

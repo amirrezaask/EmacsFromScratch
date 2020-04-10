@@ -22,7 +22,9 @@
 
 ;;; Code:
 
-;; Load UI now 
+;;================================================================================
+;;                                Hans basic Vars
+;;================================================================================
 
 (defvar init-timestamp (float-time) "Emacs initialize timestamp.")
 (defvar misc-path (expand-file-name ".misc" user-emacs-directory) "All misc files of various packages.")
@@ -33,19 +35,24 @@
 (defvar hans/init-time nil)
 
 (add-to-list 'load-path core-dir)
-
+;;================================================================================
+;;                                 Load Hans Core
+;;================================================================================
 (require 'core)
 (hans/core-package-manager-init)
 (hans/core-fast-startup)
 (hans/core-better-gc)
 (idle! (hans/core-sync-path))
-;; (hans/core-compile-dir modules-dir)
 
-
-;--------------------------------Load user config--------------------------------
+;;================================================================================
+;;                            Load user configuration
+;;================================================================================
 (hans/core-load-user-config user-config-path)
 
-(hans/core-require-directory modules-dir)
+;;================================================================================
+;;                                  Load Modules
+;;================================================================================
+(hans/core-require-directory 'modules modules-dir)
 (setq hans/init-time (- (float-time) init-timestamp))
 
 (message "Startup took %s" hans/init-time)

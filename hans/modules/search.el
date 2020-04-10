@@ -39,5 +39,5 @@
 	     :commands (fzf)
 	     :bind(("<f3>" . 'fzf)))
 
-(provide 'search)
+(provide 'modules/search)
 ;;; search.el ends here

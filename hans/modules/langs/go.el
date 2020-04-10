@@ -40,5 +40,5 @@
 (use-package gotest :defer t)
 
 
-(provide 'go)
+(provide 'modules/langs/go)
 ;;; go.el ends here

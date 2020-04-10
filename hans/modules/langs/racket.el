@@ -27,5 +27,5 @@
 (use-package racket-mode
 	     :mode "\\.rkt\\'")
 
-(provide 'racket)
+(provide 'modules/langs/racket)
 ;;; racket.el ends here

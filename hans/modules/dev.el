@@ -65,5 +65,5 @@
   :bind (("C-c C-p r" . counsel-projectile-rg)))
 
 
-(provide 'dev)
+(provide 'modules/dev)
 ;;; dev.el ends here

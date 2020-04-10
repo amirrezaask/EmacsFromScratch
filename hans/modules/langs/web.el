@@ -29,5 +29,5 @@
 (use-package emmet-mode
   :hook (css-mode web-mode html-mode haml-mode nxml-mode rjsx-mode reason-mode))
 
-(provide 'web)
+(provide 'modules/langs/web)
 ;;; web.el ends here

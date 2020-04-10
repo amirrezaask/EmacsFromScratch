@@ -29,5 +29,5 @@
 
 
 
-(provide 'javascript)
+(provide 'modules/langs/javascript)
 ;;; javascript.el ends here

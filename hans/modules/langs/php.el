@@ -34,5 +34,5 @@
 	      ("C-c C-t p" . phpunit-current-project)))
 
 
-(provide 'php)
+(provide 'modules/langs/php)
 ;;; php.el ends here

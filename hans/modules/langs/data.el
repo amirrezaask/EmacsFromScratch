@@ -49,5 +49,5 @@
 (use-package graphql-mode
   :mode "\\.gql\\'")
 
-(provide 'data)
+(provide 'modules/langs/data)
 ;;; data.el ends here

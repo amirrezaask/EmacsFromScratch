@@ -43,5 +43,5 @@
 		   gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]"))
 
 
-(provide 'gnus)
+(provide 'modules/gnus)
 ;;; gnus.el ends here

@@ -34,5 +34,5 @@
        :hook ((org-mode) . 'org-bullets-mode))
 
 
-(provide 'orgmode)
+(provide 'modules/langs/orgmode)
 ;;; org.el ends here

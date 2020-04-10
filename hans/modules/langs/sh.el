@@ -27,5 +27,5 @@
 (use-package company-shell
   :hook sh-mode)
 
-(provide 'sh)
+(provide 'modules/langs/sh)
 ;;; sh.el ends here

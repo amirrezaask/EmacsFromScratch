@@ -31,5 +31,5 @@
 	     :hook haskell-mode)
 
 
-(provide 'haskell)
+(provide 'modules/langs/haskell)
 ;;; haskell.el ends here

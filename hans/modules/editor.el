@@ -146,6 +146,6 @@
 
 
 ;--------------------------------------END--------------------------------------
-(provide 'editor)
+(provide 'modules/editor)
 
 ;;; editor.el ends here

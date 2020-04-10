@@ -37,5 +37,5 @@
 	     :init (add-hook 'rust-mode-hook #'cargo-minor-mode))
 
 
-(provide 'rust)
+(provide 'modules/langs/rust)
 ;;; rust.el ends here

@@ -28,5 +28,5 @@
 
 (use-package flycheck-kotlin :hook kotlin)
 
-(provide 'kotlin)
+(provide 'modules/langs/kotlin)
 ;;; kotlin.el ends here

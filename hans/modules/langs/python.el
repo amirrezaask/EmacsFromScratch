@@ -37,5 +37,5 @@
 	     :hook python-mode)
 
 
-(provide 'python)
+(provide 'modules/langs/python)
 ;;; python.el ends here

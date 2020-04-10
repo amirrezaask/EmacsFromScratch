@@ -49,5 +49,5 @@
 	     (which-key-mode 1))
 
 ;;; 
-(provide 'keybindings)
+(provide 'modules/keybindings)
 ;;; keybindings.el ends here

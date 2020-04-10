@@ -54,5 +54,5 @@
 	("C-c C-c C-d" . 'hans/modules/emacs-lisp-insert-comment-line)))
 
 
-(provide 'emacs-lisp)
+(provide 'modules/langs/emacs-lisp)
 ;;; emacs-lisp.el ends here

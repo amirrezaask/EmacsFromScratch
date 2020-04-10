@@ -25,7 +25,7 @@
 ;;; Code:
 (defvar hans/modules-langs-dir (expand-file-name "langs" modules-dir))
 
-(hans/core-require-directory hans/modules-langs-dir)
+(hans/core-require-directory 'modules/langs hans/modules-langs-dir)
 
-(provide 'langs)
+(provide 'modules/langs)
 ;;; langs.el ends here

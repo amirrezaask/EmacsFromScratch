@@ -39,5 +39,5 @@
 	     :hook ((prog-mode) . rainbow-delimiters-mode))
 
 
-(provide 'common-lisp)
+(provide 'modules/langs/common-lisp)
 ;;; common-lisp.el ends here

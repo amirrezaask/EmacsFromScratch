@@ -33,5 +33,5 @@
   :defer t
   :init (add-hook 'elixir-mode-hook #'flycheck-credo-setup))
 
-(provide 'elixir)
+(provide 'modules/langs/elixir)
 ;;; elixir.el ends here

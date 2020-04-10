@@ -116,5 +116,5 @@
 
 
 
-(provide 'ui)
+(provide 'modules/ui)
 ;;; ui.el ends here

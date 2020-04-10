@@ -27,5 +27,5 @@
 
 
 
-(provide 'lua)
+(provide 'modules/langs/lua)
 ;;; lua.el ends here

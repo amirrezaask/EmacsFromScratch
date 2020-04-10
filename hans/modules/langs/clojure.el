@@ -35,5 +35,5 @@
 (use-package clj-refactor
   :hook (clojure-mode . clj-refactor-mode))
 
-(provide 'clojure)
+(provide 'modules/langs/clojure)
 ;;; clojure.el ends here

@@ -28,5 +28,5 @@
 	     :mode "\\.ts\\'")
 
 
-(provide 'typescript)
+(provide 'modules/langs/typescript)
 ;;; typescript.el ends here

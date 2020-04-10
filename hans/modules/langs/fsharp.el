@@ -26,5 +26,5 @@
 
 (use-package fsharp-mode :mode "\\.fs\\'")
 
-(provide 'fsharp)
+(provide 'modules/langs/fsharp)
 ;;; fsharp.el ends here

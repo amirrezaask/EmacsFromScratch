@@ -40,5 +40,5 @@
 
 (use-package cquery :defer t)   
 
-(provide 'c)
+(provide 'modules/langs/c)
 ;;; c.el ends here

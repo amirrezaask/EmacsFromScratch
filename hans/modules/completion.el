@@ -24,7 +24,10 @@
 
 ;;; Code:
 
-;;  ----------------------------Code completion (company)-----------------------------
+
+;;================================================================================
+;;                                  Company Mode                                  
+;;================================================================================
 (use-package company
   :custom
   (company-idle-delay 0.25)
@@ -41,13 +44,18 @@
   (add-to-list 'company-backends '(company-capf company-dabbrev)))
 
 
-;------------------------Completion sorting and filtering------------------------
 
+;;================================================================================
+;;                               Company Prescient                               
+;;================================================================================
 (use-package company-prescient
   :hook ((company-mode) . company-prescient-mode))
 
 
-;; ------------------------------------General completion----------------------------
+
+;;================================================================================
+;;                                      Ivy                                      
+;;================================================================================
 (use-package ivy
   :bind
   (("C-x b" . 'ivy-switch-buffer))
@@ -85,5 +93,5 @@
 	       ("M-y" . 'counsel-yank-pop)))
 
 
-(provide 'completion)
+(provide 'modules/completion)
 ;;; completion.el ends here

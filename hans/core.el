@@ -99,16 +99,16 @@
   (use-package exec-path-from-shell :config (exec-path-from-shell-initialize)))
 
 (defun hans/core-all-el-files (path)
-  (directory-files path nil "\\.el$"))
-
-
+  (let ((files (directory-files path nil "\\.el$")))
+    files
+    ))
 
 ;; modules loader
-(defun hans/core-require-directory (path)
+(defun hans/core-require-directory (base-ns path)
   (add-to-list 'load-path path)
   (let ((files (hans/core-all-el-files path)))
     (mapcar (lambda (file)
-	      (let ((module-name (intern(car (split-string file "\\.")))) (module-timestamp (float-time)))
+	      (let ((module-name (intern (concat (symbol-name base-ns) "/" (car (split-string file "\\."))))))
 		(require module-name)
 		(message "Loading %s" module-name))) files)))
 

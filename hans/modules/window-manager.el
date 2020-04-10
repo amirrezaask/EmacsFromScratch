@@ -41,5 +41,5 @@
 
 
 
-(provide 'window-manager)
+(provide 'modules/window-manager)
 ;;; window-manager.el ends here

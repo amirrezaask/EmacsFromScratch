@@ -29,5 +29,5 @@
 (use-package haxor-mode :mode "\\.hax\\'")
 
 
-(provide 'asm)
+(provide 'modules/langs/asm)
 ;;; asm.el ends here

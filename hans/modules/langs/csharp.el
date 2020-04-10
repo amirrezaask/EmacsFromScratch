@@ -30,5 +30,5 @@
   :hook csharp-mode
   :commands (omnisharp omnisharp-install-server))
 
-(provide 'csharp)
+(provide 'modules/langs/csharp)
 ;;; csharp.el ends here

@@ -33,5 +33,5 @@
 (use-package lsp-java
 	     :hook (java-mode))
 
-(provide 'java)
+(provide 'modules/langs/java)
 ;;; java.el ends here

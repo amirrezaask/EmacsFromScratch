@@ -48,5 +48,5 @@
   :mode "\\.j2$")
 
 
-(provide 'devops)
+(provide 'modules/devops)
 ;;; devops.el ends here
