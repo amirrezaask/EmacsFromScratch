@@ -24,7 +24,7 @@
 
 ;;; Code:
 
-;-----------------------------------Emacs Lisp-----------------------------------
+
 (defun --hans-emacs-lisp-repeat (str count)
   "Create dashes with given COUNT."
   (let ((dashes ""))
@@ -46,7 +46,6 @@
 
 (use-package elisp-mode
   :ensure nil
-  
   :bind
   (:map emacs-lisp-mode-map
 	("C-c C-c C-d" . 'hans-emacs-lisp-insert-comment-line)))

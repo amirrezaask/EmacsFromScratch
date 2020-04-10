@@ -96,7 +96,9 @@
    ("C-c C-c f"  . 'counsel-fzf)
    ("C-c C-c r" . 'counsel-rg)
    ("M-y" . 'counsel-yank-pop)))
-
+(use-package lsp-ivy
+    :if (eq hans-general-completion 'ivy)
+    :commands lsp-ivy-workspace-symbol)
 ;;================================================================================
 ;;                                      IDO                                      
 ;;================================================================================

@@ -56,7 +56,7 @@
 (local-use-package hans-devops)
 (local-use-package hans-langs
 		   :custom
-		   (hans/enabled-langs '(python go clojure rust php)))
+		   (hans/enabled-langs '(python go clojure rust php emacs-lisp)))
 
 (local-use-package hans-gnus)
 (local-use-package hans-window-manager)

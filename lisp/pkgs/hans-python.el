@@ -23,9 +23,16 @@
 ;; 
 
 ;;; Code:
+(defun hans-python-insert-docstring ()
+  (interactive)
+  (insert "'''\n'''")
+  (backward-char 3))
 
 (use-package python-mode
-	     :mode "\\.py\\'")
+  :mode "\\.py\\'"
+  :bind
+  (:map python-mode-map
+   ("C-c l p d" . hans-python-insert-docstring)))
 
 (use-package pipenv
 	     :defer t)
