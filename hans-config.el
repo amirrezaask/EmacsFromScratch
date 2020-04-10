@@ -23,10 +23,41 @@
 ;; 
 
 ;;; Code:
+(local-use-package modules/ui)
+(local-use-package modules/completion)
+(local-use-package modules/editor)
+(local-use-package modules/search)
+(local-use-package modules/dev)
+(local-use-package modules/devops)
+(local-use-package modules/langs
+		   :config
+		   (with asm)
+		   (with c)
+		   (with clojure)
+		   (with common-lisp)
+		   (with csharp)
+		   (with data)
+		   (with elixir)
+		   (with emacs-lisp)
+		   (with fsharp)
+		   (with go)
+		   (with haskell)
+		   (with java)
+		   (with javascript)
+		   (with kotlin)
+		   (with lua)
+		   (with orgmode)
+		   (with php)
+		   (with python)
+		   (with racket)
+		   (with rust)
+		   (with sh)
+		   (with typescript)
+		   (with web))
 
-(+module ui
-	 :hans/font (:family "Jetbrains Mono" :size 10)
-	 :hans/theme doom-one)
+(local-use-package modules/gnus)
+(local-use-package modules/emacsI)
+(local-use-package modules/window-manager)
 
 (provide 'hans-config)
 ;;; hans-config.el ends here

@@ -1,5 +1,6 @@
 #+TITLE: Amirrezaask Emacs configuration (a.k.a Hans)
 #+AUTHOR: AmirrezaAsk
+
 ** Intro
 I'm a huge fan of =HansZimmer=, so I call my emacs configuration =Hans=.
 *** Important Note
@@ -24,22 +25,6 @@ git clone git@gitlab.com:amirrezaask/hans.git ~/.emacs.d
 cd ~/.emacs.d
 make compile # only first time or after the updates
 #+END_SRC
-** Terminology
-*** Core
-=Hans= core consists of a few macros and functions, UI settings, and bootstrap code of =Hans=. This part should stay as small
-as possible, and probably some day in the future UI should be dismantled from it as well. A breif introduction to some important
-core macros
-**** +module
-this macro is the main feature that helps me to configure my modules. this macro stores 
-all data you pass it and then modules use that data to configure themselves.
-**** idle! 
-=Hans= idle! macro takes multiple forms and evalutes them when Emacs is idle for 1 sec using =run-with-idle-timer=.
-
-*** Modules
-=Hans= modules are a mix of packages and configurations. They conventionaly created using =use-package=, maybe some day if we added
-=Evil= we could customize macro to our needs (for keybindings for example).
-Each module can recieve =Args= which is basically a form that is defined in user-config and will be set as the module args, forexample look at UI module and user-config file. Module args names are in the form of 
-=hans/--module-[MODULENAMEF]-args=.
 ** Feature Highlight
 *** Supported Languages
 + Assembly (MIPS, Haxor)

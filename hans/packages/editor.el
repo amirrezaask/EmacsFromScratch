@@ -53,7 +53,10 @@
 (global-set-key (kbd "C-z") nil)
 (global-set-key (kbd "M-z") nil)
 (global-set-key (kbd "C-x C-z") nil)
-
+(use-package files :straight nil :ensure nil
+  :config
+  (setq make-backup-files nil))
+(setq custom-file (expand-file-name "custom.el" hans/misc-path))
 ;; sane zoom-in and zoom-out 
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C-_") 'text-scale-decrease)
@@ -76,6 +79,12 @@
   ("C-x K" . 'crux-kill-other-buffers))
 
 
+;;================================================================================
+;;                                     Swiper                                     
+;;================================================================================
+(use-package swiper
+	     :commands (swiper)
+	     :init (global-set-key (kbd "C-s") 'swiper))
 
 ;;================================================================================
 ;;                                     IEdit                                     
