@@ -119,5 +119,14 @@
   :if (eq hans-general-completion 'ido)
   :bind (("M-x" . smex)))
 
+(use-package ido-vertical-mode
+  :if (eq hans-general-completion 'ido)
+  :custom
+  (ido-vertical-define-keys 'C-n-and-C-p-only)
+  (ido-vertical-show-count t)
+  :config
+  (ido-vertical-mode 1))
+
+
 (provide 'hans-completion)
 ;;; completion.el ends here
