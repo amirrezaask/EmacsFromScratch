@@ -25,27 +25,35 @@
 ;;; Code:
 
 
-;----------------------------IEdit (Interactive Edit)----------------------------
+
+;;================================================================================
+;;                                     IEdit                                     
+;;================================================================================
 
 (use-package iedit
-	     :bind (("C-;" . 'iedit-mode)))
+  :bind (("C-;" . 'iedit-mode)))
 
 
-;-----------------------Treemacs (File & project browser)-----------------------
 
+;;================================================================================
+;;                                    Treemacs                                    
+;;================================================================================
 (use-package treemacs
-	     :disabled t
-	     :bind (("M-0" . treemacs-select-window))
-	     :init
-	     (setq treemacs-follow-after-init t
-		   treemacs-is-never-other-window nil
-		   treemacs-sorting 'alphabetic-case-insensitive-asc)
-	     :config 
-	     (treemacs-follow-mode -1))
+  :disabled t
+  :bind (("M-0" . treemacs-select-window))
+  :init
+  (setq treemacs-follow-after-init t
+	treemacs-is-never-other-window nil
+	treemacs-sorting 'alphabetic-case-insensitive-asc)
+  :config 
+  (treemacs-follow-mode -1))
 (use-package treemacs-projectile :disabled t)
 (use-package treemacs-magit :disabled t)
 
-;--------------------------------Multiple cursors--------------------------------
+
+;;================================================================================
+;;                                Multiple Cursors                                
+;;================================================================================
 (use-package multiple-cursors
   :defer t
   :bind (("C->" . 'mc/mark-next-like-this)
@@ -54,12 +62,18 @@
 	 ("C-M-," . 'mc/edit-lines)))
 
 
-;---------------------------------Expand Region---------------------------------
+
+;;================================================================================
+;;                                 Expand Region                                 
+;;================================================================================
 (use-package expand-region
 	     :bind (("C-=" . 'er/expand-region)
 		    ("C--" . 'er/contract-region)))
 
-;--------------------------------Highligh Indents--------------------------------
+
+;;================================================================================
+;;                               Highlight Indents                               
+;;================================================================================
 (use-package highlight-indent-guides
   :hook ((yaml-mode) . highlight-indent-guides-mode)
   :init
@@ -68,46 +82,67 @@
   (add-hook 'focus-in-hook #'highlight-indent-guides-auto-set-faces))
 
 
-;---------------------Ace Window (Better window management)---------------------
+
+;;================================================================================
+;;                                   Ace Window                                   
+;;================================================================================
 (use-package ace-window
   :bind (("C-x o" . 'ace-window) 
 	 ("C-x C-o" . 'ace-window)))
 
 
-;----------------------Winner mode (Restore window layouts)----------------------
+
+;;================================================================================
+;;                                    Winner                                     
+;;================================================================================
 (use-package winner 
   :ensure nil
   :straight nil)
 
 
-;-----------------------------Template file headers-----------------------------
-(auto-insert-mode 1)
+
+;;================================================================================
+;;                                  Auto Insert                                  
+;;================================================================================
+(use-package autoinsert
+  :config
+  (auto-insert-mode +1))
 
 
-;-------------------------------------ctags -------------------------------------
-(defun update-ctags ()
+;;================================================================================
+;;                                     ctags                                     
+;;================================================================================
+(defun hans/modules/editor-update-ctags ()
   "Update Ctags file in current directory."
   (interactive)
   (cd default-directory)
   (start-process "ctags" "*CTAGS*" "ctags" "-eR" "."))
 
 
-;---------------Dumb Jump (Jumb to defenition using rg, ag, grep)---------------
 
+;;================================================================================
+;;                                   Dumb Jump                                   
+;;================================================================================
 (use-package dumb-jump
-	     :bind
-	     (("C-M-j" . 'dumb-jump-go)
-	      ("C-M-p" . 'dumb-jump-back))
-	     :config
-	     (dumb-jump-mode 1))
+  :bind
+  (("C-M-j" . 'dumb-jump-go)
+   ("C-M-p" . 'dumb-jump-back))
+  :config
+  (dumb-jump-mode 1))
 
 
-;----------------------Sudo Edit (Edit files owned by root)----------------------
+
+;;================================================================================
+;;                                   Sudo Edit                                   
+;;================================================================================
 (use-package sudo-edit
   :commands (sudo-edit))
 
 
-;--------------------------------Highlight TODOS--------------------------------
+
+;;================================================================================
+;;                                Highlight TODO                                 
+;;================================================================================
 (use-package hl-todo
   :defer t
   :init (add-hook 'prog-mode-hook #'hl-todo-mode)
@@ -122,30 +157,53 @@
 	  ("DEPRECATED" font-lock-doc-face bold))))
 
 
-;----------------------------------Line numbers----------------------------------
 
-(global-display-line-numbers-mode 1)
-
-
-;---------------------------------Column Numbers---------------------------------
-(column-number-mode 1)
-
-
-;----------------------------------Cursor Shape----------------------------------
-(setq-default cursor-type 'bar)
-
-
-;-----------------------------Highlight current line-----------------------------
-(global-hl-line-mode 1)
-
-;----------------------------------Blink cursor----------------------------------
-
-(blink-cursor-mode 0)
+;;================================================================================
+;;                            Global display numbers                             
+;;================================================================================
+(use-package display-line-numbers
+  :config 
+  (global-display-line-numbers-mode 1))
 
 
 
+;;================================================================================
+;;                              Column Numbers Mode                              
+;;================================================================================				
+(use-package simple
+  :ensure nil
+  :straight nil
+  :config
+  (column-number-mode 1))
 
-;--------------------------------------END--------------------------------------
+
+
+;;================================================================================
+;;                                  Cursor Type                                  
+;;================================================================================
+(use-package emacs
+  :custom
+  (cursor-type 'bar))
+
+;;================================================================================
+;;                             Highlight Current line                             
+;;================================================================================
+(use-package hl-line
+  :config
+  (global-hl-line-mode 1))
+
+
+
+;;================================================================================
+;;                               Blink cursor mode                               
+;;================================================================================
+(use-package frame
+  :ensure nil
+  :straight nil
+  :config
+  (blink-cursor-mode 0))
+
+
 (provide 'modules/editor)
 
 ;;; editor.el ends here

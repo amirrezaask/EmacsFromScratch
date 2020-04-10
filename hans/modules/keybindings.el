@@ -25,7 +25,7 @@
 ;;; Code:
 
 ;;; --------------------------General Keybindings--------------------
-;; disabling some useless annoying keys
+
 (global-set-key (kbd "C-z") nil)
 (global-set-key (kbd "M-z") nil)
 (global-set-key (kbd "C-x C-z") nil)

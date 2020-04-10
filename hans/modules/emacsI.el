@@ -27,12 +27,18 @@
 
 (defvar emacs-backup-directory (expand-file-name ".backups" user-emacs-directory))
 
+;;================================================================================
+;;                                    IBuffer                                    
+;;================================================================================
 (use-package ibuffer
   :bind (("C-x C-b" . 'ibuffer)))
 
 (use-package ibuffer-projectile 
   :hook (ibuffer . ibuffer-projectile-set-filter-groups))
 
+;;================================================================================
+;;                                     Dired                                     
+;;================================================================================
 (use-package dired
 	     :ensure nil
 	     :straight nil
@@ -45,13 +51,21 @@
 	     (dired-recursive-copies 'always))
 
 
+;;================================================================================
+;;                                      Crux                                      
+;;================================================================================
 (use-package crux
   :config
   (require 'crux)
   :bind (("C-S-k" . 'crux-kill-whole-line)
 	 ("C-x K" . 'crux-kill-other-buffers)))
 
-(setq make-backup-files nil)
+;;================================================================================
+;;                               Turn off backups                                
+;;================================================================================
+(use-package files :straight nil :ensure nil
+  :config
+  (setq make-backup-files nil))
 
 (provide 'modules/emacsI)
 ;;; emacsI.el ends here

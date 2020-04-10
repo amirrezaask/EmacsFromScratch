@@ -23,10 +23,17 @@
 ;; 
 
 ;;; Code:
-;; ---------------------------------- Syntax checking --------------------------------------
+
+;;================================================================================
+;;                                    Flycheck
+;;================================================================================
+
 (use-package flycheck :hook ((prog-mode) . flycheck-mode))
 
-;; ----------------------------------- Git integration -------------------------------------
+
+;;================================================================================
+;;                                     Magit
+;;================================================================================
 (use-package magit
        :commands (magit-status)
        :bind
@@ -50,7 +57,10 @@
        (setq git-messenger:show-detail t)
        (setq git-messenger:use-magit-popup t))
 
-;; -------------------------------- projectile -------------------------------------------------------
+
+;;================================================================================
+;;                                   Projectile
+;;================================================================================
 (use-package projectile
        :bind
        (("C-x p" . 'projectile-command-map)
@@ -60,7 +70,7 @@
        :config
        (projectile-mode 1)
        (add-to-list 'projectile-globally-ignored-directories "node_modules"))
-;; ------------------------------- projectile integration for counsel --------------------------------
+
 (use-package counsel-projectile
   :bind (("C-c C-p r" . counsel-projectile-rg)))
 
