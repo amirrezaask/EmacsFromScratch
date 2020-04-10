@@ -25,7 +25,7 @@
 ;;; Code:
 
 (+module ui
-	 :hans/font (:family "Fira Code" :size 12)
+	 :hans/font (:family "Jetbrains Mono" :size 10)
 	 :hans/theme doom-one)
 
 (provide 'hans-config)
