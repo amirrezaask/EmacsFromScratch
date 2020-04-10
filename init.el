@@ -1,31 +1,43 @@
-;;; init.el --- init file                            -*- lexical-binding: t; -*-
+;; disable GUI 
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+;; line numbers
+(display-line-numbers-mode +1)
+(column-number-mode +1)
+;; elpa (emacs lisp package archive)
+;;; gnu elpa
+;;; melpa
+;; C-h f function
+;; C-h v variable
+;; C-n next line
+;; C-p previous line
+;; C-f forwad char M-f
+;; C-b backward char
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(package-refresh-contents)
+(package-install 'use-package)
 
-;; Copyright (C) 2020  amirrezaask
+(use-package doom-themes :defer t)
 
-;; Author: amirrezaask <raskarpour@gmail.com>
-;; Keywords: 
+(load-theme 'doom-dracula)
 
-;; This program is free software; you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
+(use-package rainbow-delimiters
+  :hook emacs-lisp-mode)
 
-;; This program is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
+(use-package ivy
+  :config
+  (ivy-mode +1))
 
-;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
+(use-package counsel
+  :bind (("C-c C-c f" . counsel-fzf)
+	 ("C-c C-c s" . counsel-rg)))
 
-;;; Commentary:
-
-;; 
-
-;;; Code:
-
-(load-file (expand-file-name "lisp/bootstrap.el" user-emacs-directory))
-
-(provide 'init)
-;;; init.el ends here
+;; C-x => emacs built-in 
+;; C-c C-* *** => major mode
+;; C-c * => minor mode / user pref
+;; fn => user pref
+(use-package swiper
+  :bind (("C-s" . swiper) ("C-r". swiper)))
 

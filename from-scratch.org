@@ -1,0 +1,23 @@
+* From scratch Emacs
+** Step 1
+*** Emacs lisp interpreter
+*** Basic keychords
+*** line numbers column numbers 
+*** package management
+*** install elisp helper packages (rainbow-delimters)
+** Step 2
+*** ivy (counsel, swiper, fzf, rg)
+*** use-package
+** Step 3
+*** lsp
+*** python-mode
+*** go-mode
+** step 3+1
+*** magit
+** Step 4
+*** multiple cursors
+*** expand region
+*** dumb jump
+*** ace window
+*** which key
+*** ibuffer
