@@ -15,7 +15,7 @@ since I know from ground up how I built it so it's much easier for me to add thi
 + Startup time matters a lot so it should always stay fast as possible.
 + Core should remain as simple as possible.
 + KISS (keep it simple stupid).
-+ Modularity comes first .
++ Modularity comes first.
 + No duplicate packages, focus on one (ex helm & ivy)
 ** Getting Started
 #+BEGIN_SRC sh
