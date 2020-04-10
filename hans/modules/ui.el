@@ -29,8 +29,9 @@
 ;;================================================================================
 ;;                                      VARS                                      
 ;;================================================================================
-(defvar hans/theme 'doom-one "Hans default theme.")
-(defvar hans/font '(:family "Jetbrains Mono" :size 10))
+(defvar hans/ui/theme 'modus-vivendi "Hans default theme.")
+(defvar hans/ui/font '(:family "Jetbrains Mono" :size 10))
+(defvar hans/ui/doom-modeline nil "wether to enable doom-modeline or not")
 
 ;;================================================================================
 ;;                               Disable GUI things                               
@@ -54,7 +55,7 @@
 (use-package modus-operandi-theme :defer t) ;; light version of modus theme
 (use-package modus-vivendi-theme :defer t) ;; dark version of modus theme
 
-(load-theme (plist-get hans/--modules-ui-args :hans/theme) t)
+(load-theme hans/ui/theme t)
 
 
 ;;================================================================================
@@ -80,7 +81,7 @@
 ;;================================================================================
 
 (use-package doom-modeline
-  :if (hans/enable? hans/--modules-ui-args '+doom-modeline)
+  :if hans/ui/doom-modeline
   :init (doom-modeline-mode 1)
   :custom
   (doom-modeline-height 35))
@@ -92,49 +93,30 @@
 ;;                                   Font setup                                   
 ;;================================================================================
 
-(defun hans/font (font)
+(defun hans/ui/set-font (font)
   "Set font for Emacs."
   (let ((family (plist-get font :family))
 	(size (plist-get font :size)))
-    (message "%s" font)
     (add-to-list 'default-frame-alist (cons 'font (format "%s-%d" family size)))))
 
-(hans/font (plist-get hans/--modules-ui-args :hans/font))
-
-
-
-;;================================================================================
-;;                                  Centaur Tabs                                  
-;;================================================================================
-(use-package centaur-tabs
-	     :disabled t
-	     :init
-	     (setq centaur-tabs-set-icons t
-		   centaur-tabs-gray-out-icons 'buffer
-		   centaur-tabs-set-bar 'left
-		   centaur-tabs-set-modified-marker t
-		   centaur-tabs-close-button "✕"
-		   centaur-tabs-modified-marker "⬤")
-	     :config
-	     (centaur-tabs-mode 1))
-
-
+(hans/ui/set-font hans/ui/font)
 
 ;;================================================================================
 ;;                                Better Scrolling                                
 ;;================================================================================
-(setq scroll-step 1)
-(setq scroll-margin 1)
-(setq scroll-conservatively 101)
-(setq scroll-up-aggressively 0.01)
-(setq scroll-down-aggressively 0.01)
-(setq auto-window-vscroll nil)
-(setq fast-but-imprecise-scrolling nil)
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
-(setq mouse-wheel-progressive-speed nil)
-;; Horizontal Scroll
-(setq hscroll-step 1)
-(setq hscroll-margin 1)
+(use-package emacs
+  :custom
+  (scroll-step 1)
+  (scroll-margin 1)
+  (scroll-conservatively 101)
+  (scroll-up-aggressively 0.01)
+  (scroll-down-aggressively 0.01)
+  (uto-window-vscroll nil)
+  (fast-but-imprecise-scrolling nil)
+  (mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+  (mouse-wheel-progressive-speed nil)
+  (hscroll-step 1)
+  (hscroll-margin 1))
 
 (provide 'modules/ui)
 ;;; ui.el ends here

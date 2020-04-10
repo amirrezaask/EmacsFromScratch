@@ -27,23 +27,9 @@
 ;;================================================================================
 ;;                                   Hans VARS
 ;;================================================================================
-(defvar hans/--enabled-modules '() "Enabled modules.")
-
-(defun keywordify (sym)
+(defun hans/keywordify (sym)
   "Create a keyword from given SYM."
   (intern (concat ":" (symbol-name sym))))
-
-(defun hans/module-args-name (module)
-  (intern (format "hans/--modules-%s-args" module)))
-
-(defmacro +module (module &rest args)
-  "Enable given MODULE with given ARGS."
-  (let ((module-args-name (hans/module-args-name module)))
-    (message "%s" args)
-    `(setq ,module-args-name (quote ,args))))
-
-(defun hans/enable? (module-args feature)
-  (member feature module-args))
 
 (defun hans/core-package-manager-init ()
   (interactive)
@@ -67,6 +53,8 @@
 (defmacro idle! (&rest body)
   `(run-with-idle-timer 1 nil (lambda ()
 				,@body)))
+(defmacro local-use-package (pkg-name &rest options)
+  `(use-package ,pkg-name :straight nil :ensure nil ,@options))
 
 (defun hans/core-fast-startup ()
   (setq frame-inhibit-implied-resize t)
@@ -97,20 +85,6 @@
 (defun hans/core-sync-path ()
   (setq exec-path-from-shell-check-startup-files nil)
   (use-package exec-path-from-shell :config (exec-path-from-shell-initialize)))
-
-(defun hans/core-all-el-files (path)
-  (let ((files (directory-files path nil "\\.el$")))
-    files
-    ))
-
-;; modules loader
-(defun hans/core-require-directory (base-ns path)
-  (add-to-list 'load-path path)
-  (let ((files (hans/core-all-el-files path)))
-    (mapcar (lambda (file)
-	      (let ((module-name (intern (concat (symbol-name base-ns) "/" (car (split-string file "\\."))))))
-		(require module-name)
-		(message "Loading %s" module-name))) files)))
 
 (defun hans/core-better-gc ()
   (idle! (use-package gcmh

@@ -47,6 +47,24 @@
        (dired-recursive-deletes 'always)
        (dired-recursive-copies 'always))
 
+(use-package which-key
+  	     :config
+	     (which-key-mode 1))
+(global-set-key (kbd "C-z") nil)
+(global-set-key (kbd "M-z") nil)
+(global-set-key (kbd "C-x C-z") nil)
+
+;; sane zoom-in and zoom-out 
+(global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "C-_") 'text-scale-decrease)
+
+;; buffer switching
+(global-set-key (kbd "C-.") 'next-buffer)
+(global-set-key (kbd "C-,") 'previous-buffer)
+
+;; custom motions
+(global-set-key (kbd "M-n") (lambda () (interactive) (next-line 5)))
+(global-set-key (kbd "M-p") (lambda () (interactive) (previous-line 5)))
 
 ;;================================================================================
 ;;                                      Crux                                      

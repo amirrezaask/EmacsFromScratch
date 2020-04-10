@@ -25,16 +25,18 @@
 ;;================================================================================
 ;;                                Hans basic Vars
 ;;================================================================================
-
-(defvar init-timestamp (float-time) "Emacs initialize timestamp.")
-(defvar misc-path (expand-file-name ".misc" user-emacs-directory) "All misc files of various packages.")
-(defvar core-dir (expand-file-name "hans" user-emacs-directory))
-(defvar modules-dir (expand-file-name "modules" core-dir))
-(defvar hans/config-path (expand-file-name "~/.config/config.el"))
+(defvar hans/init-timestamp (float-time) "Emacs initialize timestamp.")
+(defvar hans/misc-path (expand-file-name ".misc" user-emacs-directory) "All misc files of various packages.")
+(defvar hans/root-path (expand-file-name "hans" user-emacs-directory))
+(defvar hans/pkgs-path (expand-file-name "modules" hans/root-path))
+(defvar hans/config-path (expand-file-name "~/.config/hans/config.el"))
 (defvar hans/gc-cons-threshold 16777216)
-(defvar hans/init-time nil)
+(defvar hans/init-time-elapsed nil)
+;;================================================================================
+;;                                 Add hans to load path
+;;================================================================================
 
-(add-to-list 'load-path core-dir)
+(add-to-list 'load-path hans/root-path)
 ;;================================================================================
 ;;                                 Load Hans Core
 ;;================================================================================
@@ -44,17 +46,14 @@
 (hans/core-better-gc)
 (idle! (hans/core-sync-path))
 
+(setq hans/config-path "~/.config/hans/config.el")
 ;;================================================================================
 ;;                            Load user configuration
 ;;================================================================================
 (hans/core-load-user-config hans/config-path)
 
-;;================================================================================
-;;                                  Load Modules
-;;================================================================================
-(hans/core-require-directory 'modules modules-dir)
-(setq hans/init-time (- (float-time) init-timestamp))
+(setq hans/init-time-elapsed (- (float-time) hans/init-timestamp))
 
-(message "Startup took %s" hans/init-time)
+(message "Startup took %s" hans/init-time-elapsed)
 (provide 'boostrap)
 ;;; boostrap.el ends here
