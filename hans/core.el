@@ -23,11 +23,11 @@
 ;; 
 
 ;;; Code:
-;; ----------------------- VARS --------------------------------------------------
-(defvar hans/--enabled-modules '() "Enabled modules.")
 
-;; custom file
-(setq custom-file (expand-file-name "custom.el" misc-path))
+;;================================================================================
+;;                                   Hans VARS
+;;================================================================================
+(defvar hans/--enabled-modules '() "Enabled modules.")
 
 (defun keywordify (sym)
   "Create a keyword from given SYM."

@@ -26,6 +26,7 @@
 ;;; Code:
 
 (defvar emacs-backup-directory (expand-file-name ".backups" user-emacs-directory))
+(setq custom-file (expand-file-name "custom.el" misc-path))
 
 ;;================================================================================
 ;;                                    IBuffer                                    
