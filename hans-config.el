@@ -25,9 +25,8 @@
 ;;; Code:
 
 (+module ui
-	 :hans/font (:family "Fira Code" :size 10)
-	 :hans/theme modus-vivendi
-	 +doom-modeline)
+	 :hans/font (:family "Fira Code" :size 12)
+	 :hans/theme doom-one)
 
 (provide 'hans-config)
 ;;; hans-config.el ends here
