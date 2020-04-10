@@ -17,7 +17,6 @@ since I know from ground up how I built it so it's much easier for me to add thi
 + KISS (keep it simple stupid).
 + Modularity comes first .
 + No duplicate packages, focus on one (ex helm & ivy)
-+ Ability to install modules from third-party resources (TBA).
 ** Getting Started
 #+BEGIN_SRC sh
 # backup your existing .emacs.d
