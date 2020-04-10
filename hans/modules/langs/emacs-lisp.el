@@ -25,19 +25,26 @@
 ;;; Code:
 
 ;-----------------------------------Emacs Lisp-----------------------------------
-(defun --hans/modules/langs/emacs-lisp-dashes (count)
+(defun --hans/modules/langs/emacs-lisp-repeat (str count)
   "Create dashes with given COUNT."
   (let ((dashes ""))
-  (dotimes (iterator count dashes)
-    (setq dashes (concat dashes "-")))))
+    (dotimes (iterator count dashes)
+      (setq dashes (concat dashes str)))))
+
+(defun --hans/modules/langs/emacs-lisp-wrap-text-in-spaces (text)
+  (let* ((len (length text))
+	 (spaces-length-side (/ (- 80 len) 2))
+	 (spaces-side (--hans/modules/langs/emacs-lisp-repeat " " spaces-length-side)))
+    (format "%s%s%s" spaces-side text spaces-side)))
 
 (defun hans/modules/emacs-lisp-insert-comment-line (text)
   "Insert a comment line with given TEXT."
   (interactive "sComment: ")
-  (let* ((len (length text))
-	(len-dashes (- 80 len))
-	(dashes (--hans/modules/langs/emacs-lisp-dashes (/ len-dashes 2))))
-    (insert (format "\n;%s%s%s" dashes text dashes))))
+  (let* ((text-wrapped (--hans/modules/langs/emacs-lisp-wrap-text-in-spaces text))
+	 (dashes (--hans/modules/langs/emacs-lisp-repeat "=" 80)))
+    (message "%s" dashes)
+    (message "%s" text)
+    (insert (format "\n;;%s\n;;%s\n;;%s" dashes text-wrapped dashes))))
 
 (use-package elisp-mode
   :ensure nil
