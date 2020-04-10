@@ -127,7 +127,11 @@
 (defun hans/core-load-user-config (path)
   (load-file path))
 
+(defun hans/edit-config ()
+  (interactive)
+  (find-file hans/config-path))
 
+(global-set-key (kbd "C-c h e c") 'hans/edit-config)
 
 (provide 'core)
 ;;; core.el ends here

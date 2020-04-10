@@ -6,3 +6,8 @@ compile:
 install-wm:
 	@echo 'Installing ExWM'
 	@sudo cp ./hans.desktop /usr/share/xsessions/hans.desktop
+
+install-config:
+	@echo "Putting config in ~/.config/hans/config.el"
+	@mkdir -p ~/.config/hans
+	@cp hans-config.el ~/.config/hans/config.el

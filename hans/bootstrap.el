@@ -30,7 +30,7 @@
 (defvar misc-path (expand-file-name ".misc" user-emacs-directory) "All misc files of various packages.")
 (defvar core-dir (expand-file-name "hans" user-emacs-directory))
 (defvar modules-dir (expand-file-name "modules" core-dir))
-(defvar user-config-path (expand-file-name "~/.emacs.d/hans-config.el"))
+(defvar hans/config-path (expand-file-name "~/.config/config.el"))
 (defvar hans/gc-cons-threshold 16777216)
 (defvar hans/init-time nil)
 
@@ -47,7 +47,7 @@
 ;;================================================================================
 ;;                            Load user configuration
 ;;================================================================================
-(hans/core-load-user-config user-config-path)
+(hans/core-load-user-config hans/config-path)
 
 ;;================================================================================
 ;;                                  Load Modules
