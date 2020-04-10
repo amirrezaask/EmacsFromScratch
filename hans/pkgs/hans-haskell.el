@@ -1,4 +1,4 @@
-;;; lua.el --- Lua                                   -*- lexical-binding: t; -*-
+;;; haskell.el --- Haskell support                   -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirreza
 
@@ -21,9 +21,15 @@
 ;;; Commentary:
 
 ;; 
-;;; Code:
-(use-package lua-mode
-	     :mode "\\.lua\\'")
 
-(provide 'hans-langs-lua)
-;;; lua.el ends here
+;;; Code:
+
+(use-package haskell-mode
+	     :mode "\\.hs\\'")
+
+(use-package lsp-haskell
+	     :hook haskell-mode)
+
+
+(provide 'hans-haskell)
+;;; haskell.el ends here

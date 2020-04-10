@@ -1,4 +1,4 @@
-;;; elixir.el --- Elixir support                     -*- lexical-binding: t; -*-
+;;; asm.el --- assembly support                      -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirreza
 
@@ -24,14 +24,10 @@
 
 ;;; Code:
 
-(use-package elixir-mode
-	     :mode "\\.ex\\'")
+(use-package mips-mode :defer t)
+(use-package nasm-mode :defer t)
+(use-package haxor-mode :mode "\\.hax\\'")
 
-(use-package alchemist
-	     :defer t)
-(use-package flycheck-credo
-  :defer t
-  :init (add-hook 'elixir-mode-hook #'flycheck-credo-setup))
 
-(provide 'hans-langs-elixir)
-;;; elixir.el ends here
+(provide 'hans-asm)
+;;; asm.el ends here

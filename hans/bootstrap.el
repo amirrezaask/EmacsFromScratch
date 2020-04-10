@@ -45,15 +45,21 @@
 (require 'pkgmgr)
 (local-use-package hans-core
 		   :config
-		   (require 'hans-core);; we need to figure out a way to get ride of this
 		   (hans/core-fast-startup)
 		   (hans/core-better-gc)
 		   (idle! (hans/core-sync-path)))
 
-;;================================================================================
-;;                            Load user configuration
-;;================================================================================
-(hans/core-load-user-config hans/config-path)
+(local-use-package hans-ui)
+(local-use-package hans-completion)
+(local-use-package hans-editor)
+(local-use-package hans-dev)
+(local-use-package hans-devops)
+(local-use-package hans-langs
+		   :custom
+		   (hans/enabled-langs '(python go clojure rust php)))
+
+(local-use-package hans-gnus)
+(local-use-package hans-window-manager)
 
 (setq hans/init-time-elapsed (- (float-time) hans/init-timestamp))
 

@@ -1,4 +1,4 @@
-;;; php.el --- Php                                   -*- lexical-binding: t; -*-
+;;; java.el --- Java                                 -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirreza
 
@@ -24,15 +24,14 @@
 
 ;;; Code:
 
-(use-package php-mode
-	     :mode "\\.php\\'")
 
-(use-package phpunit
-	     :bind
-	     (("C-c C-t t" . phpunit-current-test)
-	      ("C-c C-t c" . phpunit-current-class)
-	      ("C-c C-t p" . phpunit-current-project)))
+(add-hook 'java-mode-hook (lambda ()
+			    (c-set-offset 'arglist-intro '+)
+			    (setq java-basic-offset 2)
+			    (setq c-basic-offset 2)))
 
+(use-package lsp-java
+	     :hook (java-mode))
 
-(provide 'hans-langs-php)
-;;; php.el ends here
+(provide 'hans-java)
+;;; java.el ends here

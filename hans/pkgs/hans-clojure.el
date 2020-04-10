@@ -1,8 +1,8 @@
-;;; kotlin.el --- Kotlin support                     -*- lexical-binding: t; -*-
+;;; clojure.el --- Clojure support                   -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2020  amirrezaask
+;; Copyright (C) 2020  amirreza
 
-;; Author: amirrezaask <raskarpour@gmail.com>
+;; Author: amirreza <amirreza@nobody.invalid>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,9 +24,16 @@
 
 ;;; Code:
 
-(use-package kotlin-mode :mode "\\.kts?\\'")
+(use-package clojure-mode
+	     :mode "\\.cljs?\\'")
 
-(use-package flycheck-kotlin :hook kotlin)
+(use-package cider
+	     :mode "\\.cljs?\\'"
+	     :bind (:map cider-mode-map
+			 ("C-x C-e" . 'cider-eval-last-sexp)))
 
-(provide 'hans-langs-kotlin)
-;;; kotlin.el ends here
+(use-package clj-refactor
+  :hook (clojure-mode . clj-refactor-mode))
+
+(provide 'hans-clojure)
+;;; clojure.el ends here

@@ -1,4 +1,4 @@
-;;; fsharp.el --- fsharp                             -*- lexical-binding: t; -*-
+;;; web.el --- Web support                           -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirreza
 
@@ -24,7 +24,10 @@
 
 ;;; Code:
 
-(use-package fsharp-mode :mode "\\.fs\\'")
+(use-package web-mode
+	     :mode ("\\.html\\'" "\\.css\\'"))
+(use-package emmet-mode
+  :hook (css-mode web-mode html-mode haml-mode nxml-mode rjsx-mode reason-mode))
 
-(provide 'modules-langs-fsharp)
-;;; fsharp.el ends here
+(provide 'hans-web)
+;;; web.el ends here

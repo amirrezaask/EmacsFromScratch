@@ -1,4 +1,4 @@
-;;; go.el --- golang                                 -*- lexical-binding: t; -*-
+;;; c.el --- C programming language                  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirreza
 
@@ -24,21 +24,21 @@
 
 ;;; Code:
 
-(use-package go-mode
-	     :mode "\\.go\\'"
-	     :init
-	     (add-hook 'go-mode-hook (lambda () (add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))))
-	     :config
-	     (add-hook 'before-save-hook 'gofmt-before-save)
-	     (add-hook 'before-save-hook 'go-import-add)
-	     (add-hook 'before-save-hook 'go-remove-unused-import)
-	     (add-hook 'before-save-hook #'lsp-format-buffer t t)
-	     (add-hook 'before-save-hook #'lsp-organize-imports t t))
+(define-auto-insert
+  '("\\.\\(CC?\\|cc\\|cxx\\|cpp\\|c++\\)\\'" . "C skeleton")
+  '("Short description: "
+    "/*" \n
+    (file-name-nondirectory (buffer-file-name))
+    " -- " str \n
+    " */" > \n \n
+    "#include <iostream>" \n \n
+    "using namespace std;" \n \n
+    "main()" \n
+    "{" \n
+    > _ \n
+    "}" > \n))
 
-(use-package go-add-tags :defer t)
+(use-package cquery :defer t)   
 
-(use-package gotest :defer t)
-
-
-(provide 'hans-langs-go)
-;;; go.el ends here
+(provide 'hans-c)
+;;; c.el ends here

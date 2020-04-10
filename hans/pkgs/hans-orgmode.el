@@ -1,8 +1,8 @@
-;;; javascript.el --- Javascript support             -*- lexical-binding: t; -*-
+;;; org.el --- Org mode support                      -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2020  amirreza
+;; Copyright (C) 2020  amirrezaask
 
-;; Author: amirreza <amirreza@nobody.invalid>
+;; Author: amirrezaask <raskarpour@gmail.com>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,10 +24,15 @@
 
 ;;; Code:
 
-(use-package js2-mode
-	     :hook js-mode)
+
+;------------------------------------Org mode------------------------------------
+(with-eval-after-load 'org
+  (setq org-support-shift-select t))
+
+;----------------------------------Org bullets----------------------------------
+(use-package org-bullets
+       :hook ((org-mode) . 'org-bullets-mode))
 
 
-
-(provide 'hans-langs-javascript)
-;;; javascript.el ends here
+(provide 'hans-orgmode)
+;;; org.el ends here

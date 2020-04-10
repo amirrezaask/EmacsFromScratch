@@ -48,11 +48,11 @@
 
 (use-package elisp-mode
   :ensure nil
-  :straight nil
+  
   :bind
   (:map emacs-lisp-mode-map
 	("C-c C-c C-d" . 'hans/modules/emacs-lisp-insert-comment-line)))
 
 
-(provide 'hans-langs-emacs-lisp)
+(provide 'hans-emacs-lisp)
 ;;; emacs-lisp.el ends here

@@ -1,8 +1,8 @@
-;;; langs.el --- language support                    -*- lexical-binding: t; -*-
+;;; sh.el --- Sh support                             -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2020  amirreza
+;; Copyright (C) 2020  amirrezaask
 
-;; Author: amirreza <amirreza@nobody.invalid>
+;; Author: amirrezaask <raskarpour@gmail.com>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -23,9 +23,9 @@
 ;; 
 
 ;;; Code:
-(defmacro with (lang-name)
-  (let ((lang (format "modules/langs/%s" (symbol-name lang-name))))
-    `(local-use-package ,lang)))
 
-(provide 'hans-langs)
-;;; langs.el ends here
+(use-package company-shell
+  :hook sh-mode)
+
+(provide 'hans-sh)
+;;; sh.el ends here

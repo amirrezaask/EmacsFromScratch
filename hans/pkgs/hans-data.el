@@ -1,8 +1,8 @@
-;;; org.el --- Org mode support                      -*- lexical-binding: t; -*-
+;;; data.el --- Data formats                         -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2020  amirrezaask
+;; Copyright (C) 2020  amirreza
 
-;; Author: amirrezaask <raskarpour@gmail.com>
+;; Author: amirreza <amirreza@nobody.invalid>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,15 +24,30 @@
 
 ;;; Code:
 
+(use-package json-mode
+	     :mode "\\.json\\'"
+	     :config
+	     (add-hook 'before-save-hook 'json-mode-beautify))
 
-;------------------------------------Org mode------------------------------------
-(with-eval-after-load 'org
-  (setq org-support-shift-select t))
+(use-package yaml-mode
+	     :mode
+	     "\\.ya?ml\\'")
 
-;----------------------------------Org bullets----------------------------------
-(use-package org-bullets
-       :hook ((org-mode) . 'org-bullets-mode))
+(use-package toml-mode
+	     :mode "\\.toml\\'")
+
+(use-package csv-mode
+	     :mode "\\.csv\\'")
+
+(use-package protobuf-mode
+	     :mode "\\.proto\\'")
 
 
-(provide 'hans-langs-orgmode)
-;;; org.el ends here
+(use-package markdown-mode
+	     :mode "\\.md\\'")
+
+(use-package graphql-mode
+  :mode "\\.gql\\'")
+
+(provide 'hans-data)
+;;; data.el ends here

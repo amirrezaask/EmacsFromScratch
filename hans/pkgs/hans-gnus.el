@@ -1,4 +1,4 @@
-;;; typescript.el --- Typescript supprot             -*- lexical-binding: t; -*-
+;;; gnus.el --- Emacs gnus setup                     -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirreza
 
@@ -24,9 +24,24 @@
 
 ;;; Code:
 
-(use-package tide
-	     :mode "\\.ts\\'")
+(use-package gnus
+	     
+	     :ensure nil
+	     :defer t
+	     :commands (gnus)
+	     :config
+	     (setq user-mail-address "raskarpour@gmail.com"
+		   user-full-name "amirrezaask")
+	     
+	     (setq gnus-select-method
+		   '(nnimap "gmail"
+			    (nnimap-address "imap.gmail.com")
+			    (nnimap-server-port "imaps")
+			    (nnimap-stream ssl)))
+	     (setq smtpmail-smtp-server "smtp.gmail.com"
+		   smtpmail-smtp-service 587
+		   gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]"))
 
 
-(provide 'hans-langs-typescript)
-;;; typescript.el ends here
+(provide 'hans-gnus)
+;;; gnus.el ends here

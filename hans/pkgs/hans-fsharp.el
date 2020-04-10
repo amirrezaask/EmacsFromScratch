@@ -1,4 +1,4 @@
-;;; python.el --- Python support                     -*- lexical-binding: t; -*-
+;;; fsharp.el --- fsharp                             -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirreza
 
@@ -24,17 +24,7 @@
 
 ;;; Code:
 
-(use-package python-mode
-	     :mode "\\.py\\'")
+(use-package fsharp-mode :mode "\\.fs\\'")
 
-(use-package pipenv
-	     :defer t)
-
-(use-package lsp-python-ms
-	     :defer t)
-
-(use-package py-autopep8
-	     :hook python-mode)
-
-(provide 'hans-langs-python)
-;;; python.el ends here
+(provide 'modules-fsharp)
+;;; fsharp.el ends here

@@ -1,4 +1,4 @@
-;;; racket.el --- Racket support                     -*- lexical-binding: t; -*-
+;;; lua.el --- Lua                                   -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirreza
 
@@ -21,11 +21,9 @@
 ;;; Commentary:
 
 ;; 
-
 ;;; Code:
+(use-package lua-mode
+	     :mode "\\.lua\\'")
 
-(use-package racket-mode
-	     :mode "\\.rkt\\'")
-
-(provide 'hans-langs-racket)
-;;; racket.el ends here
+(provide 'hans-lua)
+;;; lua.el ends here

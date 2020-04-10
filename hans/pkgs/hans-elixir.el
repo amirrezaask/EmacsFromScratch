@@ -1,4 +1,4 @@
-;;; c.el --- C programming language                  -*- lexical-binding: t; -*-
+;;; elixir.el --- Elixir support                     -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirreza
 
@@ -24,21 +24,14 @@
 
 ;;; Code:
 
-(define-auto-insert
-  '("\\.\\(CC?\\|cc\\|cxx\\|cpp\\|c++\\)\\'" . "C skeleton")
-  '("Short description: "
-    "/*" \n
-    (file-name-nondirectory (buffer-file-name))
-    " -- " str \n
-    " */" > \n \n
-    "#include <iostream>" \n \n
-    "using namespace std;" \n \n
-    "main()" \n
-    "{" \n
-    > _ \n
-    "}" > \n))
+(use-package elixir-mode
+	     :mode "\\.ex\\'")
 
-(use-package cquery :defer t)   
+(use-package alchemist
+	     :defer t)
+(use-package flycheck-credo
+  :defer t
+  :init (add-hook 'elixir-mode-hook #'flycheck-credo-setup))
 
-(provide 'hans-langs-c)
-;;; c.el ends here
+(provide 'hans-elixir)
+;;; elixir.el ends here

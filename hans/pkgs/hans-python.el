@@ -1,4 +1,4 @@
-;;; haskell.el --- Haskell support                   -*- lexical-binding: t; -*-
+;;; python.el --- Python support                     -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirreza
 
@@ -24,12 +24,17 @@
 
 ;;; Code:
 
-(use-package haskell-mode
-	     :mode "\\.hs\\'")
+(use-package python-mode
+	     :mode "\\.py\\'")
 
-(use-package lsp-haskell
-	     :hook haskell-mode)
+(use-package pipenv
+	     :defer t)
 
+(use-package lsp-python-ms
+	     :defer t)
 
-(provide 'hans-langs-haskell)
-;;; haskell.el ends here
+(use-package py-autopep8
+	     :hook python-mode)
+
+(provide 'hans-python)
+;;; python.el ends here

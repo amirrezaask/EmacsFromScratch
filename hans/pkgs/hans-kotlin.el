@@ -1,8 +1,8 @@
-;;; data.el --- Data formats                         -*- lexical-binding: t; -*-
+;;; kotlin.el --- Kotlin support                     -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2020  amirreza
+;; Copyright (C) 2020  amirrezaask
 
-;; Author: amirreza <amirreza@nobody.invalid>
+;; Author: amirrezaask <raskarpour@gmail.com>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,30 +24,9 @@
 
 ;;; Code:
 
-(use-package json-mode
-	     :mode "\\.json\\'"
-	     :config
-	     (add-hook 'before-save-hook 'json-mode-beautify))
+(use-package kotlin-mode :mode "\\.kts?\\'")
 
-(use-package yaml-mode
-	     :mode
-	     "\\.ya?ml\\'")
+(use-package flycheck-kotlin :hook kotlin)
 
-(use-package toml-mode
-	     :mode "\\.toml\\'")
-
-(use-package csv-mode
-	     :mode "\\.csv\\'")
-
-(use-package protobuf-mode
-	     :mode "\\.proto\\'")
-
-
-(use-package markdown-mode
-	     :mode "\\.md\\'")
-
-(use-package graphql-mode
-  :mode "\\.gql\\'")
-
-(provide 'hans-langs-data)
-;;; data.el ends here
+(provide 'hans-kotlin)
+;;; kotlin.el ends here

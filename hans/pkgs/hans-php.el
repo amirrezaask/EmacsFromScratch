@@ -1,4 +1,4 @@
-;;; asm.el --- assembly support                      -*- lexical-binding: t; -*-
+;;; php.el --- Php                                   -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirreza
 
@@ -24,10 +24,15 @@
 
 ;;; Code:
 
-(use-package mips-mode :defer t)
-(use-package nasm-mode :defer t)
-(use-package haxor-mode :mode "\\.hax\\'")
+(use-package php-mode
+	     :mode "\\.php\\'")
+
+(use-package phpunit
+	     :bind
+	     (("C-c C-t t" . phpunit-current-test)
+	      ("C-c C-t c" . phpunit-current-class)
+	      ("C-c C-t p" . phpunit-current-project)))
 
 
-(provide 'hans-langs-asm)
-;;; asm.el ends here
+(provide 'hans-php)
+;;; php.el ends here

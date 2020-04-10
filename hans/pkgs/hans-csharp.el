@@ -1,8 +1,8 @@
-;;; sh.el --- Sh support                             -*- lexical-binding: t; -*-
+;;; csharp.el --- CSharp support                     -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2020  amirrezaask
+;; Copyright (C) 2020  amirreza
 
-;; Author: amirrezaask <raskarpour@gmail.com>
+;; Author: amirreza <amirreza@nobody.invalid>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,8 +24,11 @@
 
 ;;; Code:
 
-(use-package company-shell
-  :hook sh-mode)
+(use-package csharp-mode :mode "\\.cs\\'")
 
-(provide 'hans-langs-sh)
-;;; sh.el ends here
+(use-package omnisharp
+  :hook csharp-mode
+  :commands (omnisharp omnisharp-install-server))
+
+(provide 'hans-csharp)
+;;; csharp.el ends here

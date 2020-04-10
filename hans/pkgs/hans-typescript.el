@@ -1,4 +1,4 @@
-;;; common-lisp.el --- CommonLisp support            -*- lexical-binding: t; -*-
+;;; typescript.el --- Typescript supprot             -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirreza
 
@@ -24,20 +24,9 @@
 
 ;;; Code:
 
-
-(use-package sly
-	     :hook lisp-mode)
-
-(use-package paredit
-	     :hook ((emacs-lisp-mode clojure-mode) . paredit-mode))
+(use-package tide
+	     :mode "\\.ts\\'")
 
 
-(use-package parinfer
-	     :hook ((emacs-lisp-mode clojure-mode) . parinfer-mode))
-
-(use-package rainbow-delimiters
-	     :hook ((prog-mode) . rainbow-delimiters-mode))
-
-
-(provide 'hans-langs-common-lisp)
-;;; common-lisp.el ends here
+(provide 'hans-typescript)
+;;; typescript.el ends here

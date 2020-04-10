@@ -1,4 +1,4 @@
-;;; clojure.el --- Clojure support                   -*- lexical-binding: t; -*-
+;;; go.el --- golang                                 -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirreza
 
@@ -24,16 +24,21 @@
 
 ;;; Code:
 
-(use-package clojure-mode
-	     :mode "\\.cljs?\\'")
+(use-package go-mode
+	     :mode "\\.go\\'"
+	     :init
+	     (add-hook 'go-mode-hook (lambda () (add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))))
+	     :config
+	     (add-hook 'before-save-hook 'gofmt-before-save)
+	     (add-hook 'before-save-hook 'go-import-add)
+	     (add-hook 'before-save-hook 'go-remove-unused-import)
+	     (add-hook 'before-save-hook #'lsp-format-buffer t t)
+	     (add-hook 'before-save-hook #'lsp-organize-imports t t))
 
-(use-package cider
-	     :mode "\\.cljs?\\'"
-	     :bind (:map cider-mode-map
-			 ("C-x C-e" . 'cider-eval-last-sexp)))
+(use-package go-add-tags :defer t)
 
-(use-package clj-refactor
-  :hook (clojure-mode . clj-refactor-mode))
+(use-package gotest :defer t)
 
-(provide 'hans-langs-clojure)
-;;; clojure.el ends here
+
+(provide 'hans-go)
+;;; go.el ends here

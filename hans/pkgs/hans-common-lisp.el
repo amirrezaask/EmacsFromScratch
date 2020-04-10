@@ -1,4 +1,4 @@
-;;; java.el --- Java                                 -*- lexical-binding: t; -*-
+;;; common-lisp.el --- CommonLisp support            -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirreza
 
@@ -25,13 +25,19 @@
 ;;; Code:
 
 
-(add-hook 'java-mode-hook (lambda ()
-			    (c-set-offset 'arglist-intro '+)
-			    (setq java-basic-offset 2)
-			    (setq c-basic-offset 2)))
+(use-package sly
+	     :hook lisp-mode)
 
-(use-package lsp-java
-	     :hook (java-mode))
+(use-package paredit
+	     :hook ((emacs-lisp-mode clojure-mode) . paredit-mode))
 
-(provide 'hans-langs-java)
-;;; java.el ends here
+
+(use-package parinfer
+	     :hook ((emacs-lisp-mode clojure-mode) . parinfer-mode))
+
+(use-package rainbow-delimiters
+	     :hook ((prog-mode) . rainbow-delimiters-mode))
+
+
+(provide 'hans-common-lisp)
+;;; common-lisp.el ends here

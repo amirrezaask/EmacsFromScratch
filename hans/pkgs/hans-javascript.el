@@ -1,4 +1,4 @@
-;;; csharp.el --- CSharp support                     -*- lexical-binding: t; -*-
+;;; javascript.el --- Javascript support             -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirreza
 
@@ -24,11 +24,10 @@
 
 ;;; Code:
 
-(use-package csharp-mode :mode "\\.cs\\'")
+(use-package js2-mode
+	     :hook js-mode)
 
-(use-package omnisharp
-  :hook csharp-mode
-  :commands (omnisharp omnisharp-install-server))
 
-(provide 'hans-langs-csharp)
-;;; csharp.el ends here
+
+(provide 'hans-javascript)
+;;; javascript.el ends here

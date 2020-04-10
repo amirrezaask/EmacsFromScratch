@@ -1,4 +1,4 @@
-;;; gnus.el --- Emacs gnus setup                     -*- lexical-binding: t; -*-
+;;; langs.el --- language support                    -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirreza
 
@@ -23,25 +23,12 @@
 ;; 
 
 ;;; Code:
+(defvar hans/langs-root-path (expand-file-name "langs" hans/pkgs-path))
+(defvar hans/enabled-langs '())
 
-(use-package gnus
-	     :straight nil
-	     :ensure nil
-	     :defer t
-	     :commands (gnus)
-	     :config
-	     (setq user-mail-address "raskarpour@gmail.com"
-		   user-full-name "amirrezaask")
-	     
-	     (setq gnus-select-method
-		   '(nnimap "gmail"
-			    (nnimap-address "imap.gmail.com")
-			    (nnimap-server-port "imaps")
-			    (nnimap-stream ssl)))
-	     (setq smtpmail-smtp-server "smtp.gmail.com"
-		   smtpmail-smtp-service 587
-		   gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]"))
-
-
-(provide 'hans-gnus)
-;;; gnus.el ends here
+(add-to-list 'load-path hans/langs-root-path) 
+(mapcar (lambda (lang)
+	  (require (intern (format "hans-%s" (symbol-name lang))))
+	  ) hans/enabled-langs)
+(provide 'hans-langs)
+;;; langs.el ends here

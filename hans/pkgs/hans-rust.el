@@ -37,5 +37,5 @@
 	     :init (add-hook 'rust-mode-hook #'cargo-minor-mode))
 
 
-(provide 'hans-langs-rust)
+(provide 'hans-rust)
 ;;; rust.el ends here

@@ -38,7 +38,6 @@
 ;;================================================================================
 (use-package dired
        :ensure nil
-       :straight nil
        :bind
        (("C-x C-j" . dired-jump)
         ("C-x j" . dired-jump-other-window))
@@ -53,7 +52,7 @@
 (global-set-key (kbd "C-z") nil)
 (global-set-key (kbd "M-z") nil)
 (global-set-key (kbd "C-x C-z") nil)
-(use-package files :straight nil :ensure nil
+(use-package files  :ensure nil
   :config
   (setq make-backup-files nil))
 (setq custom-file (expand-file-name "custom.el" hans/misc-path))
@@ -157,7 +156,7 @@
 ;;================================================================================
 (use-package winner 
   :ensure nil
-  :straight nil)
+  )
 
 
 
@@ -232,7 +231,7 @@
 ;;================================================================================				
 (use-package simple
   :ensure nil
-  :straight nil
+  
   :config
   (column-number-mode 1))
 
@@ -259,7 +258,7 @@
 ;;================================================================================
 (use-package frame
   :ensure nil
-  :straight nil
+  
   :config
   (blink-cursor-mode 0))
 

@@ -1,4 +1,4 @@
-;;; web.el --- Web support                           -*- lexical-binding: t; -*-
+;;; racket.el --- Racket support                     -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  amirreza
 
@@ -24,10 +24,8 @@
 
 ;;; Code:
 
-(use-package web-mode
-	     :mode ("\\.html\\'" "\\.css\\'"))
-(use-package emmet-mode
-  :hook (css-mode web-mode html-mode haml-mode nxml-mode rjsx-mode reason-mode))
+(use-package racket-mode
+	     :mode "\\.rkt\\'")
 
-(provide 'hans-langs-web)
-;;; web.el ends here
+(provide 'hans-racket)
+;;; racket.el ends here
