@@ -9,14 +9,6 @@ so don't expect it to has all features like =doom= or =spacemacs=, or any featur
 Emacs bundles like =doom= or =spacemacs= or any other one out there are amazing, they are a great way of learning how to organize Emacs configuration but they contain packages and
 configurations that I might not use. Actually I used some ideas that I found in Doom-emacs and some configurations of several packages (`ivy` forexample) but I prefer my own configuration
 since I know from ground up how I built it so it's much easier for me to add things or fix bugs if they happen.
-** Ideas
-=Hans= is built around some main ideas, some of them are not implemented yet.
-+ First class support for Emacs keybindings.
-+ Startup time matters a lot so it should always stay fast as possible.
-+ Core should remain as simple as possible.
-+ KISS (keep it simple stupid).
-+ Modularity comes first.
-+ No duplicate packages, focus on one (ex helm & ivy)
 ** Getting Started
 #+BEGIN_SRC sh
 # backup your existing .emacs.d

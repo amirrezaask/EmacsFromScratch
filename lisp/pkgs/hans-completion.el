@@ -24,7 +24,10 @@
 
 ;;; Code:
 
-
+;;================================================================================
+;;                                      VARS                                      
+;;================================================================================
+(defvar hans-general-completion 'ido "completion to use options are 'ido 'ivy 'helm")
 ;;================================================================================
 ;;                                  Company Mode                                  
 ;;================================================================================
@@ -57,6 +60,7 @@
 ;;                                      Ivy                                      
 ;;================================================================================
 (use-package ivy
+  :if (eq hans-general-completion 'ivy)
   :bind
   (("C-x b" . 'ivy-switch-buffer))
   :custom
@@ -80,18 +84,40 @@
   (ivy-mode +1))
 
 (use-package counsel
-	      :commands (counsel-M-x counsel-find-file ivy-switch-buffer)
-	      :bind
-	      (("M-x" . 'counsel-M-x)
-	       ("C-x C-f" . 'counsel-find-file)
-	       ("C-h b" . 'counsel-descbinds)
-	       ("C-h f" . 'counsel-describe-function)
-	       ("C-h v" . 'counsel-describe-variable)
-	       ("C-h a" . 'counsel-apropos)
-	       ("C-c C-c f"  . 'counsel-fzf)
-	       ("C-c C-c r" . 'counsel-rg)
-	       ("M-y" . 'counsel-yank-pop)))
+  :if (eq hans-general-completion 'ivy)
+  :commands (counsel-M-x counsel-find-file ivy-switch-buffer)
+  :bind
+  (("M-x" . 'counsel-M-x)
+   ("C-x C-f" . 'counsel-find-file)
+   ("C-h b" . 'counsel-descbinds)
+   ("C-h f" . 'counsel-describe-function)
+   ("C-h v" . 'counsel-describe-variable)
+   ("C-h a" . 'counsel-apropos)
+   ("C-c C-c f"  . 'counsel-fzf)
+   ("C-c C-c r" . 'counsel-rg)
+   ("M-y" . 'counsel-yank-pop)))
 
+;;================================================================================
+;;                                      IDO                                      
+;;================================================================================
+(use-package ido
+  :if (eq hans-general-completion 'ido)
+  :custom
+  (ido-enable-flex-matching t)
+  (ido-everywhere t)
+  (ido-use-filename-at-point 'guess)
+  (ido-create-new-buffer 'always)
+  :config
+  (ido-mode +1))
+
+(use-package ido-completing-read+
+  :if (eq hans-general-completion 'ido)
+  :config
+  (ido-ubiquitous-mode 1))
+
+(use-package smex
+  :if (eq hans-general-completion 'ido)
+  :bind (("M-x" . smex)))
 
 (provide 'hans-completion)
 ;;; completion.el ends here
