@@ -24,6 +24,39 @@
 
 ;;; Code:
 
+;;================================================================================
+;;                                    IBuffer                                    
+;;================================================================================
+(use-package ibuffer
+  :bind (("C-x C-b" . 'ibuffer)))
+
+(use-package ibuffer-projectile 
+  :hook (ibuffer . ibuffer-projectile-set-filter-groups))
+
+;;================================================================================
+;;                                     Dired                                     
+;;================================================================================
+(use-package dired
+       :ensure nil
+       :straight nil
+       :bind
+       (("C-x C-j" . dired-jump)
+        ("C-x j" . dired-jump-other-window))
+       :custom
+       ;; Always delete and copy recursively
+       (dired-recursive-deletes 'always)
+       (dired-recursive-copies 'always))
+
+
+;;================================================================================
+;;                                      Crux                                      
+;;================================================================================
+(use-package crux
+  :config
+  (require 'crux)
+  :bind (("C-S-k" . 'crux-kill-whole-line))
+  ("C-x K" . 'crux-kill-other-buffers))
+
 
 
 ;;================================================================================
