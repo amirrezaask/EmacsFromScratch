@@ -1,6 +1,5 @@
 #+TITLE: Amirrezaask Emacs configuration (a.k.a Hans)
 #+AUTHOR: AmirrezaAsk
-
 ** Intro
 I'm a huge fan of =HansZimmer=, so I call my emacs configuration =Hans=.
 *** Important Note
