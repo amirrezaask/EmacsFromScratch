@@ -55,6 +55,7 @@
 (use-package files  :ensure nil
   :config
   (setq make-backup-files nil))
+
 (setq custom-file (expand-file-name "custom.el" hans/misc-path))
 ;; sane zoom-in and zoom-out 
 (global-set-key (kbd "C-+") 'text-scale-increase)
