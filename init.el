@@ -18,7 +18,11 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
-(package-refresh-contents)
+
+;; (load-file "~/dev/emacs-from-scratch/command-log-mode.el")
+
+(if (null package-archive-contents)
+    (package-refresh-contents))
 
 (package-install 'use-package)
 (use-package doom-themes :defer t)
@@ -28,7 +32,6 @@
 (use-package rainbow-delimiters
   :ensure t
   :hook (emacs-lisp-mode . rainbow-delimiters-mode))
-
 (use-package ivy
   :ensure t
   :config
@@ -67,7 +70,7 @@
   (py-autopep8-enable-on-save))
 
 (use-package magit :ensure t
-  :bind (("C-x g" . magit))
+  :bind (("C-x g" . magit)))
 
 
 
