@@ -1,19 +1,19 @@
 * From scratch Emacs
 ** Episode 1
    [[https://www.youtube.com/watch?v=FAEzQmOIK2E][Youtube Link]]
-*** Emacs lisp interpreter
-*** Basic keychords
-*** line numbers column numbers 
-*** package management
-*** install elisp helper packages (rainbow-delimters)
-*** ivy (counsel, swiper, fzf, rg)
-*** use-package
++ Emacs lisp interpreter
++ Basic keychords
++ line numbers column numbers 
++ package management
++ install elisp helper packages (rainbow-delimters)
++ ivy (counsel, swiper, fzf, rg)
++ use-package
 ** Episode 2
 [[https://www.youtube.com/watch?v=gCO8RoY5H2k][Youtube Link]]
-*** lsp
-*** Company
-*** Python environment
-*** Git integration
++ lsp
++ Company
++ Python environment
++ Git integration
 ** Episode 3
 *** Go environment
 **** Go-mode
