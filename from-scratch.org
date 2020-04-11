@@ -9,11 +9,12 @@
 *** ivy (counsel, swiper, fzf, rg)
 *** use-package
 ** Step 3
+*** Company
 *** lsp
 *** python-mode
-*** go-mode
-** step 3+1
 *** magit
+** Step 3+1
+*** go-mode
 ** Step 4
 *** multiple cursors
 *** expand region
@@ -21,3 +22,6 @@
 *** ace window
 *** which key
 *** ibuffer
+** Step 5
+*** K8s
+*** Docker
