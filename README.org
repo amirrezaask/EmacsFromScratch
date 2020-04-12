@@ -15,10 +15,11 @@
 + Python environment
 + Git integration
 ** Episode 3
-*** Go environment
-**** Go-mode
-**** Go struct tags
-**** Go tests
++ fix package-refresh-contents on every startup
++ Go-mode
++ LSP support for Go
++ Go struct tags
++ Go tests
 ** Episode 4
 *** Multiple Cursors
 *** expand region
