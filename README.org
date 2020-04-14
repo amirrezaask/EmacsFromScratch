@@ -19,14 +19,26 @@
 + Go-mode
 + LSP support for Go
 + Go struct tags
-+ Go tests
++ Go test
+
 ** Episode 4
+*** Some vim basics
+vim editing commands =<number/multiplier><command/operator><text objects>=
+greate article on vim editing commands:
+https://blog.carbonfive.com/2011/10/17/vim-text-objects-the-definitive-guide/
+*** Evil mode
+    extensible-Vi-Layer
+*** Evil collection
+Collection of evil friendly keybindings for Emacs popular modes
+*** General.el
+keybinding framework
+** Episode 5
 *** Multiple Cursors
 *** expand region
 *** dumb jump
 *** ace window
 *** which key
 *** ibuffer
-** Episode 5
+** Episode 6
 *** K8s
 *** Docker
