@@ -27,6 +27,7 @@ vim editing commands =<number/multiplier><command/operator><text objects>=
 greate article on vim editing commands:
 https://blog.carbonfive.com/2011/10/17/vim-text-objects-the-definitive-guide/
 *** Evil mode
+Emacs, "a great operating system, lacking only a decent editor"
     extensible-Vi-Layer
 *** Evil collection
 Collection of evil friendly keybindings for Emacs popular modes

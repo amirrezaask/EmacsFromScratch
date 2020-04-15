@@ -92,9 +92,36 @@
 
 (use-package gotest
   :ensure t
+  :general
+  (:keymaps go-mode-map :prefix "SPC"
+	    "t c t" 'go-test-current-test
+	    "t c f" 'go-test-current-file)
   :config
   (define-key go-mode-map (kbd "C-c C-g t t") 'go-test-current-test)
   (define-key go-mode-map (kbd "C-c C-g t f") 'go-test-current-file))
+;; <leader , SPC> 
+(use-package evil :ensure t
+  :config
+  (evil-mode +1))
+
+(use-package evil-collection :ensure t
+  :config
+  (evil-collection-init))
+
+(use-package evil-magit :ensure t)
+(define-key evil-normal-state-map (kbd "SPC f f") 'find-file)
+(define-key evil-normal-state-map (kbd "SPC s b") 'switch-to-buffer)
+(define-key evil-normal-state-map (kbd "SPC k b") 'kill-buffer)
+(use-package general
+  :ensure t
+  :config
+  (general-define-key :states 'normal
+		      :prefix "SPC"
+		      "ff" 'find-file
+		      "sb" 'switch-to-buffer
+		      "kb" 'kill-buffer)
+  )
+
 
 ;; global-map
 ;; go-mode-map
