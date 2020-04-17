@@ -36,7 +36,7 @@ keybinding framework
 ** Episode 5
 *** Multiple Cursors
 *** expand region
-*** dumb jump
+(["Name"])
 *** ace window
 *** which key
 *** ibuffer

@@ -19,7 +19,7 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
 
-(load-file "~/dev/emacs-from-scratch/command-log-mode.el")
+(load-file "~/w/emacs-from-scratch/command-log-mode.el")
 
 (if (null package-archive-contents)
     (package-refresh-contents))
@@ -99,31 +99,54 @@
   :config
   (define-key go-mode-map (kbd "C-c C-g t t") 'go-test-current-test)
   (define-key go-mode-map (kbd "C-c C-g t f") 'go-test-current-file))
+
 ;; <leader , SPC> 
-(use-package evil :ensure t
+;; (use-package evil :ensure t
+;;   :config
+;;   (evil-mode +1))
+
+;; (use-package evil-collection :ensure t
+;;   :config
+;;   (evil-collection-init))
+
+;; (use-package evil-magit :ensure t)
+;; (define-key evil-normal-state-map (kbd "SPC f f") 'find-file)
+;; (define-key evil-normal-state-map (kbd "SPC s b") 'switch-to-buffer)
+;; (define-key evil-normal-state-map (kbd "SPC k b") 'kill-buffer)
+;; (use-package general
+;;   :ensure t
+;;   :config
+;;   (general-define-key :states 'normal
+;; 		      :prefix "SPC"
+;; 		      "ff" 'find-file
+;; 		      "sb" 'switch-to-buffer
+;; 		      "kb" 'kill-buffer)
+;;   )
+
+
+(use-package multiple-cursors :ensure t
+  :bind
+  ("C-c c l" . mc/edit-lines)
+  ("C-c c n" . mc/mark-next-like-this)
+  ("C-c c p" . mc/mark-previous-like-this)
+  ("C-c c a" . mc/mark-all-like-this))
+
+(use-package expand-region :ensure t
+  :bind
+  ("C-=" . er/expand-region)
+  ("C--" . er/contract-region))
+
+
+(use-package ace-window :ensure t
+  :bind
+  ("C-x o" . ace-window))
+
+(use-package which-key :ensure t
   :config
-  (evil-mode +1))
+  (which-key-mode +1))
 
-(use-package evil-collection :ensure t
-  :config
-  (evil-collection-init))
+(use-package ibuffer :ensure t)
+(use-package projectile :ensure t)
 
-(use-package evil-magit :ensure t)
-(define-key evil-normal-state-map (kbd "SPC f f") 'find-file)
-(define-key evil-normal-state-map (kbd "SPC s b") 'switch-to-buffer)
-(define-key evil-normal-state-map (kbd "SPC k b") 'kill-buffer)
-(use-package general
-  :ensure t
-  :config
-  (general-define-key :states 'normal
-		      :prefix "SPC"
-		      "ff" 'find-file
-		      "sb" 'switch-to-buffer
-		      "kb" 'kill-buffer)
-  )
-
-
-;; global-map
-;; go-mode-map
-;; python-mode-map
-
+(use-package ibuffer-projectile :ensure t
+   :hook (ibuffer . ibuffer-projectile-set-filter-groups))
